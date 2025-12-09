@@ -1,0 +1,112 @@
+.home-intro {
+  background-color: #fcf6e9;
+  padding: 80px 0;
+}
+
+.intro-title {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1.05;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.intro-description {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 30px;
+  max-width: 450px;
+}
+
+.intro-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-watch {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.btn-watch:hover {
+  color: #01715d;
+}
+
+.play-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #ffc800;
+  color: #1a1a1a;
+  border-radius: 50%;
+  font-size: 18px;
+  margin-right: 10px;
+  padding-left: 3px;
+}
+
+.statistics-section {
+  background-color: #005a41;
+  padding: 60px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+.stat-item {
+  display: flex;
+  text-align: center;
+  gap: 25px;
+  color: white;
+  padding: 0 15px;
+}
+
+.stat-icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.stat-icon i {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
+.stat-number {
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.last-section {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: #005a41;
+  height: 30vh;
+  margin: 30px 0;
+  align-items: center;
+  padding: 70px;
+  color: white;
+}
+.last-section h1 {
+  font-size: 55px;
+}

@@ -3,4 +3,35 @@
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fcf6e9;
+}
+.btn-green {
+  border: 1px solid#01715d;
+  background-color: #01715d;
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 25px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-yellow {
+  border: 1px solid#e6c047;
+  background-color: #e6c047;
+  border-radius: 30px;
+  color: #222222;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 25px;
+  text-decoration: none;
+}
+header {
+  background-color: #fefdf6;
 }
