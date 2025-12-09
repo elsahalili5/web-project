@@ -1,8 +1,18 @@
 .home-intro {
   background-color: #fcf6e9;
-  padding: 80px 0;
+  padding: 40px 0;
 }
-
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.intro-pic {
+  width: 50%;
+}
+.intro-pic img {
+  width: 100%;
+}
 .intro-title {
   font-family: "Georgia", "Times New Roman", Times, serif;
   font-size: 80px;
