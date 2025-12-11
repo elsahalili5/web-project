@@ -18,7 +18,7 @@ body {
   color: #ffffff;
   font-size: 15px;
   font-weight: bold;
-  padding: 12px 25px;
+  padding: 9px 25px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -34,4 +34,15 @@ body {
 }
 header {
   background-color: #fefdf6;
+}
+
+.main-banner {
+  height: calc(100vh - 250px);
+}
+
+.result {
+  visibility: hidden;
+  color: red;
+  margin-bottom: 10px;
+  text-align: center;
 }

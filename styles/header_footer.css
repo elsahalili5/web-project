@@ -3,8 +3,8 @@
 }
 .navbar {
   display: flex;
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 15px;
+  padding-top: 15px;
   justify-content: space-between;
   font-size: 20px;
   align-items: center;
@@ -59,7 +59,7 @@
 
 .footer {
   align-items: center;
-  padding: 30px 0;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid rgb(149, 146, 146);

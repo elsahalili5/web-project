@@ -9,6 +9,10 @@
     <div class="container" id="container">
       <div class="form-container sign-up-container">
         <form method="post">
+          <div id="result" class="result">
+            <p id="result-p"></p>
+          </div>
+
           <input
             id="inputFirstName"
             name="inputFirstName"
@@ -22,17 +26,18 @@
             placeholder="Last Name"
           />
           <input
-            id="inputEmail"
+            id="signupEmail"
             name="inputEmail"
-            type="email"
+            type="text"
             placeholder="Email"
           />
           <input
-            id="inputPassword"
+            id="signupPassword"
             name="inputPassword"
             type="password"
             placeholder="Create a password"
           />
+
           <input class="button" type="submit" name="submit" value="Sign Up" />
         </form>
       </div>
@@ -40,20 +45,23 @@
       <div class="form-container sign-in-container">
         <form class="signin-form" method="POST">
           <h1 class="sign-in">Sign in</h1>
+          <div id="signin-result" class="signin-result">
+            <p id="signin-result-p"></p>
+          </div>
+
           <input
-            type="email"
+            id="signinEmail"
             name="inputEmail"
-            id="inputEmail"
+            type="email"
             placeholder="name@example.com"
-            required
           />
           <input
-            type="password"
+            id="signinPassword"
             name="inputPassword"
-            id="inputPassword"
+            type="password"
             placeholder="Password"
-            required
           />
+
           <input class="button" type="submit" name="submit" value="Sign in" />
         </form>
         <form>
@@ -71,12 +79,15 @@
           </div>
           <div class="overlay-panel overlay-right">
             <h1>Start Your Journey.</h1>
+
             <p>Join the heart of giving!</p>
+
             <button class="ghost" id="signUp">Sign Up</button>
           </div>
         </div>
       </div>
     </div>
-    <script src="./js/login.js"></script>
+
+    <script src="./js/register.js"></script>
   </body>
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/header_footer.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/donations.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <img class="default_logo" src="./images/logo2.png" alt="" />
+          </div>
+          <div class="left-nav" id="menu-item">
+            <ul>
+              <li><a href="home.html">Home</a></li>
+              <li><a href="causes.html">Causes</a></li>
+              <li><a href="donate.html" class="active">Donate</a></li>
+              <li><a href="fundraise.html">Fundraise</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li class="login-btn mobile-btn"></li>
+            </ul>
+          </div>
+
+          <div class="right-nav" id="menu-item-right">
+            <a href="login.html" class="btn-green"> Log in </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="main-banner">
+      <div class="donation-section">
+        <div class="donation-left">
+          <h2 class="title">
+            <span> Donate </span> & Make a Positive <br />
+            Impact in the World.
+          </h2>
+
+          <p class="desc">
+            Kindness grows when we share it — giving from the heart can light up
+            a life and make the world a more caring and compassionate place.
+          </p>
+        </div>
+
+        <div class="donation-right">
+          <h2>Payment Information</h2>
+
+          <form class="payment-form">
+            <div id="resultDiv" class="result">
+              <p id="resultP"></p>
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="Name" id="name" />
+              <input type="email" placeholder="Email" id="email" />
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="Phone" id="phone" />
+              <input type="text" placeholder="Address" id="address" />
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="Card Number" id="cardNumber" />
+              <input type="text" placeholder="Expire Date" id="expireDate" />
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="CVC" id="cvc" />
+              <input type="text" placeholder="Amount" id="amount" />
+            </div>
+
+            <button class="payment-btn">PROCESS PAYMENT</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer">
+          <div class="footer-left">
+            <div class="logo">
+              <img src="./images/logo2.png" alt="" />
+            </div>
+          </div>
+          <div class="footer-right">
+            <ul>
+              <li>
+                <a href="#" class="icon-link"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+              </li>
+
+              <li>
+                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
+              </li>
+
+              <li>
+                <a href="#" class="icon-link"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+
+              <li>
+                <a href="#" class="icon-link"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <div class="footer-copyright">
+        <p>
+          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
+          Reserved
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script src="./js/donate.js"></script>
+</html>

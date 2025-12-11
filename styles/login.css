@@ -255,3 +255,9 @@ hr {
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
+
+.signin-result {
+  visibility: hidden;
+  color: red;
+  margin-bottom: 10px;
+}
