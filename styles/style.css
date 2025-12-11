@@ -22,15 +22,22 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+.btn-green:hover {
+  background-color: #025848;
+}
 .btn-yellow {
-  border: 1px solid#e6c047;
-  background-color: #e6c047;
   border-radius: 30px;
   color: #222222;
   font-size: 15px;
   font-weight: bold;
   padding: 12px 25px;
   text-decoration: none;
+  background-color: #d8a400;
+}
+
+.btn-yellow:hover {
+  border: 1px solid #bb9003;
+  background-color: #bb9003;
 }
 header {
   background-color: #fefdf6;

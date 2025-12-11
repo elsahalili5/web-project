@@ -83,7 +83,7 @@
 }
 
 .payment-btn:hover {
-  opacity: 0.9;
+  background-color: #025848;
 }
 
 .error {
