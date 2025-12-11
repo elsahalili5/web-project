@@ -1,0 +1,27 @@
+.thankyou-section {
+  width: 720px;
+  margin-top: 30px;
+  background: white;
+  padding: 44px 40px;
+  justify-content: space-between;
+  gap: 50px;
+  border-radius: 6px;
+  text-align: center;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+.main-banner {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.thankyou-message {
+  color: #01715d;
+  font-size: 60px;
+}
+
+.thankyou-text {
+  font-weight: light;
+}
