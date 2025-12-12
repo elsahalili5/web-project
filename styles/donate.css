@@ -1,0 +1,165 @@
+.donate-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+.donation-container {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  width: 600px;
+  padding: 25px 40px;
+  border-radius: 30px;6);
+}
+
+.cause-title {
+  font-size: 30px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.switch-box {
+  display: flex;
+  background: #eaeaea;
+  padding: 6px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+.switch-box button {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  background: none;
+}
+
+.switch-box .active {
+  background: #01715d;
+  color: white;
+}
+
+.amount-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.amount-options button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.amount-options .suggested {
+  border-color: #01715d;
+  color: #01715d;
+}
+
+.amount-box {
+  display: flex;
+  align-items: center;
+  font-size: 60px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.amount-box input {
+  border: none;
+  width: 100%;
+  font-size: 60px;
+  outline: none;
+}
+
+.payment-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.payment-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-form input,
+.card-form select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.card-form input:focus,
+.card-form select:focus {
+  border-color: black;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(49, 50, 52, 0.2);
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.row input,
+.row select {
+  flex: 1;
+}
+
+.total {
+  margin: 40px 0;
+}
+
+.total p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.donate-btn {
+  width: 100%;
+  padding: 15px;
+  background: #01715d;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.donate-btn:hover {
+  background: #025848;
+}

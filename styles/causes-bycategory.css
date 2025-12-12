@@ -1,0 +1,156 @@
+.hero-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-content h1 {
+  font-size: 55px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.text-content p {
+  font-size: 20px;
+  color: #4b4b4b;
+  margin-bottom: 30px;
+  line-height: 1.4;
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.image-content {
+  width: 300px;
+}
+
+.image-content img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.browse-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.browse-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.causes-container {
+  max-width: 900px;
+  margin: 70px auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 65px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #555;
+}
+
+.carousel-wrapper {
+  margin-top: 20px;
+}
+
+.causes-carousel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 10px;
+  align-items: start;
+}
+
+.cause-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 430px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: auto;
+  line-height: 1.4;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 5px;
+  height: 6px;
+  margin: 15px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ffc107;
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.fund-status {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.fund-status .goal {
+  font-weight: 400;
+  color: #999;
+}
+.causes-section {
+  padding: 0px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}

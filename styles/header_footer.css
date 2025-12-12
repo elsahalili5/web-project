@@ -3,8 +3,8 @@
 }
 .navbar {
   display: flex;
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   justify-content: space-between;
   font-size: 20px;
   align-items: center;
