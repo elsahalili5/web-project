@@ -1,29 +1,29 @@
-.hero-section {
+.causes-wrapper {
   max-width: 1100px;
   margin: 0 auto;
   padding: 80px 20px;
 }
 
-.content-container {
+.causes-intro {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.text-content {
+.causes-intro-text {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.text-content h1 {
+.causes-intro-text h1 {
   font-size: 55px;
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.1;
 }
 
-.text-content p {
+.causes-intro-text p {
   font-size: 20px;
   color: #4b4b4b;
   margin-bottom: 30px;
@@ -32,23 +32,23 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.image-content {
+.causes-intro-image {
   width: 300px;
 }
 
-.image-content img {
+.causes-intro-image img {
   width: 100%;
   height: 100%;
   border-radius: 8px;
 }
 
-.browse-section {
+.causes-browse-section {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.browse-section h2 {
+.causes-browse-section h2 {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 30px;
@@ -92,6 +92,10 @@
   display: flex;
   flex-direction: column;
   height: 430px;
+  cursor: pointer;
+}
+.cause-card a {
+  text-decoration: none;
 }
 
 .card-image img {
@@ -123,7 +127,7 @@
   overflow: hidden;
 }
 
-.progress-bar-container {
+.progress-container {
   width: 100%;
   background-color: #eee;
   border-radius: 5px;
@@ -131,7 +135,7 @@
   margin: 15px 0;
 }
 
-.progress-bar {
+.progress {
   height: 100%;
   background-color: #ffc107;
   border-radius: 5px;
