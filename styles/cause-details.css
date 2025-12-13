@@ -1,8 +1,13 @@
+.cause-details {
+  max-width: 1100px;
+  margin: 40px auto;
+}
 .cause-detail-page {
   max-width: 1100px;
   margin: 40px auto;
   display: flex;
   gap: 30px;
+  margin-top: 10px;
 }
 
 .cause-left {
@@ -13,9 +18,8 @@
 }
 
 .cause-title {
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
 .cause-image img {
@@ -76,8 +80,14 @@
   margin-bottom: 10px;
   border: none;
   font-size: 16px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
-
+.btn a {
+  text-decoration: none;
+  color: white;
+}
 .recent-donations {
   gap: 50px;
 }

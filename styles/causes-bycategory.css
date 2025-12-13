@@ -75,6 +75,9 @@
 .carousel-wrapper {
   margin-top: 20px;
 }
+.carousel-wrapper a {
+  text-decoration: none;
+}
 
 .causes-carousel {
   display: grid;
