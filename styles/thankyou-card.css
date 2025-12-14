@@ -19,9 +19,11 @@
 
 .thankyou-message {
   color: #01715d;
-  font-size: 60px;
+  font-size: 50px;
+  margin-bottom: 15px;
 }
 
 .thankyou-text {
-  font-weight: light;
+  font-size: 20px;
+  margin-bottom: 10px;
 }

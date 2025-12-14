@@ -24,7 +24,7 @@
               <li><a href="home.html">Home</a></li>
               <li><a href="about.html">About</a></li>
 
-              <li><a href="causes.html">Causes</a></li>
+              <li><a href="causes.html" class="active">Causes</a></li>
               <li><a href="fundraise.html">Fundraise</a></li>
               <li><a href="contact.html">Contact</a></li>
               <li class="login-btn mobile-btn"></li>
@@ -43,59 +43,87 @@
           Support Sienna's Recovery From a Rare Brain Condition❤️
         </p>
         <p class="subtitle">Still €153,801 to go. Help us build momentum.</p>
+        <form method="post" id="donationForm">
+          <div class="amount-options">
+            <button type="button">£50</button>
+            <button type="button">£100</button>
+            <button type="button" class="suggested">£200</button>
+            <button type="button">£300</button>
+            <button type="button">£500</button>
+            <button type="button">£1,000</button>
+          </div>
+          <div class="amount-result"></div>
+          <div class="amount-box">
+            <span>€</span>
+            <input type="number" id="amountInput" name="amount" min="0" />
+          </div>
 
-        <div class="amount-options">
-          <button>£50</button>
-          <button>£100</button>
-          <button class="suggested">£200</button>
-          <button>£300</button>
-          <button>£500</button>
-          <button>£1,000</button>
-        </div>
-
-        <div class="amount-box">
-          <span>€</span>
-          <input type="number" id="amountInput" value="0" min="0" />
-        </div>
-        <h3>Payment method</h3>
-
-        <div class="payment-section">
-          <label class="radio-row">
-            <input type="radio" name="pay" checked />
-            <span>Credit or debit</span>
-          </label>
-
-          <div class="card-form">
-            <input type="email" placeholder="Email address" class="full" />
-
-            <div class="row">
-              <input type="text" placeholder="First name" />
-              <input type="text" placeholder="Last name" />
+          <h3>Payment method</h3>
+          <div class="payment-section">
+            <div class="payment-method">
+              <i class="fa-regular fa-credit-card"></i>
+              <p>Credit or debit</p>
             </div>
 
-            <input type="text" placeholder="Card number" class="full" />
+            <div class="result"></div>
 
-            <div class="row">
-              <input type="text" placeholder="MM / YY" />
-              <input type="text" placeholder="CVV" />
-            </div>
+            <div class="card-form">
+              <input
+                type="email"
+                placeholder="Email address"
+                name="email"
+                class="full"
+              />
 
-            <input type="text" placeholder="Name on card" class="full" />
+              <div class="row">
+                <input type="text" placeholder="First name" name="firstName" />
+                <input type="text" placeholder="Last name" name="lastName" />
+              </div>
 
-            <div class="row">
-              <select>
-                <option>Kosovo</option>
-              </select>
-              <input type="text" placeholder="Postal code" />
+              <input
+                type="text"
+                placeholder="Card number"
+                name="cardNumber"
+                class="full"
+                pattern="\d{13,19}"
+              />
+
+              <div class="row">
+                <input type="month" placeholder="MM / YY" name="expireDate" />
+                <input
+                  type="number"
+                  placeholder="CVV"
+                  name="cvv"
+                  min="100"
+                  max="999"
+                />
+              </div>
+
+              <input
+                type="text"
+                placeholder="Name on card"
+                name="cardName"
+                class="full"
+              />
+
+              <div class="row">
+                <select name="country">
+                  <option>Kosovo</option>
+                </select>
+                <input
+                  type="number"
+                  placeholder="Postal code"
+                  name="postalCode"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="total">
-          <p>Your donation <span id="donationTotal">€0.00</span></p>
-        </div>
-
-        <button class="donate-btn">Donate now</button>
+          <div class="total">
+            <p>Your donation <span id="donationTotal">€0.00</span></p>
+          </div>
+          <button class="donate-btn" type="submit">Donate now</button>
+        </form>
       </div>
     </section>
 

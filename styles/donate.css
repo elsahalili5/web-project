@@ -99,12 +99,14 @@
   font-weight: 600;
 }
 
-.radio-row {
+
+.payment-method{
+  margin-bottom: 15px;
+  gap: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
 }
+
 
 .card-form {
   display: flex;
@@ -163,3 +165,4 @@
 .donate-btn:hover {
   background: #025848;
 }
+

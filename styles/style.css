@@ -56,7 +56,12 @@ header {
   margin-bottom: 10px;
   text-align: center;
 }
-
+.amount-result {
+  visibility: hidden;
+  color: red;
+  margin-bottom: 10px;
+  text-align: center;
+}
 .start-btn {
   margin-top: 25px;
   background: #01715d;
