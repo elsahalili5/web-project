@@ -16,10 +16,6 @@
   color: #555;
 }
 
-.start-btn:hover {
-  background: #245a33;
-}
-
 .categories {
   margin-top: 50px;
   display: grid;

@@ -1,4 +1,3 @@
-// CONTACT FORM VALIDATION
 const contactForm = document.getElementById("contact-form");
 
 const nameRegex = /^[A-Za-z\s]+$/;
@@ -13,60 +12,43 @@ contactForm.addEventListener("submit", function (e) {
   const subjectInput = document.getElementById("subject");
   const messageInput = document.getElementById("message");
 
-  // Message box (create once)
-  let resultMsg = document.querySelector(".contact-result");
-
-  if (!resultMsg) {
-    resultMsg = document.createElement("p");
-    resultMsg.className = "contact-result";
-    contactForm.appendChild(resultMsg);
-  }
+  const resultMsg = document.querySelector(".result");
 
   resultMsg.style.color = "red";
+  resultMsg.style.visibility = "visible";
   resultMsg.innerText = "";
 
-  // Name
   if (!nameInput.value.trim()) {
     resultMsg.innerText = "Enter your name*";
-    return false;
+    return;
   } else if (!nameRegex.test(nameInput.value.trim())) {
     resultMsg.innerText = "Name must contain only letters*";
-    return false;
+    return;
   }
 
-  // Email
   if (!emailInput.value.trim()) {
     resultMsg.innerText = "Enter your email*";
-    return false;
+    return;
   } else if (!emailRegex.test(emailInput.value.trim())) {
     resultMsg.innerText = "Enter a valid email*";
-    return false;
+    return;
   }
 
-  // Subject
   if (!subjectInput.value.trim()) {
     resultMsg.innerText = "Enter subject*";
-    return false;
+    return;
   }
 
-  // Message
   if (!messageInput.value.trim()) {
     resultMsg.innerText = "Enter your message*";
-    return false;
+    return;
   }
 
-  // SUCCESS
   resultMsg.style.color = "green";
   resultMsg.innerText = "Message sent successfully! We will contact you soon.";
 
-  // Clear form
   setTimeout(() => {
-    nameInput.value = "";
-    emailInput.value = "";
-    subjectInput.value = "";
-    messageInput.value = "";
+    contactForm.reset();
     resultMsg.innerText = "";
   }, 2000);
-
-  return false;
 });
