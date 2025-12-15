@@ -74,3 +74,72 @@
 .active {
   border-bottom: 2px solid #00664f;
 }
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger i {
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    margin-top: 10px;
+  }
+  .container {
+    padding: 0 20px;
+  }
+  .navbar {
+    padding: 5px 0;
+  }
+  .logo {
+    width: 70px;
+  }
+  .hamburger {
+    display: block;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  #menu-item,
+  #menu-item-right {
+    display: none;
+  }
+
+  #menu-item.active,
+  #menu-item-right.active {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 1000;
+  }
+
+  #menu-item ul {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+
+  #menu-item-right {
+    margin-top: 20px;
+  }
+
+  .footer {
+    padding: 10px 0;
+  }
+  .footer-copyright {
+    padding: 10px;
+  }
+  .footer-right ul {
+    gap: 5px;
+  }
+}
