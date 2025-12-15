@@ -319,3 +319,97 @@
   background-color: #abc3bf;
   color: white;
 } */
+ 
+
+
+/* Stilizimet Bazë Për Body (Trupin) */
+body {
+margin: 0;
+padding: 0;
+background-color: #f8f6f2; /* Ngjyra e sfondit */
+}
+
+/* SEKCIONI KRYESOR FAQ */
+.faq-section {
+padding: 40px;
+}
+
+/* TITULLI */
+.faq-title {
+text-align: center;
+margin-bottom: 30px;
+}
+
+/* KONTENJERI I PËRMBAJTJES - faq-content */
+/* ZGJIDHJA PËR RRESHTIM HORIZONTAL (MAJTAS DHE DJATHTAS) */
+.faq-content {
+display: flex; /* E vendos Listën dhe Kartelën horizontalisht */
+justify-content: space-between; /* I ndan në skaje (majtas dhe djathtas) */
+gap: 30px; /* Hapësirë mes Listës dhe Kartelës */
+align-items: flex-start; /* Siguron që të dy elementet të fillojnë nga lart */
+}
+
+/* LISTA E FAQ-ve (PYETJET) - MAJTAS */
+.faq-list {
+width: 60%; /* Zë 60% të gjerësisë */
+}
+
+.faq-item {
+padding: 15px 0;
+border-bottom: 1px solid #ccc;
+}
+
+/* PYETJA - Rregullimi i shenjës '+' */
+.faq-question {
+cursor: pointer;
+display: flex; /* Flexbox për rreshtimin e tekstit dhe shenjës + */
+justify-content: space-between; /* Ndarja e tekstit dhe shenjës + */
+align-items: center;
+}
+
+.faq-question p {
+margin: 0;
+}
+
+.plus {
+font-size: 20px;
+font-weight: bold;
+}
+
+/* PËRGJIGJJA */
+.faq-answer {
+display: none;
+margin-top: 10px;
+color:#555
+}
+
+/* KARTELA ANËSORE (GET IN TOUCH) - DJATHTAS */
+.faq-card {
+width: 35%; /* Zë 35% të gjerësisë */
+padding: 25px;
+background-color: #ebe6dd;
+text-align: center;
+}
+
+.faq-card img {
+width: 50px;
+height: 50px;
+margin-bottom: 15px;
+}
+
+.faq-card h3 {
+font-size: 18px;
+margin-bottom: 20px;
+}
+
+.faq-card button {
+padding: 10px 20px;
+background-color: #1f4d3a;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+
+ 
+
