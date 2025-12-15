@@ -1,0 +1,136 @@
+
+.about-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+
+.about,
+.mission,
+.causes {
+  margin-bottom: 40px;
+}
+
+
+.label-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffc800;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+
+.main-title {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+
+.mission h3,
+.causes h3 {
+  font-size: 26px;
+  color: #01715d;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ffc800;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+
+.text,
+.mission-text,
+.final-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+
+.v-list ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.v-list li {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+  border-left: 5px solid #ffc800;
+  border-radius: 6px;
+}
+
+.v-list h4 {
+  font-size: 18px;
+  color: #01715d;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+
+.cause-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 25px;
+}
+
+.cause-list li {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  padding-left: 22px;
+  position: relative;
+}
+
+.cause-list li::before {
+  content: "✓";
+  color: #ffc800;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.cause-list li strong {
+  color: #333;
+}
+
+
+.btn-group {
+  margin-top: 30px;
+}
+
+.btn-green-lg,
+.btn-green-outline-lg {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.btn-green-lg {
+  background: #01715d;
+  color: #fff;
+  border: 2px solid #01715d;
+}
+
+.btn-green-outline-lg {
+  background: transparent;
+  color: #01715d;
+  border: 2px solid #01715d;
+}
+
+
+hr {
+  border: none;
+  height: 1px;
+  background: #ddd;
+  margin: 40px 0;
+}
