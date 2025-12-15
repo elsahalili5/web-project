@@ -46,13 +46,12 @@
 
 .cause-box i {
   font-size: 45px;
-  color: #333;
   opacity: 0.9;
+  color: black;
 }
 
 .category span {
-  font-size: 16px;
-  color: #333;
+  color: black;
   margin-top: 20px;
 }
 
@@ -62,4 +61,9 @@
 
 .category a {
   text-decoration: none;
+}
+.material-symbols-filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-size: 48px;
+  color: #333;
 }
