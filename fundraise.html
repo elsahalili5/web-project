@@ -55,118 +55,96 @@
           </p>
         </div>
       </div>
-
       <div class="right">
-        <div class="step active-step">
-          <div class="categories">
-            <div class="category">Medical</div>
-            <div class="category">Memorial</div>
-            <div class="category">Emergency</div>
-            <div class="category">Charity</div>
-            <div class="category">Education</div>
-            <div class="category">Animal</div>
-            <div class="category">Enviroment</div>
-            <div class="category">Arts</div>
-            <div class="category">Sports</div>
-            <div class="category">Technology</div>
-            <div class="category">Community</div>
-            <div class="category">Family</div>
-            <div class="category">Research</div>
-            <div class="category">Travel</div>
-            <div class="category">Food</div>
-          </div>
-        </div>
-        <div class="step">
-          <h2 style="margin-bottom: 20px">Who are you fundraising for?</h2>
-          <div class="card">
-            <div class="icon">
-              <span class="material-symbols-outlined"> person_heart </span>
-            </div>
-            <div>
-              <strong>Yourself</strong>
-              <p>Funds go to you</p>
+        <form id="fundraiserForm" class="fundraise-form">
+          <div class="step active-step">
+            <div class="categories">
+              <div class="category">Medical</div>
+              <div class="category">Memorial</div>
+              <div class="category">Emergency</div>
+              <div class="category">Charity</div>
+              <div class="category">Education</div>
+              <div class="category">Animal</div>
+              <div class="category">Enviroment</div>
+              <div class="category">Arts</div>
+              <div class="category">Sports</div>
+              <div class="category">Technology</div>
+              <div class="category">Community</div>
+              <div class="category">Family</div>
+              <div class="category">Research</div>
+              <div class="category">Travel</div>
+              <div class="category">Food</div>
             </div>
           </div>
-          <div class="card">
-            <div class="icon">
-              <span class="material-symbols-outlined"> family_restroom </span>
+
+          <div class="step">
+            <h2 style="margin-bottom: 20px">Who are you fundraising for?</h2>
+
+            <div class="card">
+              <div class="icon">
+                <span class="material-symbols-outlined"> person_heart </span>
+              </div>
+              <div>
+                <strong>Yourself</strong>
+                <p>Funds go to you</p>
+              </div>
             </div>
-            <div>
-              <strong>Someone else</strong>
-              <p>Invite a beneficiary</p>
+
+            <div class="card">
+              <div class="icon">
+                <span class="material-symbols-outlined"> family_restroom </span>
+              </div>
+              <div>
+                <strong>Someone else</strong>
+                <p>Invite a beneficiary</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="step">
-          <h2>Set your goal amount</h2>
-          <input type="number" placeholder="Amount (€)" />
-        </div>
+          <div class="step">
+            <h2>Set your goal amount</h2>
+            <input type="number" placeholder="Amount (€)" />
+          </div>
 
-        <div class="step">
-          <h2 class="step-title">Add a fundraiser title</h2>
-          <input
-            id="fundraiser-title"
-            type="text"
-            placeholder="Donate to help..."
-          />
-        </div>
-        <div class="step step-text">
-          <h2 class="step-title">Tell your story</h2>
-
-          <div class="form-group">
-            <textarea
-              maxlength="60"
-              rows="2"
+          <div class="step">
+            <h2 class="step-title">Add a fundraiser title</h2>
+            <input
+              id="fundraiser-title"
+              type="text"
               placeholder="Donate to help..."
-            ></textarea>
-
-            <div class="char-count"><span id="titleCount">0</span>/60</div>
-          </div>
-        </div>
-        <div class="step">
-          <h2>Add a cover photo</h2>
-          <div class="upload">Click to upload an image</div>
-        </div>
-        <div class="step review-step">
-          <div class="review-card">
-            <div class="review-row">
-              <strong>Media</strong>
-            </div>
-            <div class="media-preview"></div>
+            />
           </div>
 
-          <div class="review-card">
-            <div class="review-row">
-              <strong>Title</strong>
+          <div class="step step-text">
+            <h2 class="step-title">Tell your story</h2>
+            <div class="form-group">
+              <textarea
+                maxlength="60"
+                rows="2"
+                placeholder="Donate to help..."
+              ></textarea>
+              <div class="char-count"><span id="titleCount">0</span>/60</div>
             </div>
-            <p id="reviewTitle">—</p>
-          </div>
-          <div class="review-card">
-            <div class="review-row">
-              <strong>Story</strong>
-            </div>
-            <p id="reviewStory">-</p>
-          </div>
-
-          <div class="review-card">
-            <div class="review-row">
-              <strong>Fundraising goal</strong>
-            </div>
-            <p id="reviewGoal">—</p>
           </div>
 
-          <div class="review-card">
-            <div class="review-row">
-              <strong>Category</strong>
-            </div>
-            <p id="reviewCategory">—</p>
+          <div class="step">
+            <h2>Add a cover photo</h2>
+            <div class="upload">Click to upload an image</div>
           </div>
-        </div>
-        <div class="actions">
-          <button class="back">←</button>
-          <button class="btn-green" id="nextBtn">Continue</button>
-        </div>
+
+          <div class="step review-step">
+            <!-- review cards -->
+          </div>
+
+          <!-- ACTIONS MUST BE INSIDE FORM -->
+          <div class="actions">
+            <button type="button" class="back">←</button>
+            <button class="btn-green" id="nextBtn">Continue</button>
+            <button type="submit" id="submitBtn" hidden>
+              Launch Fundraiser
+            </button>
+          </div>
+        </form>
       </div>
     </div>
     <div class="success-step" id="successScreen">

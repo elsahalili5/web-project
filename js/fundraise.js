@@ -1,141 +1,182 @@
-const steps = document.querySelectorAll(".step");
-const nextBtn = document.getElementById("nextBtn");
-const backBtn = document.querySelector(".back");
-const leftTitle = document.getElementById("leftTitle");
-const leftDesc = document.getElementById("leftDescription");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("fundraiserForm");
+  const steps = document.querySelectorAll(".step");
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.querySelector(".back");
+  const submitBtn = document.getElementById("submitBtn");
 
-const successScreen = document.getElementById("successScreen");
-const actionsDiv = document.querySelector(".actions");
-const fundraiseSection = document.querySelector(".fundraise-section");
+  const leftTitle = document.getElementById("leftTitle");
+  const leftDesc = document.getElementById("leftDescription");
 
-let current = 0;
-const totalSteps = steps.length;
+  const fundraiseSection = document.querySelector(".fundraise-section");
+  const successScreen = document.getElementById("successScreen");
 
-const leftContent = [
-  ["Choose a category", "What best describes why you're fundraising?"],
-  [
-    "Tell us who you're fundraising for",
-    "This helps us understand who will receive the funds",
-  ],
-  ["Set your goal", "Choose how much you want to raise"],
-  [
-    "Give your fundraiser a title",
-    "Create a short, clear title that explains your cause",
-  ],
-  [
-    "Tell donors why you’re fundraising",
-    "Introduce yourself, explain why this matters, and how funds will be used",
-  ],
-  ["Add a photo", "Cover media helps tell your story"],
-  ["Review your fundraiser", "Let’s make sure your fundraiser is complete"],
-];
+  const titleInput = document.getElementById("fundraiser-title");
+  const titleCount = document.getElementById("titleCount");
+  const uploadBox = document.querySelector(".upload");
 
-const titleInput = document.getElementById("fundraiser-title");
-const titleCount = document.getElementById("titleCount");
+  let current = 0;
 
-function update() {
-  steps.forEach((step, index) => {
-    step.classList.toggle("active-step", index === current);
-  });
+  const leftContent = [
+    ["Choose a category", "What best describes why you're fundraising?"],
+    ["Who are you fundraising for?", "Tell us who will receive the funds"],
+    ["Set your goal", "Choose how much you want to raise"],
+    ["Add a title", "Your title must include letters"],
+    ["Tell your story", "Explain why this fundraiser matters"],
+    ["Add a photo", "Cover media helps tell your story"],
+    ["Review", "Make sure everything looks good"],
+  ];
 
-  if (current < leftContent.length) {
+  function updateStep() {
+    steps.forEach((step, i) =>
+      step.classList.toggle("active-step", i === current)
+    );
+
     leftTitle.textContent = leftContent[current][0];
     leftDesc.textContent = leftContent[current][1];
-  }
 
-  backBtn.style.display = current === 0 ? "none" : "block";
+    backBtn.style.display = current === 0 ? "none" : "inline-block";
 
-  if (current === totalSteps - 1) {
-    nextBtn.textContent = "Launch Fundraiser";
-    fillReview();
-  } else {
-    nextBtn.textContent = "Continue";
-  }
-
-  if (fundraiseSection) fundraiseSection.style.display = "grid";
-  if (successScreen) successScreen.style.display = "none";
-}
-
-function fillReview() {
-  const title = document.getElementById("fundraiser-title")?.value;
-  const goal = document.querySelector('input[type="number"]')?.value;
-  const activeCategory = document.querySelector(
-    ".categories .category.active-step"
-  );
-  const category = activeCategory ? activeCategory.textContent : "—";
-
-  const story = document.querySelector(".step-text textarea")?.value;
-
-  document.getElementById("reviewTitle").textContent = title || "—";
-  document.getElementById("reviewGoal").textContent = goal ? `€${goal}` : "—";
-  document.getElementById("reviewCategory").textContent = category;
-  document.getElementById("reviewStory").textContent = story || "—";
-}
-
-nextBtn.addEventListener("click", () => {
-  if (current < totalSteps - 1) {
-    current++;
-    nextBtn.classList.remove("enabled");
-    update();
-  } else {
-    if (fundraiseSection) {
-      fundraiseSection.style.display = "none";
+    if (current === steps.length - 1) {
+      nextBtn.style.display = "none";
+      submitBtn.hidden = false;
+    } else {
+      nextBtn.style.display = "inline-block";
+      submitBtn.hidden = true;
     }
 
-    if (successScreen) {
-      successScreen.style.display = "flex";
+    nextBtn.disabled = true;
+    validateCurrentStep();
+  }
+
+  function validateCurrentStep() {
+    const step = steps[current];
+    let valid = false;
+
+    if (step.querySelector(".category")) {
+      valid = !!step.querySelector(".category.active-step");
+    }
+
+    if (step.querySelector(".card")) {
+      valid = !!step.querySelector(".card.active-step");
+    }
+    const numberInput = step.querySelector('input[type="number"]');
+    if (numberInput) {
+      valid = numberInput.value.trim() !== "" && Number(numberInput.value) > 0;
+    }
+
+    if (step.querySelector("#fundraiser-title")) {
+      const value = titleInput.value.trim();
+      valid = value.length > 0 && /[a-zA-Z]/.test(value);
+    }
+
+    const textarea = step.querySelector("textarea");
+    if (textarea) {
+      valid = textarea.value.trim().length > 0;
+    }
+
+    if (step.querySelector(".upload")) {
+      valid = uploadBox.style.backgroundImage !== "";
+    }
+
+    nextBtn.disabled = !valid;
+    submitBtn.disabled = !valid;
+
+    updateReview();
+  }
+
+  function updateReview() {
+    const title = titleInput.value.trim() || "—";
+    const goalInput = document.querySelector('input[type="number"]');
+    const goal = goalInput ? goalInput.value.trim() : "";
+    const activeCategory = document.querySelector(
+      ".categories .category.active-step"
+    );
+    const category = activeCategory ? activeCategory.textContent : "—";
+    const cardStep = document.querySelector(
+      ".step:nth-child(2) .card.active-step"
+    );
+    const beneficiary = cardStep
+      ? cardStep.querySelector("strong").textContent
+      : "—";
+    const storyTextarea = document.querySelector(".step-text textarea");
+    const story = storyTextarea ? storyTextarea.value.trim() : "—";
+
+    const reviewTitle = document.getElementById("reviewTitle");
+    const reviewGoal = document.getElementById("reviewGoal");
+    const reviewCategory = document.getElementById("reviewCategory");
+    const reviewStory = document.getElementById("reviewStory");
+    const mediaPreview = document.querySelector(".media-preview");
+
+    if (reviewTitle) reviewTitle.textContent = title;
+    if (reviewGoal) reviewGoal.textContent = goal ? `€${goal}` : "—";
+    if (reviewCategory) reviewCategory.textContent = category;
+    if (reviewStory) reviewStory.textContent = story;
+    if (mediaPreview) {
+      mediaPreview.style.backgroundImage =
+        uploadBox.style.backgroundImage || "";
+      mediaPreview.style.backgroundSize = "cover";
+      mediaPreview.style.backgroundPosition = "center";
     }
   }
-});
 
-titleInput.addEventListener("input", () => {
-  titleCount.textContent = titleInput.value.length;
-});
+  document.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("category") ||
+      e.target.classList.contains("card")
+    ) {
+      const step = e.target.closest(".step");
+      step
+        .querySelectorAll(
+          e.target.classList.contains("category") ? ".category" : ".card"
+        )
+        .forEach((el) => el.classList.remove("active-step"));
 
-document.querySelectorAll(".category, .card").forEach((activeOption) => {
-  activeOption.addEventListener("click", () => {
-    const parentStep = activeOption.closest(".step");
-    parentStep
-      .querySelectorAll(activeOption.tagName.toLowerCase())
-      .forEach((o) => {
-        o.classList.remove("active-step");
-      });
+      e.target.classList.add("active-step");
+      validateCurrentStep();
+    }
 
-    activeOption.classList.add("active-step");
-    nextBtn.classList.add("enabled");
-  });
-});
-backBtn.addEventListener("click", () => {
-  if (current > 0) {
-    current--;
-    update();
-  }
-});
+    if (e.target === nextBtn && !nextBtn.disabled) {
+      current++;
+      updateStep();
+    }
 
-const uploadBox = document.querySelector(".upload");
+    if (e.target === backBtn) {
+      current--;
+      updateStep();
+    }
 
-uploadBox.addEventListener("click", () => {
-  const input = document.createElement("input");
-  input.type = "file";
-  input.accept = "image/*";
+    if (e.target === uploadBox) {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
 
-  input.addEventListener("change", () => {
-    const file = input.files[0];
-    if (!file) return;
+      input.onchange = () => {
+        if (!input.files[0]) return;
+        uploadBox.style.backgroundImage = `url(${URL.createObjectURL(
+          input.files[0]
+        )})`;
+        uploadBox.textContent = "";
+        uploadBox.style.border = "none";
+        validateCurrentStep();
+      };
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      uploadBox.style.backgroundImage = `url(${reader.result})`;
-      uploadBox.style.backgroundSize = "cover";
-      uploadBox.style.backgroundPosition = "center";
-      uploadBox.textContent = "";
-      uploadBox.style.border = "none";
-      nextBtn.classList.add("enabled");
-    };
-    reader.readAsDataURL(file);
+      input.click();
+    }
   });
 
-  input.click();
-});
+  document.addEventListener("input", (e) => {
+    if (e.target === titleInput) {
+      titleCount.textContent = titleInput.value.length;
+    }
+    validateCurrentStep();
+  });
 
-update();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fundraiseSection.style.display = "none";
+    successScreen.style.display = "flex";
+  });
+
+  updateStep();
+});
