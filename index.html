@@ -1,0 +1,460 @@
+## Cleaned & Simplified Version Below is a **cleaned, consistent, and
+organized** version of your page. I kept your **design, classes, and
+structure**, removed duplicates, fixed naming inconsistencies, grouped styles
+logically, and improved readability. --- ## ✅ HTML (Cleaned) ```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/header_footer.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/home.css" />
+    <link rel="stylesheet" href="./styles/causes.css" />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <img src="./images/logo2.png" alt="WhyDonate logo" />
+          </div>
+
+          <ul class="left-nav" id="menu-item">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="causes.html">Causes</a></li>
+            <li><a href="fundraise.html">Fundraise</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="right-nav">
+            <a href="login.html" class="btn-green">Sign Up</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="home-intro">
+      <div class="container intro">
+        <div class="intro-content">
+          <h1 class="intro-title">
+            Charity springs<br />from a tender<br />Heart.
+          </h1>
+
+          <p class="intro-description">
+            The Heart: a place to give, share, and make a difference in your
+            community.
+          </p>
+
+          <div class="intro-actions">
+            <a href="causes.html" class="btn-green">Donate Now 💛</a>
+            <a href="#" class="btn-watch">
+              <span class="play-icon">▶</span>
+              Watch video
+            </a>
+          </div>
+        </div>
+
+        <div class="intro-pic">
+          <img src="./images/intropic3.png" alt="Charity illustration" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="statistics-section">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <i class="fas fa-hand-holding-heart stat-icon"></i>
+          <div>
+            <p class="stat-number">100+</p>
+            <p class="stat-label">Donations received</p>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <i class="fas fa-dollar-sign stat-icon"></i>
+          <div>
+            <p class="stat-number">$10K</p>
+            <p class="stat-label">Money donated</p>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <i class="fas fa-bullhorn stat-icon"></i>
+          <div>
+            <p class="stat-number">12+</p>
+            <p class="stat-label">Active causes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MISSION ================= -->
+    <section class="mission-section container">
+      <div class="left-side">
+        <div class="big-circle">
+          <img
+            src="https://i.pinimg.com/1200x/23/90/83/239083288b913d29c5d68224865a16db.jpg"
+          />
+        </div>
+        <div class="mid-circle">
+          <img
+            src="https://i.pinimg.com/736x/e2/94/ad/e294adb1177dd898466eb25f27fd306b.jpg"
+          />
+        </div>
+        <div class="small-circle">
+          <img
+            src="https://i.pinimg.com/736x/48/ad/f8/48adf8ea2dc9efc846060f4ead9ee8e8.jpg"
+          />
+        </div>
+      </div>
+
+      <div class="right-side">
+        <h2 class="home-title">Our mission & vision</h2>
+        <p><strong>A promise that every contribution truly matters.</strong></p>
+        <p>
+          We are dedicated to making a real difference by spreading kindness,
+          love, and support. Together, we build a brighter future.
+        </p>
+        <a href="about.html" class="btn-yellow">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="container last-section">
+      <h1>Make someone's life by giving of yours.</h1>
+      <a href="donate.html" class="btn-yellow">Donate Now</a>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="container footer">
+        <img src="./images/logo2.png" alt="Logo" />
+
+        <ul class="social-links">
+          <li>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <p class="copyright">
+        © 2025 Elsa Halili & Eriona Bunjaku. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./js/main.js"></script>
+    <script src="./js/home.js"></script>
+  </body>
+</html>
+<style>
+      ## Cleaned & Simplified Version
+
+  Below is a **cleaned, consistent, and organized** version of your page. I kept your **design, classes, and structure**, removed duplicates, fixed naming inconsistencies, grouped styles logically, and improved readability.
+
+  ---
+
+  ## ✅ HTML (Cleaned)
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/header_footer.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/home.css" />
+    <link rel="stylesheet" href="./styles/causes.css" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  <body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="./images/logo2.png" alt="WhyDonate logo" />
+        </div>
+
+        <ul class="left-nav" id="menu-item">
+          <li><a href="home.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="causes.html">Causes</a></li>
+          <li><a href="fundraise.html">Fundraise</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="right-nav">
+          <a href="login.html" class="btn-green">Sign Up</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="home-intro">
+    <div class="container intro">
+      <div class="intro-content">
+        <h1 class="intro-title">
+          Charity springs<br />from a tender<br />Heart.
+        </h1>
+
+        <p class="intro-description">
+          The Heart: a place to give, share, and make a difference in your community.
+        </p>
+
+        <div class="intro-actions">
+          <a href="causes.html" class="btn-green">Donate Now 💛</a>
+          <a href="#" class="btn-watch">
+            <span class="play-icon">▶</span>
+            Watch video
+          </a>
+        </div>
+      </div>
+
+      <div class="intro-pic">
+        <img src="./images/intropic3.png" alt="Charity illustration" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="statistics-section">
+    <div class="container stats-grid">
+
+      <div class="stat-item">
+        <i class="fas fa-hand-holding-heart stat-icon"></i>
+        <div>
+          <p class="stat-number">100+</p>
+          <p class="stat-label">Donations received</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <i class="fas fa-dollar-sign stat-icon"></i>
+        <div>
+          <p class="stat-number">$10K</p>
+          <p class="stat-label">Money donated</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <i class="fas fa-bullhorn stat-icon"></i>
+        <div>
+          <p class="stat-number">12+</p>
+          <p class="stat-label">Active causes</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MISSION ================= -->
+  <section class="mission-section container">
+    <div class="left-side">
+      <div class="big-circle"><img src="https://i.pinimg.com/1200x/23/90/83/239083288b913d29c5d68224865a16db.jpg" /></div>
+      <div class="mid-circle"><img src="https://i.pinimg.com/736x/e2/94/ad/e294adb1177dd898466eb25f27fd306b.jpg" /></div>
+      <div class="small-circle"><img src="https://i.pinimg.com/736x/48/ad/f8/48adf8ea2dc9efc846060f4ead9ee8e8.jpg" /></div>
+    </div>
+
+    <div class="right-side">
+      <h2 class="home-title">Our mission & vision</h2>
+      <p><strong>A promise that every contribution truly matters.</strong></p>
+      <p>
+        We are dedicated to making a real difference by spreading kindness, love,
+        and support. Together, we build a brighter future.
+      </p>
+      <a href="about.html" class="btn-yellow">Learn More</a>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="container last-section">
+    <h1>Make someone's life by giving of yours.</h1>
+    <a href="donate.html" class="btn-yellow">Donate Now</a>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container footer">
+      <img src="./images/logo2.png" alt="Logo" />
+
+      <ul class="social-links">
+        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+
+    <p class="copyright">© 2025 Elsa Halili & Eriona Bunjaku. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./js/main.js"></script>
+  <script src="./js/home.js"></script>
+  </body>
+  </html>
+  ```
+
+  ---
+
+  ## ✅ CSS (Cleaned & Grouped)
+
+  ```css
+  @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+  /* ================= BASE ================= */
+  .home-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  /* ================= HERO ================= */
+  .home-intro {
+    background: #fcf6e9;
+    padding: 40px 0;
+  }
+
+  .intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .intro-title {
+    font-size: 80px;
+    line-height: 1.05;
+    margin-bottom: 30px;
+  }
+
+  .intro-description {
+    max-width: 450px;
+    margin-bottom: 30px;
+    color: #555;
+  }
+
+  .intro-actions {
+    display: flex;
+    gap: 20px;
+  }
+
+  .play-icon {
+    width: 40px;
+    height: 40px;
+    background: #ffc800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ================= STATS ================= */
+  .statistics-section {
+    background: #005a41;
+    padding: 60px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    color: white;
+  }
+
+  .stat-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .stat-icon {
+    font-size: 50px;
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+  }
+
+  /* ================= MISSION ================= */
+  .mission-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 60px auto;
+  }
+
+  .left-side {
+    position: relative;
+    width: 45%;
+    height: 400px;
+  }
+
+  .big-circle { width: 300px; height: 300px; left: 100px; top: 50px; }
+  .mid-circle { width: 150px; height: 150px; left: 330px; top: 70px; }
+  .small-circle { width: 100px; height: 100px; left: 50px; top: 250px; }
+
+  .big-circle,
+  .mid-circle,
+  .small-circle {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .right-side { width: 45%; }
+
+  /* ================= CTA ================= */
+  .last-section {
+    background: #005a41;
+    border-radius: 20px;
+    padding: 70px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 768px) {
+    .intro,
+    .mission-section,
+    .last-section {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
