@@ -127,3 +127,149 @@
   background: #025848;
 }
 
+
+
+
+@media screen and (max-width: 1024px) {
+  .donation-container {
+    width: 100%;
+    padding: 25px 30px;
+  }
+
+  .cause-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .amount-box {
+    font-size: 50px;
+    padding: 8px;
+  }
+
+  .amount-box input {
+    font-size: 50px;
+  }
+
+  .card-form input,
+  .card-form select {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .donate-btn {
+    font-size: 16px;
+    padding: 14px;
+  }
+  .donate-section{
+    margin: 50px 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .amount-title{
+    font-size: 16px;
+  }
+  .payment-title{
+    font-size: 16px;
+  }
+   .donate-section{
+    margin: 50px 20px;
+  }
+  .donation-container {
+    padding: 20px;
+  }
+
+  .cause-title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .amount-box {
+    font-size: 40px;
+  }
+
+  .amount-box input {
+    font-size: 40px;
+  }
+
+  .card-form input,
+  .card-form select {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .payment-method {
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .donate-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+  .total{
+    margin: 20px 0;
+  }
+  .total p{
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .donation-container {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .cause-title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .amount-box {
+    font-size: 35px;
+  }
+
+  .amount-box input {
+    font-size: 35px;
+  }
+
+  .card-form input,
+  .card-form select {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .donate-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .amount-box span {
+    font-size: 30px;
+  }
+}
+
+
+
+

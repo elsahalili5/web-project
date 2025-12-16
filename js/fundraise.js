@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("nextBtn");
   const backBtn = document.querySelector(".back");
   const submitBtn = document.getElementById("submitBtn");
-
+  let current = 0;
   const leftTitle = document.getElementById("leftTitle");
   const leftDesc = document.getElementById("leftDescription");
 
@@ -13,9 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const titleInput = document.getElementById("fundraiser-title");
   const titleCount = document.getElementById("titleCount");
-  const uploadBox = document.querySelector(".upload");
-
-  let current = 0;
 
   const leftContent = [
     ["Choose a category", "What best describes why you're fundraising?"],
@@ -45,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.hidden = true;
     }
 
-    nextBtn.disabled = true;
     validateCurrentStep();
   }
 
@@ -53,68 +49,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const step = steps[current];
     let valid = false;
 
-    if (step.querySelector(".category")) {
+    if (step.querySelector(".categories")) {
       valid = !!step.querySelector(".category.active-step");
-    }
-
-    if (step.querySelector(".card")) {
+    } else if (step.querySelector(".card")) {
       valid = !!step.querySelector(".card.active-step");
-    }
-    const numberInput = step.querySelector('input[type="number"]');
-    if (numberInput) {
+    } else if (step.querySelector('input[type="number"]')) {
+      const numberInput = step.querySelector('input[type="number"]');
       valid = numberInput.value.trim() !== "" && Number(numberInput.value) > 0;
-    }
-
-    if (step.querySelector("#fundraiser-title")) {
-      const value = titleInput.value.trim();
+    } else if (step.querySelector("#fundraiser-title")) {
+      const input = step.querySelector("#fundraiser-title");
+      const value = input.value.trim();
       valid = value.length > 0 && /[a-zA-Z]/.test(value);
-    }
-
-    const textarea = step.querySelector("textarea");
-    if (textarea) {
+    } else if (step.querySelector("textarea")) {
+      const textarea = step.querySelector("textarea");
       valid = textarea.value.trim().length > 0;
+    } else if (step.querySelector(".upload")) {
+      const upload = step.querySelector(".upload");
+      valid = upload.style.backgroundImage !== "";
+    } else {
+      valid = true;
     }
 
-    if (step.querySelector(".upload")) {
-      valid = uploadBox.style.backgroundImage !== "";
-    }
-
-    nextBtn.disabled = !valid;
-    submitBtn.disabled = !valid;
+    nextBtn.disabled = current === steps.length - 1 ? true : !valid;
+    submitBtn.disabled = current === steps.length - 1 ? !valid : true;
 
     updateReview();
   }
 
   function updateReview() {
     const title = titleInput.value.trim() || "—";
-    const goalInput = document.querySelector('input[type="number"]');
-    const goal = goalInput ? goalInput.value.trim() : "";
+    const goalInput = document.querySelector('.step input[type="number"]');
+    const goal = goalInput ? goalInput.value.trim() : "—";
     const activeCategory = document.querySelector(
       ".categories .category.active-step"
     );
     const category = activeCategory ? activeCategory.textContent : "—";
     const cardStep = document.querySelector(
-      ".step:nth-child(2) .card.active-step"
+      ".step:nth-of-type(2) .card.active-step"
     );
     const beneficiary = cardStep
       ? cardStep.querySelector("strong").textContent
       : "—";
-    const storyTextarea = document.querySelector(".step-text textarea");
+    const storyTextarea = document.querySelector(".step textarea");
     const story = storyTextarea ? storyTextarea.value.trim() : "—";
-
-    const reviewTitle = document.getElementById("reviewTitle");
-    const reviewGoal = document.getElementById("reviewGoal");
-    const reviewCategory = document.getElementById("reviewCategory");
-    const reviewStory = document.getElementById("reviewStory");
     const mediaPreview = document.querySelector(".media-preview");
 
-    if (reviewTitle) reviewTitle.textContent = title;
-    if (reviewGoal) reviewGoal.textContent = goal ? `€${goal}` : "—";
-    if (reviewCategory) reviewCategory.textContent = category;
-    if (reviewStory) reviewStory.textContent = story;
+    document.getElementById("reviewTitle").textContent = title;
+    document.getElementById("reviewGoal").textContent = goal ? `€${goal}` : "—";
+    document.getElementById("reviewCategory").textContent = category;
+    document.getElementById("reviewStory").textContent = story;
     if (mediaPreview) {
-      mediaPreview.style.backgroundImage =
-        uploadBox.style.backgroundImage || "";
+      const uploadStep = document.querySelector(".step .upload");
+      mediaPreview.style.backgroundImage = uploadStep
+        ? uploadStep.style.backgroundImage
+        : "";
       mediaPreview.style.backgroundSize = "cover";
       mediaPreview.style.backgroundPosition = "center";
     }
@@ -126,12 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.classList.contains("card")
     ) {
       const step = e.target.closest(".step");
-      step
-        .querySelectorAll(
-          e.target.classList.contains("category") ? ".category" : ".card"
-        )
-        .forEach((el) => el.classList.remove("active-step"));
-
+      const items = e.target.classList.contains("category")
+        ? step.querySelectorAll(".category")
+        : step.querySelectorAll(".card");
+      items.forEach((el) => el.classList.remove("active-step"));
       e.target.classList.add("active-step");
       validateCurrentStep();
     }
@@ -146,18 +132,18 @@ document.addEventListener("DOMContentLoaded", () => {
       updateStep();
     }
 
-    if (e.target === uploadBox) {
+    if (e.target.classList.contains("upload")) {
       const input = document.createElement("input");
       input.type = "file";
       input.accept = "image/*";
 
       input.onchange = () => {
         if (!input.files[0]) return;
-        uploadBox.style.backgroundImage = `url(${URL.createObjectURL(
+        e.target.style.backgroundImage = `url(${URL.createObjectURL(
           input.files[0]
         )})`;
-        uploadBox.textContent = "";
-        uploadBox.style.border = "none";
+        e.target.textContent = "";
+        e.target.style.border = "none";
         validateCurrentStep();
       };
 

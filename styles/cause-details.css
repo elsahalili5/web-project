@@ -178,3 +178,97 @@
   border-radius: 12px;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+  .cause-detail-page {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .donation-widget {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .cause-left {
+    padding: 25px;
+  }
+
+  .cause-title {
+    font-size: 32px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .amount {
+    font-size: 20px;
+  }
+  .goal {
+    font-size: 15px;
+  }
+  .cause-title {
+    font-size: 28px;
+  }
+
+  .cause-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .donor {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .donor:last-child {
+    border-bottom: none;
+  }
+
+  .donor-amount {
+    margin-top: 5px;
+    color: #444;
+  }
+
+  .donation-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .donation-buttons button {
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  .donation-buttons button:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cause-title {
+    font-size: 24px;
+  }
+
+  .cause-text {
+    font-size: 14px;
+  }
+
+  .cause-image {
+    height: 220px;
+    border-radius: 10px;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .donation-progress-icon {
+    margin-bottom: 10px;
+  }
+
+  .recent-donations {
+    gap: 25px;
+  }
+}

@@ -138,8 +138,14 @@
   }
   .footer-copyright {
     padding: 10px;
+    font-size: 11px;
   }
   .footer-right ul {
     gap: 5px;
+  }
+
+  .icon-link {
+    width: 30px;
+    height: 30px;
   }
 }
