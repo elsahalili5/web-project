@@ -22,9 +22,13 @@
       <div class="container">
         <nav class="navbar">
           <div class="logo">
-            <img class="default_logo" src="./images/logo2.png" alt="" />
+            <a
+              href="home.html
+            "
+            >
+              <img class="default_logo" src="./images/logo2.png" alt="" />
+            </a>
           </div>
-
           <div class="hamburger" id="menu-toggle">
             <i class="fas fa-bars"></i>
           </div>
@@ -103,12 +107,13 @@
 
           <div class="step">
             <h2>Set your goal amount</h2>
-            <input type="number" placeholder="Amount (€)" />
+            <input class="amount" type="number" placeholder="Amount (€)" />
           </div>
 
           <div class="step">
             <h2 class="step-title">Add a fundraiser title</h2>
             <input
+              class="fundraiser-title"
               id="fundraiser-title"
               type="text"
               placeholder="Donate to help..."
@@ -134,7 +139,7 @@
 
           <div class="step review-step">
             <div class="review-card">
-              <div class="review-row"><strong>Media</strong></div>
+              <div class="review-row"><strong>Cover</strong></div>
               <div class="media-preview"></div>
             </div>
             <div class="review-card">

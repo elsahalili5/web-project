@@ -66,7 +66,7 @@
 }
 
 .statistics-section {
-  background-color: #005a41;
+  background-color: ;
   padding: 60px 0;
 }
 
@@ -111,7 +111,7 @@
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
-  background-color: #005a41;
+  background-color: #01715d;
   height: 30vh;
   margin: 30px 0;
   align-items: center;
@@ -138,7 +138,7 @@
 
 .causes-section {
   padding: 60px 0;
-  background-color: white;
+  background-color: #fefdf6;
 }
 
 .causes-header {
@@ -196,7 +196,7 @@
 }
 .cause-card {
   width: 400px;
-  background-color: #efefef;
+  background-color: #f1ede1;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -207,7 +207,7 @@
   text-decoration: none;
 }
 .cause-card:hover {
-  background-color: #dadad8;
+  background-color: #e7e1cd;
 }
 
 .card-image img {
@@ -265,7 +265,7 @@
 
 .progress-bar-container {
   width: 100%;
-  background-color: #eee;
+  background-color: white;
   border-radius: 5px;
   height: 6px;
   margin-bottom: 10px;
@@ -342,7 +342,7 @@
 
 .faq-card {
   padding: 25px;
-  background-color: #ebe6dd;
+  background-color: #f1ede1;
   text-align: center;
   width: 400px;
   height: 100%;
@@ -381,7 +381,7 @@
   font-size: 30px;
 }
 .home-title {
-  font-family: "DM Serif Display", serif;
+  font-weight: bold;
   font-size: 30px;
   margin-bottom: 20px;
   text-align: center;
@@ -396,6 +396,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin: 35px 0;
 }
 
 .trust-card {
@@ -511,8 +512,8 @@
 }
 
 .service-title {
-  font-size: 22px;
-  margin-bottom: 15px;
+  margin-top: 25px;
+  font-size: 18px;
   color: #1a1a1a;
 }
 
@@ -524,82 +525,224 @@
 
 /* Pjesa mee stepss*/
 .steps-section {
-padding: 80px 20px;
-text-align: center;
-background-color: #fcf6e9;
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #f1ede1;
 }
 
 .steps-header {
-margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .main-title {
-font-size: 32px;
-color: #1a1a1a;
-margin-bottom: 12px;
-font-weight: 700;
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .main-subtitle {
-color: #666;
-font-size: 17px;
-max-width: 700px;
-margin: 0 auto;
+  color: #666;
+  font-size: 17px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .steps-container {
-display: flex;
-justify-content: space-between;
-max-width: 1200px;
-margin: 0 auto;
-position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .step-item {
-flex: 1;
-position: relative;
-padding: 0 15px;
+  flex: 1;
+  position: relative;
+  padding: 0 15px;
 }
-
 
 .step-circle {
-width: 60px;
-height: 60px;
-background-color: #ffffff;
-border: 2px solid #26b99a;
-color: #26b99a;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 0 auto 25px;
-font-weight: bold;
-font-size: 20px;
-position: relative;
-z-index: 2;
+  width: 60px;
+  height: 60px;
+  background-color: #ffffff;
+  border: 2px solid #26b99a;
+  color: #26b99a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  z-index: 2;
 }
 
-
 .step-item:not(:last-child):after {
-content: "";
-position: absolute;
-top: 30px;
-left: 60%;
-width: 80%;
-border-top: 2px dashed #d1d1d1;
-z-index: 1;
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 60%;
+  width: 80%;
+  border-top: 2px dashed #d1d1d1;
+  z-index: 1;
 }
 
 .step-title {
-font-size: 19px;
-color: #222;
-margin-bottom: 15px;
-font-weight: 600;
+  font-size: 19px;
+  color: #222;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .step-text {
-font-size: 14.5px;
-color: #555;
-line-height: 1.6;
+  font-size: 14.5px;
+  color: #555;
+  line-height: 1.6;
 }
 
+@media (max-width: 1200px) {
+  .intro {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .intro-pic {
+    width: 90%;
+    margin-bottom: 30px;
+  }
+  .intro-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .intro-title {
+    font-size: 40px;
+  }
+}
+
+/* Responsive për Statistics Section */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 20px;
+  }
+  .home-title {
+    font-size: 20px;
+    margin: 0;
+  }
+  .our-mission-title {
+    font-size: 30px;
+  }
+  .our-mission {
+    padding: 30px 20px;
+  }
+  .statistics-section {
+    padding: 30px 0;
+  }
+  .stats-grid {
+    gap: 50px;
+
+    grid-template-columns: 1fr;
+  }
+  .stat-number {
+    font-size: 25px;
+  }
+  .stat-label {
+    font-size: 20px;
+  }
+  .stat-item {
+    flex-direction: column;
+    gap: 0;
+  }
+  .stat-icon {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .our-mission-container {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+  .our-mission-services {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .steps-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .step-item:not(:last-child):after {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .cause-card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cause-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .trust-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .faq-content {
+    flex-direction: column;
+  }
+  .faq-list {
+    width: 100%;
+  }
+  .faq-card {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .btn-green {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .service-title {
+    font-size: 15px;
+  }
+  .service-card {
+    padding: 20px 30px;
+  }
+  .btn-yellow {
+    padding: 10px 20px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .last-section {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 20px;
+  }
+  .last-section h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}
