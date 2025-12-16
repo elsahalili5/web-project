@@ -122,3 +122,207 @@ hr {
   background: #ddd;
   margin: 40px 0;
 }
+
+@media screen and (max-width: 1024px) {
+  .about-page {
+    padding: 50px 20px;
+  }
+
+  .main-title {
+    font-size: 32px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 24px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 15px;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 15px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    text-align: center;
+  }
+
+  .btn-group a {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-title {
+    font-size: 28px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 22px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .btn-group a {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-page {
+    padding: 40px 15px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 20px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-group a {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .about-page {
+    padding: 50px 20px;
+  }
+
+  .main-title {
+    font-size: 32px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 24px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 15px;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 15px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    text-align: center;
+  }
+
+  .btn-group a {
+    display: inline-block;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-title {
+    font-size: 28px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 22px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 14px;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .btn-group a {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-page {
+    padding: 40px 15px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .mission h3,
+  .causes h3 {
+    font-size: 20px;
+  }
+
+  .text,
+  .mission-text,
+  .final-text {
+    font-size: 13px;
+  }
+
+  .v-list li,
+  .cause-list li {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-group a {
+    width: 100%;
+    margin-right: 0;
+  }
+}
