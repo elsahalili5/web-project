@@ -1,0 +1,288 @@
+.fundraise-section {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  min-height: 100vh;
+}
+
+.left {
+  padding: 80px 70px;
+}
+
+.right {
+  border-radius: 30px 0 0px 0px;
+  padding: 80px 70px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fundraise-intro {
+  font-size: 20px;
+  color: #01715d;
+}
+.left-title {
+  font-weight: bold;
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.left-description {
+  color: #555;
+  max-width: 420px;
+  font-size: 20px;
+}
+
+.step {
+  display: none;
+}
+
+.step.active-step {
+  display: block;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.back {
+  border: 1px solid #c3c3c3;
+  background: #ffffff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.back:hover {
+  background-color: #eeeeee;
+}
+
+.btn-green.enabled {
+  opacity: 1;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.category {
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #c3c3c3;
+}
+.category:hover {
+  background-color: #eeeeee;
+}
+.category.active-step {
+  background: #dcfce7;
+  border-color: #025848;
+  color: #01715d;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  padding: 26px;
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.card.active-step {
+  background: #ecfdf5;
+  border-color: #025848;
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.upload {
+  border: 2px dashed #e5e7eb;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-size: 30px !important;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.form-group textarea {
+  margin-top: 30px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  font-size: 15px;
+}
+
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.char-count {
+  text-align: right;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.upload {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  border: 2px dashed #d1d5db;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #6b7280;
+  cursor: pointer;
+  background-color: #fafafa;
+  text-align: center;
+  padding: 20px;
+}
+.review-step {
+  max-width: 520px;
+}
+
+.review-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.review-subtitle {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.review-card {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+}
+
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-row strong {
+  font-size: 16px;
+}
+
+.edit-btn {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.media-preview {
+  margin-top: 12px;
+  height: 140px;
+  border-radius: 16px;
+  background: #f3f4f6;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.preview-btn {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .fundraise-section {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    background: #ffffff;
+  }
+}
+
+#successScreen {
+  display: none;
+  height: 100%;
+  width: 100%;
+  background: #01715d;
+  justify-content: center;
+  height: calc(100vh - 220px);
+  align-items: center;
+}
+
+.success-content {
+  width: 35%;
+  align-items: center;
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+#successScreen h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.btn-white:hover {
+  background: #024a3d;
+}

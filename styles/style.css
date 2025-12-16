@@ -78,3 +78,11 @@ header {
 .start-btn:hover {
   background-color: #025848;
 }
+
+.btn-white {
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  padding: 9px 25px;
+  border-radius: 30px;
+}

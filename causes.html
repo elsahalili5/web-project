@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <link rel="stylesheet" href="./styles/header_footer.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/causes.css" />
@@ -12,8 +13,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
   </head>
+
   <body>
-   <header>
+    <header>
       <div class="container">
         <nav class="navbar">
           <div class="logo">
@@ -36,27 +38,29 @@
           </div>
 
           <div class="right-nav" id="menu-item-right">
-            <a href="login.html" class="btn-green"> Log in </a>
+            <a href="login.html" class="btn-green">Log in</a>
           </div>
         </nav>
       </div>
     </header>
 
     <section class="causes-container">
-      <h1 class="title">Browse fundraisers<br />by category</h1>
-      <p class="subtitle">
-         Join thousands of people making a difference through their causes.
-      </p>
+      <div class="causes-intro">
+        <h1 class="title">
+          Browse fundraisers<br />
+          by category
+        </h1>
+        <p class="subtitle">Support a Cause Close to Your Heart</p>
+        <a href="fundraise.html" class="start-btn">Start Your Fundraiser</a>
+      </div>
 
-      <button class="start-btn">Start Your Fundraiser</button>
       <div class="categories">
         <div class="category">
-            <a href="causes-bycategory.html
-            ">
-          <div class="cause-box">
-            <i class="fa-solid fa-heart-pulse"></i>
-          </div>
-          <span>Medical</span>
+          <a href="causes-bycategory.html">
+            <div class="cause-box">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <span>Medical</span>
           </a>
         </div>
 
@@ -137,25 +141,26 @@
           <span>Family</span>
         </div>
 
-      <div class="category">
-        <div class="cause-box">
-          <i class="fa-solid fa-microscope"></i>
+        <div class="category">
+          <div class="cause-box">
+            <i class="fa-solid fa-microscope"></i>
+          </div>
+          <span>Research</span>
         </div>
-        <span>Research</span>
-      </div>
 
-      <div class="category">
-        <div class="cause-box">
-          <i class="fa-solid fa-plane-departure"></i>
+        <div class="category">
+          <div class="cause-box">
+            <i class="fa-solid fa-plane-departure"></i>
+          </div>
+          <span>Travel</span>
         </div>
-        <span>Travel</span>
-      </div>
 
-      <div class="category">
-        <div class="cause-box">
-          <i class="fa-solid fa-utensils"></i>
+        <div class="category">
+          <div class="cause-box">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <span>Food</span>
         </div>
-        <span>Food</span>
       </div>
     </section>
 
@@ -167,42 +172,42 @@
               <img src="./images/logo2.png" alt="" />
             </div>
           </div>
+
           <div class="footer-right">
             <ul>
               <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
+                <a href="#" class="icon-link">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
               </li>
-
               <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon-link">
+                  <i class="fab fa-twitter"></i>
+                </a>
               </li>
-
               <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
+                <a href="#" class="icon-link">
+                  <i class="fab fa-instagram"></i>
+                </a>
               </li>
-
               <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
+                <a href="#" class="icon-link">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div></div>
+
       <div class="footer-copyright">
         <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
+          Copyright © 2025 Elsa Halili & Eriona Bunjaku. All Rights Reserved
         </p>
       </div>
     </footer>
+
+    <script src="./js/donate.js"></script>
+    <script src="./js/main.js"></script>
   </body>
-  <script src="./js/donate.js"></script>
-  <script src="./js/main.js"></script>
 </html>

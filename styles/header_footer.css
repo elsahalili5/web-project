@@ -21,7 +21,7 @@
 }
 
 .left-nav ul li a:hover {
-  color: #00664f;
+  color: #01715d;
 }
 .logo {
   width: 90px;
@@ -42,9 +42,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #00664f;
+  border: 1px solid #01715d;
   color: white;
-  background-color: #00664f;
+  background-color: #01715d;
 
   text-decoration: none;
 }
@@ -72,7 +72,7 @@
 }
 
 .active {
-  border-bottom: 2px solid #00664f;
+  border-bottom: 2px solid #01715d;
 }
 .hamburger {
   display: none;
