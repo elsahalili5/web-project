@@ -521,3 +521,85 @@
   height: 80px;
   object-fit: contain;
 }
+
+/* Pjesa mee stepss*/
+.steps-section {
+padding: 80px 20px;
+text-align: center;
+background-color: #fcf6e9;
+}
+
+.steps-header {
+margin-bottom: 60px;
+}
+
+.main-title {
+font-size: 32px;
+color: #1a1a1a;
+margin-bottom: 12px;
+font-weight: 700;
+}
+
+.main-subtitle {
+color: #666;
+font-size: 17px;
+max-width: 700px;
+margin: 0 auto;
+}
+
+.steps-container {
+display: flex;
+justify-content: space-between;
+max-width: 1200px;
+margin: 0 auto;
+position: relative;
+}
+
+.step-item {
+flex: 1;
+position: relative;
+padding: 0 15px;
+}
+
+
+.step-circle {
+width: 60px;
+height: 60px;
+background-color: #ffffff;
+border: 2px solid #26b99a;
+color: #26b99a;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 25px;
+font-weight: bold;
+font-size: 20px;
+position: relative;
+z-index: 2;
+}
+
+
+.step-item:not(:last-child):after {
+content: "";
+position: absolute;
+top: 30px;
+left: 60%;
+width: 80%;
+border-top: 2px dashed #d1d1d1;
+z-index: 1;
+}
+
+.step-title {
+font-size: 19px;
+color: #222;
+margin-bottom: 15px;
+font-weight: 600;
+}
+
+.step-text {
+font-size: 14.5px;
+color: #555;
+line-height: 1.6;
+}
+
