@@ -71,7 +71,7 @@
   color: rgb(81, 79, 79);
 }
 
-.active {
+.left-nav a.active {
   border-bottom: 2px solid #01715d;
 }
 .hamburger {
@@ -84,7 +84,9 @@
 .hamburger i {
   color: black;
 }
-
+.mobile-only {
+  display: none;
+}
 @media screen and (max-width: 768px) {
   footer {
     margin-top: 10px;
@@ -105,32 +107,41 @@
     display: block;
   }
 
-  #menu-item,
-  #menu-item-right {
-    display: none;
-  }
+  @media (max-width: 768px) {
+    .mobile-only {
+      display: block;
+    }
 
-  #menu-item.active,
-  #menu-item-right.active {
-    display: block;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    text-align: center;
-    padding: 20px 0;
-    z-index: 1000;
-  }
+    .right-nav {
+      display: none;
+    }
 
-  #menu-item ul {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0;
-  }
+    #menu-item,
+    #menu-item-right {
+      display: none;
+    }
 
-  #menu-item-right {
-    margin-top: 20px;
+    #menu-item.active {
+      display: block;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: white;
+      text-align: center;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    #menu-item ul {
+      flex-direction: column;
+      gap: 20px;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   .footer {
@@ -148,4 +159,7 @@
     width: 30px;
     height: 30px;
   }
+}
+body.menu-open {
+  overflow: hidden;
 }

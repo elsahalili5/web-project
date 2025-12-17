@@ -66,7 +66,7 @@
 }
 
 .statistics-section {
-  background-color: ;
+  background-color: #01715d;
   padding: 60px 0;
 }
 
@@ -623,7 +623,6 @@
   }
 }
 
-/* Responsive për Statistics Section */
 @media (max-width: 900px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);

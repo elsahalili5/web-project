@@ -1,9 +1,12 @@
 const menuToggle = document.getElementById("menu-toggle");
 const leftNav = document.getElementById("menu-item");
 const rightNav = document.getElementById("menu-item-right");
+const body = document.body;
 
 menuToggle.addEventListener("click", () => {
-  leftNav.classList.toggle("active");
+  const isOpen = leftNav.classList.toggle("active");
+
   rightNav.classList.toggle("active");
-  document.body.classList.toggle("menu-open");
+  body.classList.toggle("menu-open", isOpen);
+  menuToggle.innerHTML = isOpen ? "✕" : "☰";
 });
