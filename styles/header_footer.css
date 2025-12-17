@@ -1,10 +1,24 @@
 .container {
   padding: 0 50px;
 }
+
+header {
+  width: 80%;
+  border-radius: 30px;
+  background-color: #e2ddcf;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.header-container {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
 .navbar {
   display: flex;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   justify-content: space-between;
   font-size: 18px;
   align-items: center;
@@ -19,12 +33,15 @@
   text-decoration: none;
   color: black;
 }
+.left-nav .btn-green {
+  color: white !important;
+}
 
 .left-nav ul li a:hover {
   color: #01715d;
 }
 .logo {
-  width: 90px;
+  width: 80px;
 }
 .logo img {
   width: 100%;
@@ -88,6 +105,12 @@
   display: none;
 }
 @media screen and (max-width: 768px) {
+  header {
+    border-radius: 0;
+    background-color: white !important;
+    width: 100%;
+    margin: 0;
+  }
   footer {
     margin-top: 10px;
   }

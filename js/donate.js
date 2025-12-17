@@ -23,7 +23,7 @@ donationForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const amountInput = document.getElementById("amountInput");
-    const amountBox = document.querySelector(".amount-box");
+    const amountBox = document.querySelector(".amount");
     const emailInput = document.querySelector(
       'input[placeholder="Email address"]'
     );

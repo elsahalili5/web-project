@@ -42,9 +42,6 @@ body {
   border: 1px solid #bb9003;
   background-color: #bb9003;
 }
-header {
-  background-color: #fefdf6;
-}
 
 .main-banner {
   height: calc(100vh - 250px);

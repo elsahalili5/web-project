@@ -179,13 +179,13 @@
   color: white;
 }
 
-.carousel-wrapper {
+.causes-wrapper {
   overflow: hidden;
   width: 100%;
   position: relative;
 }
 
-.causes-carousel {
+.causes-list {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;

@@ -26,7 +26,7 @@
 
 
 
-.amount-box {
+.amount {
   display: flex;
   align-items: center;
   font-size: 60px;
@@ -38,7 +38,7 @@
   margin-top: 10px;
 }
 
-.amount-box input {
+.amount input {
   border: none;
   width: 100%;
   font-size: 60px;
@@ -197,11 +197,11 @@
     font-size: 14px;
   }
 
-  .amount-box {
+  .amount {
     font-size: 40px;
   }
 
-  .amount-box input {
+  .amount input {
     font-size: 40px;
   }
 
@@ -246,11 +246,11 @@
     font-size: 13px;
   }
 
-  .amount-box {
+  .amount {
     font-size: 35px;
   }
 
-  .amount-box input {
+  .amount input {
     font-size: 35px;
   }
 
@@ -265,7 +265,7 @@
     padding: 10px;
   }
 
-  .amount-box span {
+  .amount span {
     font-size: 30px;
   }
 }

@@ -1,7 +1,7 @@
 .fundraise-section {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .left {
@@ -151,7 +151,7 @@ input {
 }
 
 .form-group textarea {
-  height: 500px;
+  height: 300px;
   margin-top: 30px;
   padding: 14px 16px;
   border-radius: 12px;

@@ -72,14 +72,14 @@
   color: #555;
 }
 
-.carousel-wrapper {
+.causes {
   margin-top: 20px;
 }
-.carousel-wrapper a {
+.causes a {
   text-decoration: none;
 }
 
-.causes-carousel {
+.causes-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -96,6 +96,9 @@
   flex-direction: column;
   height: 430px;
   cursor: pointer;
+}
+.cause-card:hover {
+  background-color: rgb(246, 245, 245);
 }
 .cause-card a {
   text-decoration: none;
@@ -186,7 +189,7 @@
     font-size: 24px;
   }
 
-  .causes-carousel {
+  .causes-list {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
@@ -211,7 +214,7 @@
     font-size: 14px;
   }
 
-  .causes-carousel {
+  .causes-list {
     grid-template-columns: 1fr;
     gap: 15px;
   }

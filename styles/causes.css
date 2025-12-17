@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.cause-box {
+.cause-container {
   width: 140px;
   height: 140px;
   background: #fafafa;
@@ -36,11 +36,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
   margin-bottom: 10px;
 }
 
-.cause-box i {
+.cause-container i {
   font-size: 45px;
   opacity: 0.9;
   color: black;
@@ -51,7 +51,7 @@
   margin-top: 20px;
 }
 
-.cause-box:hover {
+.cause-container:hover {
   border-color: #bfbfbf;
 }
 
@@ -59,7 +59,6 @@
   text-decoration: none;
 }
 .material-symbols-filled {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
   font-size: 48px;
   color: #333;
 }
@@ -123,12 +122,12 @@
     grid-template-columns: 1fr;
   }
 
-  .cause-box {
+  .cause-container {
     width: 100px;
     height: 100px;
   }
 
-  .cause-box i {
+  .cause-container i {
     font-size: 28px;
   }
 
@@ -164,7 +163,7 @@
     justify-content: center;
   }
 
-  .cause-box i {
+  .cause-container i {
     font-size: 40px;
   }
 
@@ -184,7 +183,7 @@
   }
 
   .title {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .subtitle {
@@ -194,8 +193,9 @@
 
 @media (max-width: 500px) {
   .start-btn {
-    width: 100%;
+    width: 60%;
     max-width: 250px;
     margin: 20px auto;
+    font-size: 14px;
   }
 }

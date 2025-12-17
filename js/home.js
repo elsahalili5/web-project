@@ -19,3 +19,27 @@ items.forEach((item) => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const causes = document.querySelector(".causes-list");
+  const prevArrow = document.querySelector(".prev-arrow");
+  const nextArrow = document.querySelector(".next-arrow");
+
+  const scrollAmount = 320;
+
+  if (causes && prevArrow && nextArrow) {
+    nextArrow.addEventListener("click", () => {
+      causes.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    });
+
+    prevArrow.addEventListener("click", () => {
+      causes.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    });
+  }
+});
