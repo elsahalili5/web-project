@@ -22,7 +22,8 @@ $currentPage = 'causes';
 </head>
 
 <body>
-  <?php include('layout/navigation.php') ?>
+  <?php include('components/navigation.php') ?>
+
 
   <div class="container">
     <div class="cause-details">

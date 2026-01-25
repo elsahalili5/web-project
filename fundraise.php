@@ -22,7 +22,8 @@ $currentPage = 'fundraise';
 </head>
 
 <body>
-  <?php include('layout/navigation.php') ?>
+  <?php include('components/navigation.php') ?>
+
 
   <div class="fundraise-section">
     <div class="left">

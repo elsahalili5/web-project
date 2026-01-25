@@ -14,7 +14,8 @@
 </head>
 
 <body>
-  <?php include('layout/navigation.php') ?>
+  <?php include('components/navigation.php') ?>
+
 
   <div class="main-banner">
     <div class="thankyou-section">

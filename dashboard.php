@@ -60,7 +60,6 @@
                     </div>
                     <div class="header-right">
                         <div class="icon-btn"><i class="fa-regular fa-envelope"></i></div>
-                        <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
 
                         <div class="profile">
                             <div class="profile-pic">T</div>

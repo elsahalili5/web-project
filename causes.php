@@ -20,7 +20,8 @@ $currentPage = 'causes';
 </head>
 
 <body>
-  <?php include('layout/navigation.php') ?>
+  <?php include('components/navigation.php') ?>
+
 
   <section class="causes-container">
     <div class="causes-intro">
