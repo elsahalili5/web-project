@@ -1,183 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/header_footer.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/cause-details.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=finance_mode"
-    />
-  </head>
-  <body>
-    <div class="header-container">
-      <header>
-        <div class="container">
-          <nav class="navbar">
-            <div class="logo">
-              <a
-                href="home.html
-            "
-              >
-                <img class="default_logo" src="./images/logo2.png" alt="" />
-              </a>
-            </div>
 
-            <div class="hamburger" id="menu-toggle">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="left-nav" id="menu-item">
-              <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="causes.html">Causes</a></li>
-                <li><a href="fundraise.html" class="active">Fundraise</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li class="mobile-only">
-                  <a href="login.html" class="btn-green">Sign Up</a>
-                </li>
-              </ul>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles/header_footer.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/cause-details.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=finance_mode" />
+</head>
 
-            <div class="right-nav" id="menu-item-right">
-              <a href="login.html" class="btn-green">Sign Up</a>
-            </div>
-          </nav>
-        </div>
-      </header>
-    </div>
-    <div class="container">
-      <div class="cause-details">
-        <div class="cause-title">Help children fight cancer</div>
+<body>
+  <?php include('layout/navigation.php') ?>
 
-        <div class="cause-detail-page">
-          <div class="cause-left">
-            <div class="cause-image">
-              <img
-                src="https://i.pinimg.com/1200x/23/90/83/239083288b913d29c5d68224865a16db.jpg"
-              />
-            </div>
+  <div class="container">
+    <div class="cause-details">
+      <div class="cause-title">Help children fight cancer</div>
 
-            <div class="cause-text">
-              Make a difference in the lives of children battling cancer by
-              supporting charitable initiatives that provide lifesaving
-              treatment, emotional support, and hope for a brighter future. Your
-              contribution helps cover medical care, therapy, and essential
-              resources for children and their families during their toughest
-              journey. Together, we can give them strength, courage, and a
-              reason to believe in tomorrow.
-            </div>
+      <div class="cause-detail-page">
+        <div class="cause-left">
+          <div class="cause-image">
+            <img
+              src="https://i.pinimg.com/1200x/23/90/83/239083288b913d29c5d68224865a16db.jpg" />
           </div>
 
-          <div class="donation-container">
-            <div>
-              <div class="amount">€14</div>
-              <div class="goal">of 20,000K</div>
-              <div class="donations-count">3 donations</div>
+          <div class="cause-text">
+            Make a difference in the lives of children battling cancer by
+            supporting charitable initiatives that provide lifesaving
+            treatment, emotional support, and hope for a brighter future. Your
+            contribution helps cover medical care, therapy, and essential
+            resources for children and their families during their toughest
+            journey. Together, we can give them strength, courage, and a
+            reason to believe in tomorrow.
+          </div>
+        </div>
 
-              <div class="recent-donations">
-                <div class="donations-progress">
-                  <div class="donation-progress-icon">
-                    <span class="material-symbols-outlined">
-                      finance_mode
-                    </span>
-                  </div>
-                  <h4>3 people have just made a donation</h4>
+        <div class="donation-container">
+          <div>
+            <div class="amount">€14</div>
+            <div class="goal">of 20,000K</div>
+            <div class="donations-count">3 donations</div>
+
+            <div class="recent-donations">
+              <div class="donations-progress">
+                <div class="donation-progress-icon">
+                  <span class="material-symbols-outlined">
+                    finance_mode
+                  </span>
                 </div>
+                <h4>3 people have just made a donation</h4>
+              </div>
 
-                <div class="donor">
-                  <div class="donor-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
-                  </div>
-                  <div class="donor-info">
-                    <div class="donor-name">Elsa Halili</div>
-                    <div class="donor-amount">€5 · Recent donation</div>
-                  </div>
+              <div class="donor">
+                <div class="donor-icon">
+                  <i class="fas fa-hand-holding-heart"></i>
                 </div>
-
-                <div class="donor">
-                  <div class="donor-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
-                  </div>
-                  <div class="donor-info">
-                    <div class="donor-name">Anonymous</div>
-                    <div class="donor-amount">€5 · Top donation</div>
-                  </div>
+                <div class="donor-info">
+                  <div class="donor-name">Elsa Halili</div>
+                  <div class="donor-amount">€5 · Recent donation</div>
                 </div>
+              </div>
 
-                <div class="donor">
-                  <div class="donor-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
-                  </div>
-                  <div class="donor-info">
-                    <div class="donor-name">Gentrit Halili</div>
-                    <div class="donor-amount">€4 · 56 mins</div>
-                  </div>
+              <div class="donor">
+                <div class="donor-icon">
+                  <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="donor-info">
+                  <div class="donor-name">Anonymous</div>
+                  <div class="donor-amount">€5 · Top donation</div>
+                </div>
+              </div>
+
+              <div class="donor">
+                <div class="donor-icon">
+                  <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="donor-info">
+                  <div class="donor-name">Gentrit Halili</div>
+                  <div class="donor-amount">€4 · 56 mins</div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="donation-buttons">
-              <button>See all</button>
-              <button>See top</button>
-            </div>
+          <div class="donation-buttons">
+            <button>See all</button>
+            <button>See top</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-left">
-            <div class="logo">
-              <img src="./images/logo2.png" alt="" />
-            </div>
-          </div>
-          <div class="footer-right">
-            <ul>
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-              </li>
+  <?php include('layout/footer.php') ?>
 
-              <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-              </li>
 
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
+  <script src="./js/donate.js"></script>
+  <script src="./js/main.js"></script>
+</body>
 
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-copyright">
-        <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
-        </p>
-      </div>
-    </footer>
-
-    <script src="./js/donate.js"></script>
-    <script src="./js/main.js"></script>
-  </body>
 </html>

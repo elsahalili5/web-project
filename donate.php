@@ -1,179 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/header_footer.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/donate.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="header-container">
-      <header>
-        <div class="container">
-          <nav class="navbar">
-            <div class="logo">
-              <a
-                href="home.html
-            "
-              >
-                <img class="default_logo" src="./images/logo2.png" alt="" />
-              </a>
-            </div>
 
-            <div class="hamburger" id="menu-toggle">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="left-nav" id="menu-item">
-              <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="causes.html" class="active"> Causes</a></li>
-                <li><a href="fundraise.html">Fundraise</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li class="mobile-only">
-                  <a href="login.html" class="btn-green">Sign Up</a>
-                </li>
-              </ul>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles/header_footer.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/donate.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
 
-            <div class="right-nav" id="menu-item-right">
-              <a href="login.html" class="btn-green">Sign Up</a>
-            </div>
-          </nav>
+<body>
+  <?php include('layout/navigation.php') ?>
+
+  <section class="donate-section">
+    <div class="donation-container">
+      <p class="cause-title">
+        Support Sienna's Recovery From a Rare Brain Condition❤️
+      </p>
+      <p class="subtitle">Still €153,801 to go. Help us build momentum.</p>
+      <form method="post" id="donationForm">
+        <div class="amount-result"></div>
+
+        <h3 class="amount-title">Amount</h3>
+
+        <div class="amount">
+          <span>€</span>
+          <input type="number" id="amountInput" name="amount" min="0" />
         </div>
-      </header>
+
+        <h3 class="payment-title">Payment method</h3>
+        <div class="payment-section">
+          <div class="payment-method">
+            <i class="fa-regular fa-credit-card"></i>
+            <p>Credit or debit</p>
+          </div>
+
+          <div class="result"></div>
+
+          <div class="card-form">
+            <input placeholder="Email address" name="email" class="full" />
+
+            <div class="row">
+              <input type="text" placeholder="First name" name="firstName" />
+              <input type="text" placeholder="Last name" name="lastName" />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Card number"
+              name="cardNumber"
+              class="full"
+              pattern="\d{13,19}" />
+
+            <div class="row">
+              <input type="month" placeholder="MM / YY" name="expireDate" />
+              <input
+                type="number"
+                placeholder="CVV"
+                name="cvv"
+                min="100"
+                max="999" />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Name on card"
+              name="cardName"
+              class="full" />
+
+            <div class="row">
+              <select name="country">
+                <option>Kosovo</option>
+              </select>
+              <input
+                type="number"
+                placeholder="Postal code"
+                name="postalCode" />
+            </div>
+          </div>
+        </div>
+
+        <div class="total">
+          <p>Your donation <span id="donationTotal">€0.00</span></p>
+        </div>
+        <button class="donate-btn" type="submit">Donate now</button>
+      </form>
     </div>
-    <section class="donate-section">
-      <div class="donation-container">
-        <p class="cause-title">
-          Support Sienna's Recovery From a Rare Brain Condition❤️
-        </p>
-        <p class="subtitle">Still €153,801 to go. Help us build momentum.</p>
-        <form method="post" id="donationForm">
-          <div class="amount-result"></div>
+  </section>
 
-          <h3 class="amount-title">Amount</h3>
+  <?php include('layout/footer.php') ?>
 
-          <div class="amount">
-            <span>€</span>
-            <input type="number" id="amountInput" name="amount" min="0" />
-          </div>
 
-          <h3 class="payment-title">Payment method</h3>
-          <div class="payment-section">
-            <div class="payment-method">
-              <i class="fa-regular fa-credit-card"></i>
-              <p>Credit or debit</p>
-            </div>
+  <script src="./js/donate.js"></script>
+  <script src="./js/main.js"></script>
+</body>
 
-            <div class="result"></div>
-
-            <div class="card-form">
-              <input placeholder="Email address" name="email" class="full" />
-
-              <div class="row">
-                <input type="text" placeholder="First name" name="firstName" />
-                <input type="text" placeholder="Last name" name="lastName" />
-              </div>
-
-              <input
-                type="text"
-                placeholder="Card number"
-                name="cardNumber"
-                class="full"
-                pattern="\d{13,19}"
-              />
-
-              <div class="row">
-                <input type="month" placeholder="MM / YY" name="expireDate" />
-                <input
-                  type="number"
-                  placeholder="CVV"
-                  name="cvv"
-                  min="100"
-                  max="999"
-                />
-              </div>
-
-              <input
-                type="text"
-                placeholder="Name on card"
-                name="cardName"
-                class="full"
-              />
-
-              <div class="row">
-                <select name="country">
-                  <option>Kosovo</option>
-                </select>
-                <input
-                  type="number"
-                  placeholder="Postal code"
-                  name="postalCode"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="total">
-            <p>Your donation <span id="donationTotal">€0.00</span></p>
-          </div>
-          <button class="donate-btn" type="submit">Donate now</button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-left">
-            <div class="logo">
-              <img src="./images/logo2.png" alt="" />
-            </div>
-          </div>
-          <div class="footer-right">
-            <ul>
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div></div>
-      <div class="footer-copyright">
-        <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
-        </p>
-      </div>
-    </footer>
-
-    <script src="./js/donate.js"></script>
-    <script src="./js/main.js"></script>
-  </body>
 </html>

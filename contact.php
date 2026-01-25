@@ -1,196 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Page</title>
 
-    <link rel="stylesheet" href="./styles/header_footer.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/contact.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Page</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-  </head>
+  <link rel="stylesheet" href="./styles/header_footer.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/contact.css" />
 
-  <body>
-    <div class="header-container">
-      <header>
-        <div class="container">
-          <nav class="navbar">
-            <div class="logo">
-              <a
-                href="home.html
-            "
-              >
-                <img class="default_logo" src="./images/logo2.png" alt="" />
-              </a>
-            </div>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
 
-            <div class="hamburger" id="menu-toggle">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="left-nav" id="menu-item">
-              <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="causes.html">Causes</a></li>
-                <li><a href="fundraise.html">Fundraise</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-                <li class="mobile-only">
-                  <a href="login.html" class="btn-green">Sign Up</a>
-                </li>
-              </ul>
-            </div>
+<body>
+  <?php include('layout/navigation.php') ?>
 
-            <div class="right-nav" id="menu-item-right">
-              <a href="login.html" class="btn-green">Sign Up</a>
-            </div>
-          </nav>
-        </div>
-      </header>
-    </div>
 
-    <!--fillonnnn formaaa   -->
+  <!--fillonnnn formaaa   -->
 
-    <div class="container">
-      <div class="contact-us">
-        <section class="contact-container">
-          <div class="contact-inner">
-            <div class="form-box">
-              <p class="label-title">— CONTACT US</p>
-              <h2>One Message. <span> One step closer to helping </span></h2>
-              <div class="result"></div>
-              <form id="contact-form">
-                <div class="form-group">
-                  <label>Your Name *</label>
-                  <input
-                    class="form-input"
-                    type="text"
-                    id="name"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Email *</label>
-                  <input
-                    class="form-input"
-                    id="email"
-                    placeholder="example@gmail.com"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Subject *</label>
-                  <input
-                    class="form-input"
-                    type="text"
-                    id="subject"
-                    placeholder="Enter Subject"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Your Message *</label>
-                  <textarea
-                    class="form-input"
-                    rows="6"
-                    id="message"
-                    placeholder="Type here..."
-                  ></textarea>
-                </div>
-
-                <button class="send-btn" type="submit">
-                  <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-              </form>
-            </div>
-
-            <div class="info-box">
-              <h3>Address</h3>
-              <p>UBT Dukagjini</p>
-
-              <hr />
-
-              <h3>Contact</h3>
-              <p>Phone: 044 110 220</p>
-              <p>Email: heart@gmail.com</p>
-
-              <hr />
-
-              <h3>Working Hours</h3>
-              <p>Mon - Fri: 10:00 - 20:00</p>
-              <p>Sat - Sun: 11:00 - 18:00</p>
-
-              <hr />
-
-              <h3>Social Media</h3>
-              <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  <div class="container">
+    <div class="contact-us">
+      <section class="contact-container">
+        <div class="contact-inner">
+          <div class="form-box">
+            <p class="label-title">— CONTACT US</p>
+            <h2>One Message. <span> One step closer to helping </span></h2>
+            <div class="result"></div>
+            <form id="contact-form">
+              <div class="form-group">
+                <label>Your Name *</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="name"
+                  placeholder="John Doe" />
               </div>
-            </div>
+
+              <div class="form-group">
+                <label>Email *</label>
+                <input
+                  class="form-input"
+                  id="email"
+                  placeholder="example@gmail.com" />
+              </div>
+
+              <div class="form-group">
+                <label>Subject *</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="subject"
+                  placeholder="Enter Subject" />
+              </div>
+
+              <div class="form-group">
+                <label>Your Message *</label>
+                <textarea
+                  class="form-input"
+                  rows="6"
+                  id="message"
+                  placeholder="Type here..."></textarea>
+              </div>
+
+              <button class="send-btn" type="submit">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+            </form>
           </div>
-        </section>
-      </div>
-    </div>
-    <section class="map-box">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.10561899349!2d21.144065!3d42.653480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549efc915d9e6b%3A0xd0a1aabf4fa0c7a5!2sUBT%20-%20Dukagjini!5e0!3m2!1sen!2s!4v1700000000000"
-        frameborder="0"
-      ></iframe>
-    </section>
-    <!-- foteriiii -->
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-left">
-            <div class="logo">
-              <img src="./images/logo2.png" alt="" />
+
+          <div class="info-box">
+            <h3>Address</h3>
+            <p>UBT Dukagjini</p>
+
+            <hr />
+
+            <h3>Contact</h3>
+            <p>Phone: 044 110 220</p>
+            <p>Email: heart@gmail.com</p>
+
+            <hr />
+
+            <h3>Working Hours</h3>
+            <p>Mon - Fri: 10:00 - 20:00</p>
+            <p>Sat - Sun: 11:00 - 18:00</p>
+
+            <hr />
+
+            <h3>Social Media</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
-          </div>
-          <div class="footer-right">
-            <ul>
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-            </ul>
           </div>
         </div>
-      </div>
-      <div></div>
-      <div class="footer-copyright">
-        <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
-        </p>
-      </div>
-    </footer>
+      </section>
+    </div>
+  </div>
+  <section class="map-box">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.10561899349!2d21.144065!3d42.653480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549efc915d9e6b%3A0xd0a1aabf4fa0c7a5!2sUBT%20-%20Dukagjini!5e0!3m2!1sen!2s!4v1700000000000"
+      frameborder="0"></iframe>
+  </section>
+  <!-- foteriiii -->
+  <?php include('layout/footer.php') ?>
 
-    <script src="./js/contact.js"></script>
-    <script src="./js/main.js"></script>
-  </body>
+
+  <script src="./js/contact.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>

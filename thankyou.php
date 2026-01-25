@@ -1,108 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/header_footer.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/thankyou-card.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="header-container">
-      <header>
-        <div class="container">
-          <nav class="navbar">
-            <div class="logo">
-              <a
-                href="home.html
-            "
-              >
-                <img class="default_logo" src="./images/logo2.png" alt="" />
-              </a>
-            </div>
 
-            <div class="hamburger" id="menu-toggle">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="left-nav" id="menu-item">
-              <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="causes.html" class="active"> Causes</a></li>
-                <li><a href="fundraise.html">Fundraise</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li class="mobile-only">
-                  <a href="login.html" class="btn-green">Sign Up</a>
-                </li>
-              </ul>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles/header_footer.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/thankyou-card.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
 
-            <div class="right-nav" id="menu-item-right">
-              <a href="login.html" class="btn-green">Sign Up</a>
-            </div>
-          </nav>
-        </div>
-      </header>
+<body>
+  <?php include('layout/navigation.php') ?>
+
+  <div class="main-banner">
+    <div class="thankyou-section">
+      <h1 class="thankyou-message">Thank You For Donating!</h1>
+      <p class="thankyou-text">
+        Your generosity brings hope and a brighter future
+      </p>
+      <p class="thankyou-text">We truly appreciate heartfelt support.</p>
     </div>
-    <div class="main-banner">
-      <div class="thankyou-section">
-        <h1 class="thankyou-message">Thank You For Donating!</h1>
-        <p class="thankyou-text">
-          Your generosity brings hope and a brighter future
-        </p>
-        <p class="thankyou-text">We truly appreciate heartfelt support.</p>
-      </div>
-    </div>
+  </div>
 
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-left">
-            <div class="logo">
-              <img src="./images/logo2.png" alt="" />
-            </div>
-          </div>
-          <div class="footer-right">
-            <ul>
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-              </li>
+  <?php include('layout/footer.php') ?>
 
-              <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-              </li>
+</body>
+<script src="./js/donate.js"></script>
+<script src="./js/main.js"></script>
 
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
-
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div></div>
-      <div class="footer-copyright">
-        <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
-        </p>
-      </div>
-    </footer>
-  </body>
-  <script src="./js/donate.js"></script>
-  <script src="./js/main.js"></script>
 </html>

@@ -1,203 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/header_footer.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/cause-details.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=finance_mode"
-    />
-  </head>
-  <body>
-    <div class="header-container">
-      <header>
-        <div class="container">
-          <nav class="navbar">
-            <div class="logo">
-              <a
-                href="home.html
-            "
-              >
-                <img class="default_logo" src="./images/logo2.png" alt="" />
-              </a>
-            </div>
 
-            <div class="hamburger" id="menu-toggle">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="left-nav" id="menu-item">
-              <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="causes.html" class="active">Causes</a></li>
-                <li><a href="fundraise.html">Fundraise</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li class="mobile-only">
-                  <a href="login.html" class="btn-green">Sign Up</a>
-                </li>
-              </ul>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles/header_footer.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/cause-details.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=finance_mode" />
+</head>
 
-            <div class="right-nav" id="menu-item-right">
-              <a href="login.html" class="btn-green">Sign Up</a>
-            </div>
-          </nav>
+<body>
+  <?php include('layout/navigation.php') ?>
+
+  <div class="container">
+    <div class="cause-details">
+      <div class="cause-title">Help for children education</div>
+
+      <div class="cause-detail-page">
+        <div class="cause-left">
+          <div class="cause-image">
+            <img
+              src="https://i.pinimg.com/1200x/0b/52/7c/0b527cae2b0718c7c38f477a0ca99cf8.jpg" />
+          </div>
+
+          <div class="cause-text">
+            Empower children through charity by providing access to quality
+            education, books, school supplies, and safe, supportive learning
+            environments. Across the world, millions of children are unable to
+            attend school due to poverty, conflict, displacement, and lack of
+            basic resources. Without education, these children face limited
+            opportunities and an uncertain future. Your support helps open
+            classroom doors, protect childhood dreams, and give every child a
+            chance to learn, grow, and succeed.
+          </div>
         </div>
-      </header>
-    </div>
-    <div class="container">
-      <div class="cause-details">
-        <div class="cause-title">Help for children education</div>
 
-        <div class="cause-detail-page">
-          <div class="cause-left">
-            <div class="cause-image">
-              <img
-                src="https://i.pinimg.com/1200x/0b/52/7c/0b527cae2b0718c7c38f477a0ca99cf8.jpg"
-              />
+        <div class="donation-container">
+          <div class="amount">€15,874</div>
+          <div class="goal">of 50,000K</div>
+          <div class="donations-count">2.5K donations</div>
+
+          <button class="btn btn-share">Share</button>
+          <a href="donate.html" class="btn btn-green">Donate now</a>
+
+          <div class="recent-donations">
+            <div class="donations-progress">
+              <div class="donation-progress-icon">
+                <span class="material-symbols-outlined"> finance_mode </span>
+              </div>
+              <h4>566 people have just made a donation</h4>
             </div>
 
-            <div class="cause-text">
-              Empower children through charity by providing access to quality
-              education, books, school supplies, and safe, supportive learning
-              environments. Across the world, millions of children are unable to
-              attend school due to poverty, conflict, displacement, and lack of
-              basic resources. Without education, these children face limited
-              opportunities and an uncertain future. Your support helps open
-              classroom doors, protect childhood dreams, and give every child a
-              chance to learn, grow, and succeed.
+            <div class="donor">
+              <div class="donor-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="donor-info">
+                <div class="donor-name">Elsa Halili</div>
+                <div class="donor-amount">€50 · Recent donation</div>
+              </div>
+            </div>
+
+            <div class="donor">
+              <div class="donor-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="donor-info">
+                <div class="donor-name">Anonymous</div>
+                <div class="donor-amount">€5,000 · Top donation</div>
+              </div>
+            </div>
+
+            <div class="donor">
+              <div class="donor-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="donor-info">
+                <div class="donor-name">Eriona Bunjaku</div>
+                <div class="donor-amount">€100 · 1 hr</div>
+              </div>
+            </div>
+
+            <div class="donor">
+              <div class="donor-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="donor-info">
+                <div class="donor-name">Genita Halili</div>
+                <div class="donor-amount">€30 · 2 hrs</div>
+              </div>
+            </div>
+
+            <div class="donor">
+              <div class="donor-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="donor-info">
+                <div class="donor-name">Gentrit Halili</div>
+                <div class="donor-amount">€25 · 56 mins</div>
+              </div>
             </div>
           </div>
 
-          <div class="donation-container">
-            <div class="amount">€15,874</div>
-            <div class="goal">of 50,000K</div>
-            <div class="donations-count">2.5K donations</div>
-
-            <button class="btn btn-share">Share</button>
-            <a href="donate.html" class="btn btn-green">Donate now</a>
-
-            <div class="recent-donations">
-              <div class="donations-progress">
-                <div class="donation-progress-icon">
-                  <span class="material-symbols-outlined"> finance_mode </span>
-                </div>
-                <h4>566 people have just made a donation</h4>
-              </div>
-
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Elsa Halili</div>
-                  <div class="donor-amount">€50 · Recent donation</div>
-                </div>
-              </div>
-
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Anonymous</div>
-                  <div class="donor-amount">€5,000 · Top donation</div>
-                </div>
-              </div>
-
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Eriona Bunjaku</div>
-                  <div class="donor-amount">€100 · 1 hr</div>
-                </div>
-              </div>
-
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Genita Halili</div>
-                  <div class="donor-amount">€30 · 2 hrs</div>
-                </div>
-              </div>
-
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Gentrit Halili</div>
-                  <div class="donor-amount">€25 · 56 mins</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="donation-buttons">
-              <button>See all</button>
-              <button>See top</button>
-            </div>
+          <div class="donation-buttons">
+            <button>See all</button>
+            <button>See top</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <footer>
-      <div class="container">
-        <div class="footer">
-          <div class="footer-left">
-            <div class="logo">
-              <img src="./images/logo2.png" alt="" />
-            </div>
-          </div>
-          <div class="footer-right">
-            <ul>
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-              </li>
+  <?php include('layout/footer.php') ?>
 
-              <li>
-                <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-              </li>
 
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
+  <script src="./js/donate.js"></script>
+  <script src="./js/main.js"></script>
+</body>
 
-              <li>
-                <a href="#" class="icon-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-copyright">
-        <p>
-          Copyright &copy; 2025 Elsa Halili & Eriona Bunjaku. All Rights
-          Reserved
-        </p>
-      </div>
-    </footer>
-
-    <script src="./js/donate.js"></script>
-    <script src="./js/main.js"></script>
-  </body>
 </html>
