@@ -1,3 +1,7 @@
+<?php
+$currentPage = 'fundraise';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,7 +156,7 @@
       </p>
 
       <a
-        href="new-cause.html
+        href="new-cause.php
         "
         class="btn-white">View Your Fundraiser</a>
     </div>

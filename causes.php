@@ -1,3 +1,8 @@
+<?php
+$currentPage = 'causes';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,12 +29,12 @@
         by category
       </h1>
       <p class="subtitle">Support a Cause Close to Your Heart</p>
-      <a href="fundraise.html" class="start-btn">Start Your Fundraiser</a>
+      <a href="fundraise.php" class="start-btn">Start Your Fundraiser</a>
     </div>
 
     <div class="categories">
       <div class="category">
-        <a href="causes-bycategory.html">
+        <a href="causes-bycategory.php">
           <div class="cause-container">
             <i class="fa-solid fa-heart-pulse"></i>
           </div>

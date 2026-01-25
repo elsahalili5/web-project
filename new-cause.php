@@ -1,3 +1,8 @@
+<?php
+$currentPage = 'causes';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

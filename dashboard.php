@@ -29,10 +29,12 @@
                 <div class="menu-title">MENU</div>
                 <div class="menu">
                     <a href="#" class="active"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-                    <a href="#"><i class="fa-solid fa-list-check"></i> Tasks</a>
-                    <a href="#"><i class="fa-regular fa-calendar"></i> Calendar</a>
-                    <a href="#"><i class="fa-solid fa-chart-line"></i> Analytics</a>
-                    <a href="#"><i class="fa-solid fa-users"></i> Team</a>
+                    <a href="#"><i class="fa-solid fa-users"></i> Users</a>
+
+                    <a href="#"><i class="fa-regular fa-calendar"></i> Donations</a>
+                    <a href="#"><i class="fa-solid fa-chart-line"></i> Causes</a>
+                    <a href="#"><i class="fa-regular fa-envelope"></i> Messages</a>
+
                 </div>
 
                 <div class="menu-title" style="margin-top:30px;">GENERAL</div>

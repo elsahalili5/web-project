@@ -1,3 +1,8 @@
+<?php
+$currentPage = 'about';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,8 +122,8 @@
         and communities striving for a better tomorrow.
       </p>
       <div class="btn-group">
-        <a href="causes.html" class="btn-green">Explore Our Causes</a>
-        <a href="fundraise.html" class="btn-green-outline">Start a Fundraiser</a>
+        <a href="causes.php" class="btn-green">Explore Our Causes</a>
+        <a href="fundraise.php" class="btn-green-outline">Start a Fundraiser</a>
       </div>
     </section>
   </div>

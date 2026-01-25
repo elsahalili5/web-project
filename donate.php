@@ -1,3 +1,8 @@
+<?php
+$currentPage = 'causes';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,6 +53,13 @@
               <input type="text" placeholder="First name" name="firstName" />
               <input type="text" placeholder="Last name" name="lastName" />
             </div>
+            <div class=" anonymous-checkbox">
+              <input type="checkbox" id="anonymous" name="anonymous" class="anonymous" value="1" class="checkbox-input">
+              <label for="anonymous" class="checkbox-label">
+                Don’t display my name publicly on the fundraiser.
+              </label>
+            </div>
+
 
             <input
               type="text"

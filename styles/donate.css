@@ -126,9 +126,20 @@
 .donate-btn:hover {
   background: #025848;
 }
+.anonymous-checkbox{
+  padding: 20px 0;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 10px;
+}
+input[type="checkbox"]:checked {
+  accent-color:#01715d; 
+}
 
-
-
+.anonymous{
+  width: auto!important;
+}
 
 @media screen and (max-width: 1024px) {
   .donation-container {

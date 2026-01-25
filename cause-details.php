@@ -1,3 +1,7 @@
+<?php
+$currentPage = 'causes';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +51,7 @@
           <div class="donations-count">2.5K donations</div>
 
           <button class="btn btn-share">Share</button>
-          <a href="donate.html" class="btn btn-green">Donate now</a>
+          <a href="donate.php" class="btn btn-green">Donate now</a>
 
           <div class="recent-donations">
             <div class="donations-progress">

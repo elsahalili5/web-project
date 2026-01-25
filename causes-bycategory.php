@@ -1,3 +1,8 @@
+<?php
+$currentPage = 'causes';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +30,7 @@
           one.
         </p>
         <div>
-          <a href="fundraise.html" class="start-btn">Start Your Fundraiser</a>
+          <a href="fundraise.php" class="start-btn">Start Your Fundraiser</a>
         </div>
       </div>
       <div class="causes-intro-image">

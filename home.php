@@ -1,3 +1,9 @@
+<?php
+$currentPage = 'home';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +39,7 @@
             community.
           </p>
           <div class="intro-actions">
-            <a href="causes.html" class="btn-green">Donate Now 💛 </a>
+            <a href="donate.php" class="btn-green">Donate Now 💛 </a>
             <a href="https://youtu.be/v5wbODeVHC8" class="btn-watch">
               <span class="play-icon">▶</span>
               Watch video
@@ -94,7 +100,7 @@
           How can we touch lives, spread hope, and build a better future
           through giving?
         </p>
-        <a href="about.html" class="btn-green">Learn More</a>
+        <a href="about.php" class="btn-green">Learn More</a>
       </div>
 
       <div class="our-mission-services">
@@ -180,7 +186,7 @@
       <div class="causes-header">
         <h2 class="home-title">Current causes</h2>
         <div>
-          <a class="btn-green" href="causes.html">
+          <a class="btn-green" href="causes.php">
             View All
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -190,7 +196,7 @@
       <div class="causes-wrapper">
         <div class="causes-list">
           <div class="cause-card">
-            <a href="cause2-details.html">
+            <a href="cause2-details.php">
               <div class="card-image">
                 <img
                   src="./images/ghanakids.jpg"
@@ -256,7 +262,7 @@
           </div>
 
           <div class="cause-card">
-            <a href="cause1-details.html">
+            <a href="cause1-details.php">
               <div class="card-image">
                 <img
                   src="https://i.pinimg.com/1200x/0b/52/7c/0b527cae2b0718c7c38f477a0ca99cf8.jpg
@@ -416,7 +422,7 @@
           <a
             class="btn-green"
             href="
-            contact.html
+            contact.php
             ">
             Get in Touch
           </a>
@@ -430,7 +436,7 @@
       <h1>Make someone's life by giving of yours.</h1>
 
       <div>
-        <a href="donate.html" class="btn-yellow">Donate Now </a>
+        <a href="donate.php" class="btn-yellow">Donate Now </a>
       </div>
     </div>
   </div>
@@ -441,4 +447,4 @@
 <script src="./js/causes.js"></script>
 <script src="./js/home.js"></script>
 
-</html>
+</php>
