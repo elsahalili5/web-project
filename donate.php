@@ -104,9 +104,7 @@ $currentPage = 'causes';
       </form>
     </div>
   </section>
-
-  <?php include('layout/footer.php') ?>
-
+  <?php include('components/footer.php') ?>
 
   <script src="./js/donate.js"></script>
   <script src="./js/main.js"></script>

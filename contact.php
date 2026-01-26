@@ -113,7 +113,8 @@ $currentPage = 'contact';
       frameborder="0"></iframe>
   </section>
   <!-- foteriiii -->
-  <?php include('layout/footer.php') ?>
+  <?php include('components/footer.php') ?>
+
 
 
   <script src="./js/contact.js"></script>

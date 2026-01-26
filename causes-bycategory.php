@@ -136,7 +136,8 @@ $currentPage = 'causes';
       </div>
     </div>
   </section>
-  <?php include('layout/footer.php') ?>
+  <?php include('components/footer.php') ?>
+
 
 </body>
 <script src="./js/donate.js"></script>

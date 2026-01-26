@@ -1,27 +1,29 @@
 <?php
 include_once './database/Database.php';
-include_once './models/User.php';
+include_once './classes/User.php';
 
 $db = new Database();
 $connection = $db->getConnection();
 $user = new User($connection);
 
-// --- REGISTER ---
+$signupError = "";
+
 if (isset($_POST['signup'])) {
   $name = $_POST['name'];
   $surname = $_POST['surname'];
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  if ($user->register($name, $surname, $email, $password)) {
+  $result = $user->register($name, $surname, $email, $password);
+
+  if ($result === true) {
     header("Location: login.php");
     exit;
   } else {
-    echo "Error registering user!";
+    $signupError = $result;
   }
 }
 
-// --- LOGIN ---
 if (isset($_POST['signin'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
@@ -48,9 +50,11 @@ if (isset($_POST['signin'])) {
   <div class="container" id="container">
     <div class="form-container sign-up-container">
       <form action="login.php" method="POST">
-        <div id="result" class="result">
-          <p id="result-p"></p>
+        <div id="result" class="result"
+          style="color:red; visibility:<?php echo $signupError ? 'visible' : 'hidden'; ?>">
+          <p id="result-p"><?php echo htmlspecialchars($signupError); ?></p>
         </div>
+
 
         <input
           id="inputFirstName"

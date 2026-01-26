@@ -440,8 +440,8 @@ $currentPage = 'home';
         <a href="donate.php" class="btn-yellow">Donate Now </a>
       </div>
     </div>
-  </div>
-  <?php include('layout/footer.php') ?>
+    <?php include('components/footer.php') ?>
+
 
 </body>
 <script src="./js/main.js"></script>

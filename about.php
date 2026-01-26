@@ -19,7 +19,7 @@ $currentPage = 'about';
 </head>
 
 <body>
-  <?php include('layout/navigation.php') ?>
+  <?php include('components/navigation.php') ?>
 
 
   <div class="container about-page">
@@ -128,7 +128,7 @@ $currentPage = 'about';
     </section>
   </div>
 
-  <?php include('layout/footer.php') ?>
+  <?php include('components/footer.php') ?>
 
 </body>
 <script src="./js/donate.js"></script>
