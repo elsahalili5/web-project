@@ -48,7 +48,7 @@ $currentPage = 'causes';
 
     <div class="causes">
       <div class="causes-list">
-        <a href="cause-details.html">
+        <a href="cause-details.php">
           <div class="cause-card">
             <div class="card-image">
               <img

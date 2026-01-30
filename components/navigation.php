@@ -40,7 +40,6 @@ require_once "./classes/User.php";
                 <div class="right-nav" id="menu-item-right">
                     <?php if (User::isLoggedIn()): ?>
                         <?php if (User::isAdmin()): ?>
-                            <a href="./dashboard/dashboard.php" class="btn-green">Dashboard</a>
                             <a href="./logout.php" class="btn-green">Logout</a>
 
                         <?php endif; ?>

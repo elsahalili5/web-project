@@ -92,6 +92,13 @@ class User
         return $stmt->execute();
     }
 
+    public function updateUser($id, $name, $surname, $email)
+    {
+        $sql = "UPDATE users SET name=?, surname=?, email=? WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([$name, $surname, $email, $id]);
+    }
+
     public static function logout()
     {
         session_start();
