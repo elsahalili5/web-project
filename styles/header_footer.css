@@ -186,3 +186,55 @@ header {
 body.menu-open {
   overflow: hidden;
 }
+/* User Dropdown minimalist */
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-dropdown a#userDropdown {
+  color: #01715d; /* Ngjyra e btn-green */
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid #01715d;
+  border-radius: 20px;
+  background-color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.user-dropdown a#userDropdown:hover {
+  background-color: #01715d;
+  color: white;
+}
+
+.user-dropdown .dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  min-width: 100px;
+  z-index: 1000;
+}
+
+.user-dropdown .dropdown-menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.user-dropdown .dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+.user-dropdown .dropdown-menu.show {
+  display: block;
+}

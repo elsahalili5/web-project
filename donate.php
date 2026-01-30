@@ -1,6 +1,35 @@
 <?php
 $currentPage = 'causes';
+session_start();
+include_once __DIR__ . '/database/Database.php';
+include_once __DIR__ . '/classes/Donation.php';
+
+$database = new Database();
+$conn = $database->getConnection();
+
+$donation = new Donation($conn);
+$message = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $data = [
+    'cause_id' => 1,
+    'user_email' => trim($_POST['email']),
+    'first_name' => trim($_POST['firstName']),
+    'last_name' => trim($_POST['lastName']),
+    'amount' => floatval($_POST['amount']),
+    'payment_method' => 'Card',
+    'payment_status' => 'Pending',
+    'anonymous' => isset($_POST['anonymous']) ? 1 : 0
+  ];
+
+  if ($donation->create($data)) {
+    $message = "Thank you! Your donation has been recorded.";
+  } else {
+    $message = "Error! Donation could not be recorded.";
+  }
+}
 ?>
+
 
 
 <!DOCTYPE html>

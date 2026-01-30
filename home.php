@@ -1,5 +1,8 @@
 <?php
+session_start();
 $currentPage = 'home';
+
+require_once "./classes/User.php";
 ?>
 
 
@@ -27,8 +30,17 @@ $currentPage = 'home';
 
   <section class="home-intro">
     <div class="container">
+
+      <?php if (User::isAdmin()): ?>
+        <a href="./dashboard/dashboard.php" class="btn-yellow"> Dashboard</a>
+      <?php endif; ?>
+
       <div class="intro">
+
         <div class="intro-content">
+
+
+
           <h1 class="intro-title">
             Charity springs <br />
             from a tender <br />
@@ -40,12 +52,15 @@ $currentPage = 'home';
             community.
           </p>
           <div class="intro-actions">
-            <a href="donate.php" class="btn-green">Donate Now 💛 </a>
+            <a href="causes.php" class="btn-green">Donate Now 💛 </a>
             <a href="https://youtu.be/v5wbODeVHC8" class="btn-watch">
               <span class="play-icon">▶</span>
               Watch video
             </a>
+
+
           </div>
+
         </div>
 
         <div class="intro-pic">

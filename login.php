@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
 include_once './database/Database.php';
 include_once './classes/User.php';
 
@@ -7,7 +13,6 @@ $connection = $db->getConnection();
 $user = new User($connection);
 
 $signupError = "";
-
 if (isset($_POST['signup'])) {
   $name = $_POST['name'];
   $surname = $_POST['surname'];
@@ -32,7 +37,7 @@ if (isset($_POST['signin'])) {
     header("Location: home.php");
     exit;
   } else {
-    echo "Invalid login credentials!";
+    $signinError = "Invalid login credentials!";
   }
 }
 ?>
@@ -77,6 +82,7 @@ if (isset($_POST['signin'])) {
           type="password"
           placeholder="Create a password" />
 
+
         <input
           class="button btn-green"
           type="submit"
@@ -84,12 +90,16 @@ if (isset($_POST['signin'])) {
           value="Sign Up" />
       </form>
     </div>
-
     <div class="form-container sign-in-container">
       <form class="signin-form" action="login.php" method="POST">
         <h1 class="sign-in">Sign in</h1>
-        <div id="signin-result" class="signin-result">
-          <p id="signin-result-p"></p>
+
+        <!-- Këtu shtohet div për error -->
+        <div id="signin-result" class="signin-result"
+          style="color:red; visibility:<?php echo !empty($signinError) ? 'visible' : 'hidden'; ?>">
+          <p id="signin-result-p">
+            <?php echo isset($signinError) ? htmlspecialchars($signinError) : ''; ?>
+          </p>
         </div>
 
         <input
@@ -110,8 +120,8 @@ if (isset($_POST['signin'])) {
           value="Sign in" />
 
       </form>
-
     </div>
+
     <div class="wrapper">
       <div class="section">
         <div class="section-panel section-left">

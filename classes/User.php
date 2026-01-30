@@ -8,10 +8,11 @@ class User
     {
         $this->conn = $db;
     }
-    public function register($name, $surname, $email, $password)
+
+    public function register($name, $surname, $email, $password, $role = 'user')
     {
         try {
-            $check = $this->conn->prepare("SELECT id FROM users WHERE email = :email");
+            $check = $this->conn->prepare("SELECT id FROM {$this->table_name} WHERE email = :email");
             $check->bindParam(":email", $email);
             $check->execute();
 
@@ -21,28 +22,26 @@ class User
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO users (name, surname, email, password)
-                VALUES (:name, :surname, :email, :password)";
+            $sql = "INSERT INTO {$this->table_name} (name, surname, email, password, role)
+                    VALUES (:name, :surname, :email, :password, :role)";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(":name", $name);
             $stmt->bindParam(":surname", $surname);
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":password", $hashedPassword);
+            $stmt->bindParam(":role", $role);
 
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                return "Email already registered!";
-            }
-            return "Something went wrong. Please try again.";
+            return "Something went wrong: " . $e->getMessage();
         }
     }
 
     public function login($email, $password)
     {
-        $query = "SELECT id, name, surname, email, password FROM {$this->table_name} WHERE email = :email";
+        $query = "SELECT id, name, surname, email, password,role FROM {$this->table_name} WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -50,32 +49,56 @@ class User
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                session_start();
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['email'] = $row['email'];
+                $_SESSION['user'] = [
+                    'id' => $row['id'],
+                    'name' => $row['name'],
+                    'surname' => $row['surname'],
+                    'email' => $row['email'],
+                    'role' => $row['role']
+                ];
                 return true;
             }
         }
         return false;
     }
 
-    public function getAllUsers()
+    public static function isLoggedIn()
     {
-        $sql = "SELECT id, name, surname, email, created_at FROM users";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return isset($_SESSION['user']);
     }
 
+    public static function isAdmin()
+    {
+        return self::isLoggedIn() && $_SESSION['user']['role'] === 'admin';
+    }
+    public static function isUser()
+    {
+        return self::isLoggedIn() && $_SESSION['user']['role'] === 'user';
+    }
+
+    public function getAllUsers()
+    {
+        $sql = "SELECT id, name, surname, email, role, created_at FROM {$this->table_name}";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function deleteUser($id)
     {
         $sql = "DELETE FROM {$this->table_name} WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
         return $stmt->execute();
     }
+
+    public static function logout()
+    {
+        session_start();
+        unset($_SESSION['user']);
+        session_destroy();
+
+        header("Location: home.php");
+        exit;
+    }
 }
-r

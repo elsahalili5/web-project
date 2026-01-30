@@ -28,12 +28,10 @@ if (isset($_POST['add_user'])) {
 
     if ($result === true) {
         $message = "User added successfully!";
-        // Rifresko listen e user-ave
         $allUsers = $user->getAllUsers();
-        // Mbyll modal-in automatikisht
         echo "<script>document.getElementById('add-user-modal').style.display='none';</script>";
     } else {
-        $message = $result; // shfaq gabimet
+        $message = $result;
     }
 }
 
