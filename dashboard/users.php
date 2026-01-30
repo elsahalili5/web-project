@@ -7,9 +7,9 @@ $connection = $database->getConnection();
 $user = new User($connection);
 
 $message = '';
-
 if (isset($_POST['confirm_delete'])) {
     $user->deleteUser((int)$_POST['delete_id']);
+    $message = "User deleted successfully!";
 }
 
 if (isset($_POST['add_user'])) {
@@ -17,12 +17,17 @@ if (isset($_POST['add_user'])) {
     $surname = trim($_POST['surname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $role = trim($_POST['role']);
 
-    if ($name && $surname && $email && $password) {
-        $res = $user->register($name, $surname, $email, $password);
+    if ($name && $surname && $email && $password && $role) {
+        $res = $user->register($name, $surname, $email, $password, $role);
         if ($res === true) {
             $message = "User added successfully!";
+        } else {
+            $message = "Error: " . $res;
         }
+    } else {
+        $message = "All fields including role are required!";
     }
 }
 
@@ -31,17 +36,23 @@ if (isset($_POST['edit_user'])) {
         'id' => $_POST['edit_id'],
         'name' => $_POST['edit_name'],
         'surname' => $_POST['edit_surname'],
-        'email' => $_POST['edit_email']
+        'email' => $_POST['edit_email'],
+        'role' => $_POST['edit_role'] ?? ''
     ];
 }
 
 if (isset($_POST['update_user'])) {
-    $user->updateUser(
-        (int)$_POST['update_user_id'],
-        trim($_POST['update_name']),
-        trim($_POST['update_surname']),
-        trim($_POST['update_email'])
-    );
+    $name = trim($_POST['update_name']);
+    $surname = trim($_POST['update_surname']);
+    $email = trim($_POST['update_email']);
+    $role = trim($_POST['update_role']);
+
+    if ($name && $surname && $email && $role) {
+        $res = $user->updateUser((int)$_POST['update_user_id'], $name, $surname, $email, $role);
+        $message = $res ? "User updated successfully!" : "Error: Failed to update user.";
+    } else {
+        $message = "All fields are required!";
+    }
 }
 
 $allUsers = $user->getAllUsers();
@@ -57,7 +68,7 @@ $allUsers = $user->getAllUsers();
     </div>
 
     <?php if ($message): ?>
-        <p style="margin-bottom:12px;color:#01715d">
+        <p style="margin-bottom:12px;color:red">
             <?= htmlspecialchars($message) ?>
         </p>
     <?php endif; ?>
@@ -68,6 +79,7 @@ $allUsers = $user->getAllUsers();
                 <th>#</th>
                 <th>Full Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Created</th>
                 <th>Action</th>
             </tr>
@@ -78,14 +90,15 @@ $allUsers = $user->getAllUsers();
                     <td><?= $i + 1 ?></td>
                     <td><?= htmlspecialchars($u['name'] . ' ' . $u['surname']) ?></td>
                     <td><?= htmlspecialchars($u['email']) ?></td>
+                    <td><?= htmlspecialchars($u['role']) ?></td>
                     <td><?= date('d/m/Y', strtotime($u['created_at'])) ?></td>
                     <td>
-
                         <form method="POST" style="display:inline">
                             <input type="hidden" name="edit_id" value="<?= $u['id'] ?>">
                             <input type="hidden" name="edit_name" value="<?= htmlspecialchars($u['name']) ?>">
                             <input type="hidden" name="edit_surname" value="<?= htmlspecialchars($u['surname']) ?>">
                             <input type="hidden" name="edit_email" value="<?= htmlspecialchars($u['email']) ?>">
+                            <input type="hidden" name="edit_role" value="<?= htmlspecialchars($u['role']) ?>">
                             <button class="action-btn edit" name="edit_user">
                                 <i class="fa fa-pen"></i>
                             </button>
@@ -95,45 +108,44 @@ $allUsers = $user->getAllUsers();
                             onclick="openDeleteModal(<?= $u['id'] ?>)">
                             <i class="fa fa-trash"></i>
                         </button>
-
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+
 <div id="addUserModal" class="modal">
     <div class="add-user-modal-content">
         <h4>Add New User</h4>
-
         <form method="POST">
             <div class="form-group">
                 <label>First name</label>
                 <input name="name" required>
             </div>
-
             <div class="form-group">
                 <label>Last name</label>
                 <input name="surname" required>
             </div>
-
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email" required>
             </div>
-
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" required>
             </div>
-
+            <div class="form-group">
+                <label>Role</label>
+                <select name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
             <div class="modal-buttons">
-                <button type="button" class="cancel-btn" onclick="closeModal('addUserModal')">
-                    Cancel
-                </button>
-                <button class="btn-primary" name="add_user">
-                    Add
-                </button>
+                <button type="button" class="cancel-btn" onclick="closeModal('addUserModal')">Cancel</button>
+                <button class="btn-primary" name="add_user">Add</button>
             </div>
         </form>
     </div>
@@ -143,39 +155,39 @@ $allUsers = $user->getAllUsers();
     <div class="modal" style="display:flex">
         <div class="add-user-modal-content">
             <h4>Edit User</h4>
-
             <form method="POST">
                 <input type="hidden" name="update_user_id" value="<?= $editUser['id'] ?>">
-
                 <div class="form-group">
                     <label>First name</label>
                     <input name="update_name" value="<?= htmlspecialchars($editUser['name']) ?>" required>
                 </div>
-
                 <div class="form-group">
                     <label>Last name</label>
                     <input name="update_surname" value="<?= htmlspecialchars($editUser['surname']) ?>" required>
                 </div>
-
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="update_email" value="<?= htmlspecialchars($editUser['email']) ?>" required>
                 </div>
-
+                <div class="form-group">
+                    <label>Role</label>
+                    <select name="update_role" required>
+                        <option value="">Select Role</option>
+                        <option value="admin" <?= $editUser['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
+                        <option value="editor" <?= $editUser['role'] == 'editor' ? 'selected' : '' ?>>Editor</option>
+                        <option value="user" <?= $editUser['role'] == 'user' ? 'selected' : '' ?>>User</option>
+                    </select>
+                </div>
                 <div class="modal-buttons">
-                    <button type="button" class="cancel-btn"
-                        onclick="this.closest('.modal').style.display='none'">
-                        Cancel
-                    </button>
-                    <button class="btn-primary" name="update_user">
-                        Update
-                    </button>
+                    <button type="button" class="cancel-btn" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                    <button class="btn-primary" name="update_user">Update</button>
                 </div>
             </form>
         </div>
     </div>
 <?php endif; ?>
 
+<!-- DELETE MODAL -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <div class="modal-icon">
@@ -183,17 +195,11 @@ $allUsers = $user->getAllUsers();
         </div>
         <h4>Delete User</h4>
         <p>Are you sure you want to delete this user?</p>
-
         <form method="POST">
             <input type="hidden" name="delete_id" id="deleteUserId">
-
             <div class="modal-buttons">
-                <button type="button" class="cancel-btn" onclick="closeModal('deleteModal')">
-                    Cancel
-                </button>
-                <button class="delete-btn" name="confirm_delete">
-                    Delete
-                </button>
+                <button type="button" class="cancel-btn" onclick="closeModal('deleteModal')">Cancel</button>
+                <button class="delete-btn" name="confirm_delete">Delete</button>
             </div>
         </form>
     </div>
