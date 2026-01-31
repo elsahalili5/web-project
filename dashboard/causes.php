@@ -1,14 +1,13 @@
 <?php
 include_once __DIR__ . '/../database/Database.php';
 include_once __DIR__ . '/../classes/Cause.php';
-include_once __DIR__ . '/../classes/User.php'; // For showing user names
+include_once __DIR__ . '/../classes/User.php';
 
 $database = new Database();
 $connection = $database->getConnection();
 
 $message = '';
 
-// DELETE Cause
 if (isset($_POST['confirm_delete'])) {
     $causeId = (int)$_POST['delete_id'];
     $stmt = $connection->prepare("DELETE FROM causes WHERE id = ?");
@@ -16,10 +15,8 @@ if (isset($_POST['confirm_delete'])) {
     $message = "Cause deleted successfully!";
 }
 
-// Fetch all approved causes
-$allCauses = Cause::getAllApprovedCauses($connection);
+$allCauses = Cause::getAllCauses($connection);
 
-// For showing user names
 $userObj = new User($connection);
 
 ?>

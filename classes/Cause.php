@@ -162,4 +162,86 @@ class Cause
         }
         return $causes;
     }
+    public static function getAllCauses($conn)
+    {
+        $stmt = $conn->prepare("SELECT * FROM causes ORDER BY created_at DESC");
+        $stmt->execute();
+
+        $causes = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $causes[] = new Cause(
+                $row['id'],
+                $row['user_id'],
+                $row['category_id'],
+                $row['title'],
+                $row['description'],
+                $row['goal_amount'],
+                $row['raised_amount'],
+                $row['image'],
+                $row['status'],
+                $row['created_at']
+            );
+        }
+
+        return $causes;
+    }
+
+    public static function add(
+        $pdo,
+        $user_id,
+        $category_id,
+        $title,
+        $description,
+        $goal_amount,
+        $image,
+        $status = 'pending'
+    ) {
+        $sql = "INSERT INTO causes 
+        (user_id, category_id, title, description, goal_amount, raised_amount, image, status, created_at)
+        VALUES 
+        (:user_id, :category_id, :title, :description, :goal_amount, 0, :image, :status, NOW())";
+
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':user_id' => $user_id,
+            ':category_id' => $category_id,
+            ':title' => $title,
+            ':description' => $description,
+            ':goal_amount' => $goal_amount,
+            ':image' => $image,
+            ':status' => $status
+        ]);
+    }
+    public static function edit(
+        $pdo,
+        $id,
+        $category_id,
+        $title,
+        $description,
+        $goal_amount,
+        $image,
+        $status
+    ) {
+        $sql = "UPDATE causes SET
+        category_id = :category_id,
+        title = :title,
+        description = :description,
+        goal_amount = :goal_amount,
+        image = :image,
+        status = :status
+        WHERE id = :id";
+
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':id' => $id,
+            ':category_id' => $category_id,
+            ':title' => $title,
+            ':description' => $description,
+            ':goal_amount' => $goal_amount,
+            ':image' => $image,
+            ':status' => $status
+        ]);
+    }
 }

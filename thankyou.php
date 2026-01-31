@@ -19,11 +19,16 @@
 
   <div class="main-banner">
     <div class="thankyou-section">
-      <h1 class="thankyou-message">Thank You For Donating!</h1>
-      <p class="thankyou-text">
-        Your generosity brings hope and a brighter future
-      </p>
-      <p class="thankyou-text">We truly appreciate heartfelt support.</p>
+      <div class="thanks-messages">
+
+        <h1 class="thankyou-message">Thank You For Donating!</h1>
+        <p class="thankyou-text">
+          Your generosity brings hope and a brighter future
+        </p>
+        <p class="thankyou-text">We truly appreciate heartfelt support.</p>
+      </div>
+
+      <a href="my-profile.php" class="btn-green">See Your Donations</a>
     </div>
   </div>
 

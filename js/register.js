@@ -33,10 +33,7 @@ document
     resultDiv.style.color = "red";
     resultP.innerText = "";
 
-    // Shtojmë flag për të bllokuar POST nëse ka gabim
     let hasError = false;
-
-    // Kontrolli i First Name
     if (!firstName) {
       resultP.innerText = "Enter First Name*";
       resultDiv.style.visibility = "visible";
@@ -55,7 +52,6 @@ document
       hasError = true;
     }
 
-    // Vetëm nëse nuk ka gabim në fushën e parë, kontrollojmë fushën e dytë
     if (!hasError) {
       if (!lastName) {
         resultP.innerText = "Enter Last Name*";
@@ -76,7 +72,6 @@ document
       }
     }
 
-    // Vetëm nëse nuk ka gabime deri tani, kontrollojmë email
     if (!hasError) {
       if (!email) {
         resultP.innerText = "Enter Email*";
@@ -97,7 +92,6 @@ document
       }
     }
 
-    // Vetëm nëse nuk ka gabime deri tani, kontrollojmë password
     if (!hasError) {
       if (!password) {
         resultP.innerText = "Enter Password*";
@@ -118,7 +112,6 @@ document
       }
     }
 
-    // Nese ka gabim, blloko POST
     if (hasError) {
       e.preventDefault();
     } else {

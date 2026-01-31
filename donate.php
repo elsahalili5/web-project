@@ -3,6 +3,7 @@ $currentPage = 'causes';
 session_start();
 include_once __DIR__ . '/database/Database.php';
 include_once __DIR__ . '/classes/Donation.php';
+include_once __DIR__ . '/classes/Cause.php'; // nëse do të marrësh info të cause
 
 $database = new Database();
 $conn = $database->getConnection();
@@ -10,9 +11,19 @@ $conn = $database->getConnection();
 $donation = new Donation($conn);
 $message = '';
 
+// Merr ID e cause nga GET (ose vendose default)
+$causeId = isset($_GET['cause_id']) ? (int)$_GET['cause_id'] : 1;
+
+// Merr të dhënat e cause për t’i shfaqur tek titulli/subtitle
+$cause = Cause::getById($conn, $causeId);
+
+if (!$cause) {
+  die("Cause not found!");
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $data = [
-    'cause_id' => 1,
+    'cause_id' => $causeId,
     'user_email' => trim($_POST['email']),
     'first_name' => trim($_POST['firstName']),
     'last_name' => trim($_POST['lastName']),
@@ -30,41 +41,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Donate</title>
   <link rel="stylesheet" href="./styles/header_footer.css" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/donate.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
   <?php include('components/navigation.php') ?>
 
-
   <section class="donate-section">
     <div class="donation-container">
+
+      <?php if ($message): ?>
+        <p class="message" style="color:green; margin-bottom:12px;"><?= htmlspecialchars($message) ?></p>
+      <?php endif; ?>
+
       <p class="cause-title">
-        Support Sienna's Recovery From a Rare Brain Condition❤️
+        <?= htmlspecialchars($cause->title) ?>
       </p>
-      <p class="subtitle">Still €153,801 to go. Help us build momentum.</p>
+      <p class="subtitle">
+        Still $<?= number_format($cause->goal_amount - $cause->raised_amount, 2) ?> to go. Help us build momentum.
+      </p>
+
       <form method="post" id="donationForm">
         <div class="amount-result"></div>
 
         <h3 class="amount-title">Amount</h3>
-
         <div class="amount">
           <span>€</span>
-          <input type="number" id="amountInput" name="amount" min="0" />
+          <input type="number" id="amountInput" name="amount" min="0" required />
         </div>
 
         <h3 class="payment-title">Payment method</h3>
@@ -77,51 +90,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="result"></div>
 
           <div class="card-form">
-            <input placeholder="Email address" name="email" class="full" />
+            <input placeholder="Email address" name="email" class="full" required />
 
             <div class="row">
-              <input type="text" placeholder="First name" name="firstName" />
-              <input type="text" placeholder="Last name" name="lastName" />
-            </div>
-            <div class=" anonymous-checkbox">
-              <input type="checkbox" id="anonymous" name="anonymous" class="anonymous" value="1" class="checkbox-input">
-              <label for="anonymous" class="checkbox-label">
-                Don’t display my name publicly on the fundraiser.
-              </label>
+              <input type="text" placeholder="First name" name="firstName" required />
+              <input type="text" placeholder="Last name" name="lastName" required />
             </div>
 
+            <div class="anonymous-checkbox">
+              <input type="checkbox" id="anonymous" name="anonymous" value="1" />
+              <label for="anonymous">Don’t display my name publicly on the fundraiser.</label>
+            </div>
 
-            <input
-              type="text"
-              placeholder="Card number"
-              name="cardNumber"
-              class="full"
-              pattern="\d{13,19}" />
+            <input type="text" placeholder="Card number" name="cardNumber" class="full" pattern="\d{13,19}" />
 
             <div class="row">
               <input type="month" placeholder="MM / YY" name="expireDate" />
-              <input
-                type="number"
-                placeholder="CVV"
-                name="cvv"
-                min="100"
-                max="999" />
+              <input type="number" placeholder="CVV" name="cvv" min="100" max="999" />
             </div>
 
-            <input
-              type="text"
-              placeholder="Name on card"
-              name="cardName"
-              class="full" />
+            <input type="text" placeholder="Name on card" name="cardName" class="full" />
 
             <div class="row">
               <select name="country">
                 <option>Kosovo</option>
               </select>
-              <input
-                type="number"
-                placeholder="Postal code"
-                name="postalCode" />
+              <input type="number" placeholder="Postal code" name="postalCode" />
             </div>
           </div>
         </div>
@@ -133,8 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
     </div>
   </section>
-  <?php include('components/footer.php') ?>
 
+  <?php include('components/footer.php') ?>
   <script src="./js/donate.js"></script>
   <script src="./js/main.js"></script>
 </body>

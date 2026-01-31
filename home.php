@@ -39,7 +39,7 @@ $causes = Cause::getAllApprovedCauses($pdo, 5);
 
       <?php if (User::isAdmin()): ?>
         <div class="dashboard-button-wrapper">
-          <a href="./dashboard/dashboard.php" class="btn-green"> Dashboard</a>
+          <a href="./dashboard/dashboard.php" class="btn-green">Go To Dashboard</a>
 
         </div>
       <?php endif; ?>

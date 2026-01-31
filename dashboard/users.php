@@ -114,9 +114,8 @@ $allUsers = $user->getAllUsers();
         </tbody>
     </table>
 </div>
-
-<div id="addUserModal" class="modal">
-    <div class="add-user-modal-content">
+<div id="addUserModal" class="modal add-user-modal">
+    <div class="modal-content">
         <h4>Add New User</h4>
         <form method="POST">
             <div class="form-group">
@@ -152,8 +151,8 @@ $allUsers = $user->getAllUsers();
 </div>
 
 <?php if (isset($editUser)): ?>
-    <div class="modal" style="display:flex">
-        <div class="add-user-modal-content">
+    <div id="editUserModal" class="modal edit-user-modal" style="display:flex">
+        <div class="modal-content">
             <h4>Edit User</h4>
             <form method="POST">
                 <input type="hidden" name="update_user_id" value="<?= $editUser['id'] ?>">
@@ -179,7 +178,7 @@ $allUsers = $user->getAllUsers();
                     </select>
                 </div>
                 <div class="modal-buttons">
-                    <button type="button" class="cancel-btn" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                    <button type="button" class="cancel-btn" onclick="closeModal('editUserModal')">Cancel</button>
                     <button class="btn-primary" name="update_user">Update</button>
                 </div>
             </form>
@@ -187,8 +186,8 @@ $allUsers = $user->getAllUsers();
     </div>
 <?php endif; ?>
 
-<!-- DELETE MODAL -->
-<div id="deleteModal" class="modal">
+<!-- Delete User Modal -->
+<div id="deleteModal" class="modal delete-user-modal">
     <div class="modal-content">
         <div class="modal-icon">
             <i class="fa fa-trash"></i>
@@ -216,7 +215,7 @@ $allUsers = $user->getAllUsers();
 
     function openDeleteModal(id) {
         document.getElementById('deleteUserId').value = id;
-        document.getElementById('deleteModal').style.display = 'flex';
+        openModal('deleteModal');
     }
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', e => {

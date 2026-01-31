@@ -182,7 +182,7 @@ donationForm.addEventListener("submit", function (e) {
     resultDiv.innerText = "Donation successful! Redirecting...";
 
     setTimeout(() => {
-      window.location.href = "thankyou.html";
+      window.location.href = "thankyou.php";
     }, 1000);
 
     return false;
