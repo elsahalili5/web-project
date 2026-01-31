@@ -26,9 +26,52 @@ class Cause
         $this->created_at = $created_at;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function getGoalAmount()
+    {
+        return $this->goal_amount;
+    }
+    public function getRaisedAmount()
+    {
+        return $this->raised_amount;
+    }
+    public function getImage()
+    {
+        return $this->image;
+    }
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
     public function render()
     {
-        $progress = ($this->goal_amount > 0) ? ($this->raised_amount / $this->goal_amount) * 100 : 0;
+        $progress = ($this->goal_amount > 0)
+            ? ($this->raised_amount / $this->goal_amount) * 100
+            : 0;
+
         $progress = min($progress, 100);
 
         return "
@@ -43,17 +86,63 @@ class Cause
                 <div class='progress-container'>
                     <div class='progress' style='width: {$progress}%;'></div>
                 </div>
-                <p class='fund-status'>\${$this->raised_amount}/<span class='goal'>\${$this->goal_amount}</span></p>
+
+                <p class='fund-status'>
+                    \${$this->raised_amount}
+                    /
+                    <span class='goal'>\${$this->goal_amount}</span>
+                </p>
             </div>
         </div>
     </a>
     ";
     }
 
+
     public static function getByCategory($pdo, $category_id)
     {
         $stmt = $pdo->prepare("SELECT * FROM causes WHERE category_id = ? AND status='approved'");
         $stmt->execute([$category_id]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $causes = [];
+        foreach ($rows as $row) {
+            $causes[] = new Cause(
+                $row['id'],
+                $row['user_id'],
+                $row['category_id'],
+                $row['title'],
+                $row['description'],
+                $row['goal_amount'],
+                $row['raised_amount'],
+                $row['image'],
+                $row['status'],
+                $row['created_at']
+            );
+        }
+        return $causes;
+    }
+    public static function getById($pdo, $id)
+    {
+        $sql = "SELECT * FROM causes WHERE id = :id LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public static function getAllApprovedCauses($pdo, $limit = null)
+    {
+        $sql = "SELECT * FROM causes WHERE status='approved' ORDER BY created_at DESC";
+        if ($limit) {
+            $sql .= " LIMIT :limit";
+        }
+        $stmt = $pdo->prepare($sql);
+        if ($limit) {
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        }
+        $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $causes = [];

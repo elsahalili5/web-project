@@ -1,14 +1,39 @@
 <?php
+session_start();
 $currentPage = 'causes';
-?>
 
+include_once './database/Database.php';
+include_once './classes/Cause.php';
+
+$database = new Database();
+$pdo = $database->getConnection();
+
+// Merr id nga URL
+$causeId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Merr kauzën
+$cause = Cause::getById($pdo, $causeId);
+
+if (!$cause) {
+  echo "Cause not found!";
+  exit;
+}
+
+// Llogarit progresin
+$progress = ($cause->goal_amount > 0)
+  ? ($cause->raised_amount / $cause->goal_amount) * 100
+  : 0;
+
+$progress = min($progress, 100);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title><?= htmlspecialchars($cause->title) ?></title>
+
   <link rel="stylesheet" href="./styles/header_footer.css" />
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/cause-details.css" />
@@ -21,106 +46,71 @@ $currentPage = 'causes';
 </head>
 
 <body>
+
   <?php include('components/navigation.php') ?>
-
-
   <div class="container">
     <div class="cause-details">
+
       <div class="cause-title">
-        Support Sienna's Recovery From a Rare Brain Condition
+        <?= htmlspecialchars($cause->title) ?>
       </div>
+
       <div class="cause-detail-page">
+
         <div class="cause-left">
           <div class="cause-image">
-            <img
-              src="https://images.gofundme.com/nLnMdFjvwlR0jNeqxabZCmmIRmg=/720x405/https://d2g8igdw686xgo.cloudfront.net/97509371_1765262773517765_r.jpg" />
+            <img src="<?= htmlspecialchars($cause->image) ?>" alt="<?= htmlspecialchars($cause->title) ?>">
           </div>
 
           <div class="cause-text">
-            Hello, we're Gary and Angelina, and we have two beautiful
-            daughters: Adriana, 7, and our youngest, Sienna, 4. On 19th
-            November, Sienna suddenly became unresponsive and was rushed to
-            Kettering A&E. After scans, she was placed into an induced coma
-            and transferred to Queens Medical Centre in Nottingham, where she
-            has remained in ICU ever since.
+            <?= nl2br(htmlspecialchars($cause->description)) ?>
           </div>
         </div>
 
         <div class="donation-container">
-          <div class="amount">€94,259 raised</div>
-          <div class="goal">of 100K</div>
-          <div class="donations-count">2.5K donations</div>
+          <div>
 
-          <button class="btn btn-share">Share</button>
-          <a href="donate.php" class="btn btn-green">Donate now</a>
+            <div class="amount">€<?= $cause->raised_amount ?> raised</div>
+            <div class="goal">of €<?= $cause->goal_amount ?></div>
+            <button class="btn btn-share">Share</button>
 
-          <div class="recent-donations">
-            <div class="donations-progress">
-              <div class="donation-progress-icon">
-                <span class="material-symbols-outlined"> finance_mode </span>
-              </div>
-              <h4>566 people have just made a donation</h4>
-            </div>
+            <a href="donate.php?cause_id=<?= $cause->id ?>" class="btn btn-green">
+              Donate now
+            </a>
 
-            <div class="donor">
-              <div class="donor-icon">
-                <i class="fas fa-hand-holding-heart"></i>
+            <div class="recent-donations">
+              <div class="donations-progress">
+                <div class="donation-progress-icon">
+                  <span class="material-symbols-outlined">finance_mode</span>
+                </div>
+                <h4>566 people have just made a donation</h4>
               </div>
-              <div class="donor-info">
-                <div class="donor-name">Elsa Halili</div>
-                <div class="donor-amount">€50 · Recent donation</div>
-              </div>
-            </div>
 
-            <div class="donor">
-              <div class="donor-icon">
-                <i class="fas fa-hand-holding-heart"></i>
+              <!-- donor -->
+              <div class="donor">
+                <div class="donor-icon">
+                  <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="donor-info">
+                  <div class="donor-name">Elsa Halili</div>
+                  <div class="donor-amount">€50 · Recent donation</div>
+                </div>
               </div>
-              <div class="donor-info">
-                <div class="donor-name">Anonymous</div>
-                <div class="donor-amount">€5,000 · Top donation</div>
-              </div>
-            </div>
 
-            <div class="donor">
-              <div class="donor-icon">
-                <i class="fas fa-hand-holding-heart"></i>
-              </div>
-              <div class="donor-info">
-                <div class="donor-name">Eriona Bunjaku</div>
-                <div class="donor-amount">€100 · 1 hr</div>
-              </div>
-            </div>
-
-            <div class="donor">
-              <div class="donor-icon">
-                <i class="fas fa-hand-holding-heart"></i>
-              </div>
-              <div class="donor-info">
-                <div class="donor-name">Genita Halili</div>
-                <div class="donor-amount">€30 · 2 hrs</div>
-              </div>
-            </div>
-
-            <div class="donor">
-              <div class="donor-icon">
-                <i class="fas fa-hand-holding-heart"></i>
-              </div>
-              <div class="donor-info">
-                <div class="donor-name">Gentrit Halili</div>
-                <div class="donor-amount">€25 · 56 mins</div>
-              </div>
             </div>
           </div>
+
 
           <div class="donation-buttons">
             <button>See all</button>
             <button>See top</button>
           </div>
+
         </div>
       </div>
     </div>
   </div>
+
 
   <?php include('components/footer.php') ?>
 

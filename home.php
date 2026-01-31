@@ -1,9 +1,15 @@
 <?php
-session_start();
-$currentPage = 'home';
+require_once "./classes/Cause.php";
+require_once "./database/Database.php";
 
-require_once "./classes/User.php";
+$database = new Database();
+$pdo = $database->getConnection();
+
+// Merr të gjitha kauzat approved
+$causes = Cause::getAllApprovedCauses($pdo, 5);
+
 ?>
+
 
 
 
@@ -210,98 +216,37 @@ require_once "./classes/User.php";
       </div>
 
       <div class="causes-wrapper">
+
         <div class="causes-list">
-          <div class="cause-card">
-            <a href="cause2-details.php">
-              <div class="card-image">
-                <img
-                  src="./images/ghanakids.jpg"
-                  alt="Children smiling happily" />
-              </div>
-              <div class="card-content">
-                <h3 class="card-title">Empower the Kids of Ghana</h3>
-                <p class="card-description">
-                  Far far away, behind the word mountains, far from the
-                  countries there are kids who...
-                </p>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 82%"></div>
+          <?php foreach ($causes as $cause): ?>
+            <div class="cause-card">
+              <a href="cause-details.php?id=<?= $cause->getId() ?>">
+                <div class="card-image">
+                  <img src="<?= $cause->getImage() ?>" alt="<?= htmlspecialchars($cause->getTitle()) ?>" />
                 </div>
-                <p class="fund-status">
-                  $32,850/<span class="goal">$50,000</span>
-                </p>
-                <p class="percentage">82%</p>
-              </div>
-            </a>
-          </div>
-          <div class="cause-card">
-            <div class="card-image">
-              <img
-                src="https://i.pinimg.com/1200x/36/e2/3a/36e23a5c628d1aba81c01662aa71925c.jpg"
-                alt="Hands reaching out for help" />
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Help for pure water</h3>
-
-              <p class="card-description">
-                Away, behind the word mountains, far from the countries there
-                are kids who...
-              </p>
-              <div class="progress-bar-container">
-                <div class="progress-bar" style="width: 65%"></div>
-              </div>
-              <p class="fund-status">
-                $65,768/<span class="goal">$100,000</span>
-              </p>
-              <p class="percentage">65%</p>
-            </div>
-          </div>
-          <div class="cause-card">
-            <div class="card-image">
-              <img
-                src="https://i.pinimg.com/1200x/54/cb/8f/54cb8f0760ab8a8e210ee5f528f7f90c.jpg" />
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Help children fight cancer</h3>
-              <p class="card-description">
-                Make a difference in the lives of children battling cancer by
-                supporting charitabl...
-              </p>
-              <div class="progress-bar-container">
-                <div class="progress-bar" style="width: 46%"></div>
-              </div>
-              <p class="fund-status">
-                $42,774/<span class="goal">$90,000</span>
-              </p>
-              <p class="percentage">46%</p>
-            </div>
-          </div>
-
-          <div class="cause-card">
-            <a href="cause1-details.php">
-              <div class="card-image">
-                <img
-                  src="https://i.pinimg.com/1200x/0b/52/7c/0b527cae2b0718c7c38f477a0ca99cf8.jpg
-              "
-                  alt="Children reading books together" />
-              </div>
-              <div class="card-content">
-                <h3 class="card-title">Help for children education</h3>
-                <p class="card-description">
-                  Empower children through charity by providing them with
-                  books and protect...
-                </p>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 32%"></div>
+                <div class="card-content">
+                  <h3 class="card-title"><?= htmlspecialchars($cause->getTitle()) ?></h3>
+                  <p class="card-description">
+                    <?= htmlspecialchars(substr($cause->getDescription(), 0, 120)) ?>...
+                  </p>
+                  <div class="progress-bar-container">
+                    <?php
+                    $percent = ($cause->getRaisedAmount() / $cause->getGoalAmount()) * 100;
+                    ?>
+                    <div class="progress-bar" style="width: <?= $percent ?>%"></div>
+                  </div>
+                  <p class="fund-status">
+                    $<?= number_format($cause->getRaisedAmount()) ?> /
+                    <span class="goal">$<?= number_format($cause->getGoalAmount()) ?></span>
+                  </p>
+                  <p class="percentage"><?= round($percent) ?>%</p>
                 </div>
-                <p class="fund-status">
-                  $15,874/<span class="goal">$50,000</span>
-                </p>
-                <p class="percentage">32%</p>
-              </div>
-            </a>
-          </div>
+              </a>
+            </div>
+          <?php endforeach; ?>
+
         </div>
+
       </div>
       <div class="navigation-arrows">
         <span class="arrow-btn prev-arrow">
