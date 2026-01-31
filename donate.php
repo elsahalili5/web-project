@@ -5,21 +5,20 @@ include_once __DIR__ . '/database/Database.php';
 include_once __DIR__ . '/classes/Donation.php';
 include_once __DIR__ . '/classes/Cause.php'; // nëse do të marrësh info të cause
 
+
 $database = new Database();
 $conn = $database->getConnection();
 
 $donation = new Donation($conn);
-$message = '';
 
-// Merr ID e cause nga GET (ose vendose default)
 $causeId = isset($_GET['cause_id']) ? (int)$_GET['cause_id'] : 1;
 
-// Merr të dhënat e cause për t’i shfaqur tek titulli/subtitle
 $cause = Cause::getById($conn, $causeId);
-
 if (!$cause) {
   die("Cause not found!");
 }
+
+$message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $data = [
@@ -34,11 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   ];
 
   if ($donation->create($data)) {
-    $message = "Thank you! Your donation has been recorded.";
+    header("Location: thankyou.php");
+    exit;
   } else {
     $message = "Error! Donation could not be recorded.";
   }
 }
+?>
+
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3 class="amount-title">Amount</h3>
         <div class="amount">
           <span>€</span>
-          <input type="number" id="amountInput" name="amount" min="0" required />
+          <input type="number" id="amountInput" name="amount" min="0" />
         </div>
 
         <h3 class="payment-title">Payment method</h3>
@@ -90,11 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="result"></div>
 
           <div class="card-form">
-            <input placeholder="Email address" name="email" class="full" required />
+            <input placeholder="Email address" name="email" class="full" />
 
             <div class="row">
-              <input type="text" placeholder="First name" name="firstName" required />
-              <input type="text" placeholder="Last name" name="lastName" required />
+              <input type="text" placeholder="First name" name="firstName" />
+              <input type="text" placeholder="Last name" name="lastName" />
             </div>
 
             <div class="anonymous-checkbox">
@@ -121,7 +123,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="total">
-          <p>Your donation <span id="donationTotal">€0.00</span></p>
+          <p>Your donation
+            <span id="donationTotal">
+            </span>
+          </p>
+
         </div>
         <button class="donate-btn" type="submit">Donate now</button>
       </form>
@@ -134,3 +140,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+
+<script>
+  const amountInput = document.getElementById('amountInput');
+  const donationTotal = document.getElementById('donationTotal');
+
+  amountInput.addEventListener('input', () => {
+    const value = parseFloat(amountInput.value);
+    donationTotal.innerText = '€' + (isNaN(value) ? '0.00' : value.toFixed(2));
+  });
+</script>

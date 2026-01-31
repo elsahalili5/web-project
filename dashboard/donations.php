@@ -2,68 +2,64 @@
 include_once __DIR__ . '/../database/Database.php';
 include_once __DIR__ . '/../classes/Donation.php';
 
-$database = new Database();
-$connection = $database->getConnection();
+$db = new Database();
+$conn = $db->getConnection();
+$donationObj = new Donation($conn);
 
-$donationObj = new Donation($connection);
-$allDonations = $donationObj->getAll();
+$message = "";
 
-// Fshirja
-if (isset($_POST['confirm_delete']) && isset($_POST['delete_id'])) {
-    $deleteId = intval($_POST['delete_id']);
-
-    if ($donationObj->delete($deleteId)) {
-        $message = "Donation deleted successfully.";
-    } else {
-        $message = "Error deleting donation.";
-    }
-
-    $allDonations = $donationObj->getAll();
+if (isset($_POST['confirm_delete'])) {
+    $donationObj->delete((int)$_POST['delete_id']);
+    $message = "Donation deleted successfully!";
 }
 
-// Shtimi i donacionit (opsional)
-if (isset($_POST['add_donation'])) {
+/* ================= EDIT ================= */
+if (isset($_POST['edit_donation'])) {
+    $editDonation = $_POST;
+}
+
+/* ================= UPDATE ================= */
+if (isset($_POST['update_donation'])) {
     $data = [
-        'cause_id' => $_POST['cause_id'],
-        'user_email' => $_POST['user_email'],
-        'first_name' => $_POST['first_name'],
-        'last_name' => $_POST['last_name'],
-        'amount' => $_POST['amount'],
-        'payment_method' => $_POST['payment_method'],
-        'payment_status' => $_POST['payment_status'],
-        'anonymous' => isset($_POST['anonymous']) ? 1 : 0
+        'id' => $_POST['update_id'],
+        'cause_id' => $_POST['update_cause_id'],
+        'user_email' => $_POST['update_user_email'],
+        'first_name' => $_POST['update_first_name'],
+        'last_name' => $_POST['update_last_name'],
+        'amount' => $_POST['update_amount'],
+        'payment_method' => $_POST['update_payment_method'],
+        'payment_status' => $_POST['update_payment_status'],
+        'anonymous' => isset($_POST['update_anonymous']) ? 1 : 0
     ];
 
-    if ($donationObj->create($data)) {
-        $message = "Donation added successfully!";
-        $allDonations = $donationObj->getAll();
-        echo "<script>document.getElementById('add-donation-modal').style.display='none';</script>";
-    } else {
-        $message = "Error adding donation.";
+    if ($donationObj->update($data)) {
+        $message = "Donation updated successfully!";
     }
 }
+
+/* ================= FETCH ================= */
+$allDonations = $donationObj->getAll();
 ?>
 
+<!-- ================= TABLE ================= -->
 <div class="table-box">
     <div class="table-header">
         <h2>Donations</h2>
-        <button id="addDonationBtn" class="btn-primary">
-            <i class="fa-solid fa-plus"></i> Add Donation
-        </button>
-        <?php if (isset($message)): ?>
-            <div class="message"><?= htmlspecialchars($message) ?></div>
-        <?php endif; ?>
+
     </div>
+
+    <?php if ($message): ?>
+        <p style="margin-bottom:10px;color:green"><?= htmlspecialchars($message) ?></p>
+    <?php endif; ?>
 
     <table class="custom-table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Cause ID</th>
-                <th>User Email</th>
-                <th>Full Name</th>
+                <th>Cause</th>
+                <th>Email</th>
+                <th>Name</th>
                 <th>Amount</th>
-                <th>Payment Method</th>
                 <th>Status</th>
                 <th>Anonymous</th>
                 <th>Date</th>
@@ -71,109 +67,154 @@ if (isset($_POST['add_donation'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($allDonations as $index => $d): ?>
+            <?php foreach ($allDonations as $i => $d): ?>
                 <tr>
-                    <td><?= $index + 1 ?></td>
-                    <td><?= $d['cause_id'] ?></td>
-                    <td><?= $d['user_email'] ?></td>
-                    <td><?= $d['first_name'] . ' ' . $d['last_name'] ?></td>
-                    <td>€<?= $d['amount'] ?></td>
-                    <td><?= $d['payment_method'] ?></td>
-                    <td><?= $d['payment_status'] ?></td>
+                    <td><?= $i + 1 ?></td>
+                    <td><?= htmlspecialchars($d['cause_id']) ?></td>
+                    <td><?= htmlspecialchars($d['user_email']) ?></td>
+                    <td><?= htmlspecialchars($d['first_name'] . ' ' . $d['last_name']) ?></td>
+                    <td>€<?= number_format($d['amount'], 2) ?></td>
+                    <td><?= htmlspecialchars($d['payment_status']) ?></td>
                     <td><?= $d['anonymous'] ? 'Yes' : 'No' ?></td>
                     <td><?= date('d/m/Y', strtotime($d['donated_at'])) ?></td>
+
                     <td>
-                        <button type="button" class="action-btn delete" data-id="<?= $d['id'] ?>">
-                            <i class="fa-solid fa-trash"></i>
+                        <!-- EDIT -->
+                        <form method="POST" style="display:inline">
+                            <?php foreach ($d as $k => $v): ?>
+                                <input type="hidden" name="edit_<?= $k ?>" value="<?= htmlspecialchars($v) ?>">
+                            <?php endforeach; ?>
+                            <button class="action-btn edit" name="edit_donation">
+                                <i class="fa fa-pen"></i>
+                            </button>
+                        </form>
+
+                        <!-- DELETE -->
+                        <button class="action-btn delete"
+                            onclick="openDeleteModal(<?= $d['id'] ?>)">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
 
-    <!-- Modal Fshirje -->
-    <div id="deleteModal" class="modal">
+<?php if (isset($editDonation)): ?>
+    <div id="editDonationModal" class="modal edit-user-modal" style="display:flex">
         <div class="modal-content">
-            <i class="fa-solid fa-triangle-exclamation modal-icon"></i>
-            <h4>Are you sure you want to delete this donation?</h4>
-            <p>This action cannot be undone.</p>
-            <form method="POST" action="">
-                <input type="hidden" name="delete_id" id="delete_id" value="">
+            <h4>Edit Donation</h4>
+
+            <form method="POST">
+                <input type="hidden" name="update_id" value="<?= $editDonation['edit_id'] ?>">
+
+                <div class="form-group">
+                    <label>Cause ID</label>
+                    <input name="update_cause_id" value="<?= $editDonation['edit_cause_id'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="update_user_email"
+                        value="<?= $editDonation['edit_user_email'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input name="update_first_name"
+                        value="<?= $editDonation['edit_first_name'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input name="update_last_name"
+                        value="<?= $editDonation['edit_last_name'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount (€)</label>
+                    <input type="number" step="0.01" name="update_amount"
+                        value="<?= $editDonation['edit_amount'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <input name="update_payment_method"
+                        value="<?= $editDonation['edit_payment_method'] ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Status</label>
+                    <input name="update_payment_status"
+                        value="<?= $editDonation['edit_payment_status'] ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="update_anonymous"
+                            <?= $editDonation['edit_anonymous'] ? 'checked' : '' ?>>
+                        Anonymous
+                    </label>
+                </div>
+
                 <div class="modal-buttons">
-                    <button type="submit" name="confirm_delete" class="delete-btn">Delete</button>
-                    <button type="button" class="cancel-btn" id="cancelDelete">Cancel</button>
+                    <button type="button" class="cancel-btn"
+                        onclick="closeModal('editDonationModal')">
+                        Cancel
+                    </button>
+                    <button class="btn-primary" name="update_donation">
+                        Update
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+<?php endif; ?>
 
-    <!-- Modal Shtimi (Opsional) -->
-    <div id="add-donation-modal" class="add-user-modal">
-        <div class="add-user-modal-content">
-            <h4>Add New Donation</h4>
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="cause_id">Cause ID</label>
-                    <input type="number" name="cause_id" id="cause_id" required>
-                </div>
-                <div class="form-group">
-                    <label for="user_email">User Email</label>
-                    <input type="email" name="user_email" id="user_email" required>
-                </div>
-                <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" id="first_name">
-                </div>
-                <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" id="last_name">
-                </div>
-                <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" id="amount" required>
-                </div>
-                <div class="form-group">
-                    <label for="payment_method">Payment Method</label>
-                    <input type="text" name="payment_method" id="payment_method">
-                </div>
-                <div class="form-group">
-                    <label for="payment_status">Payment Status</label>
-                    <input type="text" name="payment_status" id="payment_status" value="Pending">
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" name="anonymous" id="anonymous">
-                    <label for="anonymous">Anonymous</label>
-                </div>
-                <div class="modal-buttons">
-                    <button type="submit" name="add_donation" class="btn-primary">Add Donation</button>
-                    <button type="button" class="cancel-btn" id="cancelAdd">Cancel</button>
-                </div>
-            </form>
+
+<div id="deleteModal" class="modal delete-user-modal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <i class="fa fa-trash"></i>
         </div>
+
+        <h4>Delete Donation</h4>
+        <p>Are you sure you want to delete this donation?</p>
+
+        <form method="POST">
+            <input type="hidden" name="delete_id" id="deleteDonationId">
+
+            <div class="modal-buttons">
+                <button type="button" class="cancel-btn"
+                    onclick="closeModal('deleteModal')">
+                    Cancel
+                </button>
+                <button class="delete-btn" name="confirm_delete">
+                    Delete
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-<script>
-    const deleteModal = document.getElementById('deleteModal');
-    const deleteButtons = document.querySelectorAll('.action-btn.delete');
-    const cancelBtn = document.getElementById('cancelDelete');
-    const deleteIdInput = document.getElementById('delete_id');
 
-    deleteButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            deleteIdInput.value = btn.getAttribute('data-id');
-            deleteModal.style.display = 'flex';
+<script>
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    function openDeleteModal(id) {
+        document.getElementById('deleteDonationId').value = id;
+        openModal('deleteModal');
+    }
+    document.querySelectorAll('.modal').forEach(m => {
+        m.addEventListener('click', e => {
+            if (e.target === m) m.style.display = 'none';
         });
     });
-
-    cancelBtn.addEventListener('click', () => deleteModal.style.display = 'none');
-    window.addEventListener('click', e => {
-        if (e.target === deleteModal) deleteModal.style.display = 'none';
-    });
-
-    const addBtn = document.getElementById('addDonationBtn');
-    const addModal = document.getElementById('add-donation-modal');
-    const cancelAdd = document.getElementById('cancelAdd');
-
-    addBtn.addEventListener('click', () => addModal.style.display = 'flex');
+</script>

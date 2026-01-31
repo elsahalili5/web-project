@@ -84,6 +84,10 @@
   font-size: 15px;
 }
 
+.anonymous-checkbox input{
+  width: auto!important;
+
+}
 .card-form input:focus,
 .card-form select:focus {
   border-color: black;
