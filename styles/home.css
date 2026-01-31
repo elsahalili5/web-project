@@ -4,6 +4,9 @@
   background-color: #fcf6e9;
   padding: 40px 0;
 }
+.dashboard-button-wrapper {
+  text-align: center;
+}
 .intro {
   display: flex;
   align-items: center;

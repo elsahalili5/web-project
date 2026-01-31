@@ -21,6 +21,28 @@ require_once "./classes/User.php";
                 <div class="left-nav" id="menu-item">
 
                     <ul>
+                        <li class="mobile-only">
+
+                            <?php if (User::isLoggedIn()):
+                                $userName = User::getFullName();
+
+                            ?>
+                                <ul>
+                                    <li>
+                                        <span class="user-name"><?= htmlspecialchars($userName) ?></span>
+                                    </li>
+                                    <li><a href="fundraisers.php">Your fundraisers</a>
+                                    </li>
+                                    <li><a href="fundraisers.php">Your impact</a></li>
+
+
+                                </ul>
+
+                            <?php endif; ?>
+
+
+                        </li>
+
                         <li><a href="home.php" class="<?php echo ($currentPage == 'home') ? 'active' : '' ?>">Home</a></li>
                         <li><a href="about.php" class="<?php echo ($currentPage == 'about') ? 'active' : '' ?>">About</a></li>
                         <li><a href="causes.php" class="<?php echo ($currentPage == 'causes') ? 'active' : '' ?>">Causes</a></li>
@@ -28,20 +50,49 @@ require_once "./classes/User.php";
                         <li><a href="contact.php" class="<?php echo ($currentPage == 'contact') ? 'active' : '' ?>">Contact</a></li>
                         <li class="mobile-only">
 
+                            <?php if (User::isLoggedIn()):
+                                $userName = User::getFullName();
 
-                            <?php if (User::isLoggedIn()): ?>
-                                <a href="./logout.php" class="btn-red">Logout</a>
+                            ?>
+                                <ul>
+                                    <li><a href="./logout.php" class="btn-green">Sign out</a></li>
+
+
+                                </ul>
+
+
                             <?php else: ?>
                                 <a href="login.php" class="btn-green">Sign Up</a>
                             <?php endif; ?>
-                        </li>
 
+
+                        </li>
                     </ul>
 
                 </div>
                 <div class="right-nav" id="menu-item-right">
-                    <?php if (User::isLoggedIn()): ?>
-                        <a href="./logout.php" class="btn-green">Logout</a>
+
+
+                    <?php if (User::isLoggedIn()):
+                        $userName = User::getFullName();
+                    ?>
+                        <div class="user-dropdown">
+                            <div class="dropdown-toggle">
+                                <span class="user-icon-circle">
+                                    <i class="fa-regular fa-user"></i>
+                                </span>
+                                <span class="user-name"><?= htmlspecialchars($userName) ?></span>
+                                <i class="fa-solid fa-chevron-down arrow"></i>
+                            </div>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.php">Profile</a></li>
+                                <li><a href="fundraisers.php">Your fundraisers</a></li>
+                                <li><a href="impact.php">Your impact</a></li>
+                                <li><a href="./logout.php" class="btn-red">Sign out</a></li>
+                            </ul>
+                        </div>
+
                     <?php else: ?>
                         <a href="login.php" class="btn-green">Sign Up</a>
                     <?php endif; ?>
@@ -53,3 +104,21 @@ require_once "./classes/User.php";
         </div>
     </header>
 </div>
+<script>
+    const toggle = document.querySelector('.dropdown-toggle');
+    const menu = document.querySelector('.dropdown-menu');
+    const arrow = document.querySelector('.arrow');
+
+    toggle.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = menu.style.display === 'block';
+        menu.style.display = isOpen ? 'none' : 'block';
+        arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        menu.style.display = 'none';
+        arrow.style.transform = 'rotate(0deg)';
+    });
+</script>

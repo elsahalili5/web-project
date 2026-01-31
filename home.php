@@ -38,7 +38,10 @@ $causes = Cause::getAllApprovedCauses($pdo, 5);
     <div class="container">
 
       <?php if (User::isAdmin()): ?>
-        <a href="./dashboard/dashboard.php" class="btn-yellow"> Dashboard</a>
+        <div class="dashboard-button-wrapper">
+          <a href="./dashboard/dashboard.php" class="btn-green"> Dashboard</a>
+
+        </div>
       <?php endif; ?>
 
       <div class="intro">
@@ -141,7 +144,7 @@ $causes = Cause::getAllApprovedCauses($pdo, 5);
         </article>
         <article class="service-card right-service">
           <div class="service-icon-container">
-            <img src="/images/orph.png" class="service-icon" />
+            <img src="./images/orph.png" class="service-icon" />
           </div>
           <h3 class="service-title">Orphanage care</h3>
         </article>

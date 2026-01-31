@@ -20,6 +20,7 @@ $categories = $categoryDAO->getAll();
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>

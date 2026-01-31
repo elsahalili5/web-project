@@ -37,6 +37,6 @@
     <div class="menu">
         <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
         <a href="#"><i class="fa-regular fa-circle-question"></i> Help</a>
-        <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        <a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
     </div>
 </aside>

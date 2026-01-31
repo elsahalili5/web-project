@@ -185,56 +185,91 @@ header {
 }
 body.menu-open {
   overflow: hidden;
-}
-/* User Dropdown minimalist */
+} /* Container */
 .user-dropdown {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
-.user-dropdown a#userDropdown {
-  color: #01715d; /* Ngjyra e btn-green */
-  text-decoration: none;
+/* Toggle (circle + name + arrow) */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 14px;
-  border: 1px solid #01715d;
-  border-radius: 20px;
-  background-color: white;
+  border-radius: 999px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
-.user-dropdown a#userDropdown:hover {
-  background-color: #01715d;
-  color: white;
+.dropdown-toggle:hover {
+  background-color: #eceeef;
 }
 
-.user-dropdown .dropdown-menu {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background: white;
-  list-style: none;
-  padding: 5px 0;
-  margin: 0;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: none;
-  min-width: 100px;
-  z-index: 1000;
-}
-
-.user-dropdown .dropdown-menu li a {
-  display: block;
-  padding: 8px 15px;
+/* Circle for user icon */
+.user-icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #eceeef;
   color: #333;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  font-size: 18px;
 }
 
-.user-dropdown .dropdown-menu li a:hover {
-  background-color: #f0f0f0;
+/* User name */
+.user-name {
+  font-size: 14px;
+  color: #333;
 }
 
-.user-dropdown .dropdown-menu.show {
+/* Arrow */
+.arrow {
+  font-size: 12px;
+  color: #666;
+  transition: transform 0.3s ease; /* smooth rotation */
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: none; /* hidden by default */
+  position: absolute; /* position relative to .user-dropdown */
+  top: calc(100% + 8px);
+  right: 0;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  padding: 8px 0;
+  min-width: 220px;
+  z-index: 1000;
+  background-color: #fff;
+}
+
+/* Menu items */
+.dropdown-menu li a {
   display: block;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: #111;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f6f7f8;
+}
+
+.user-icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #eceeef;
+  color: #333;
+  font-size: 18px;
 }

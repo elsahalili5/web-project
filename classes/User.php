@@ -62,6 +62,17 @@ class User
         return false;
     }
 
+
+    public static function getName()
+    {
+        return self::isLoggedIn() ? $_SESSION['user']['name'] : '';
+    }
+
+    public static function getFullName()
+    {
+        return self::isLoggedIn() ? $_SESSION['user']['name'] . ' ' . $_SESSION['user']['surname'] : '';
+    }
+
     public static function isLoggedIn()
     {
         return isset($_SESSION['user']);
@@ -97,6 +108,15 @@ class User
         $sql = "UPDATE users SET name=?, surname=?, email=? WHERE id=?";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$name, $surname, $email, $id]);
+    }
+
+    public function getUserById($id)
+    {
+        $sql = "SELECT id, name, surname, email, role FROM {$this->table_name} WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function logout()
