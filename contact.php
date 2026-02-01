@@ -1,6 +1,30 @@
 <?php
 $currentPage = 'contact';
+session_start();
+include_once __DIR__ . '/database/Database.php';
+include_once __DIR__ . '/classes/Message.php';
+
+$messageObj = new Message($db);
+$result = ""; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $subject = $_POST['subject'] ?? '';
+    $message = $_POST['message'] ?? '';
+
+    $user_id = $_SESSION['user']['id'] ?? null;
+
+    $success = $messageObj->add($user_id, $name, $email, $subject, $message);
+
+    if ($success) {
+        $result = "<p style='color:green;'>Mesazhi u dërgua me sukses!</p>";
+    } else {
+        $result = "<p style='color:red;'>Ndodhi një gabim, provoni përsëri.</p>";
+    }
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -34,8 +58,11 @@ $currentPage = 'contact';
           <div class="form-box">
             <p class="label-title">— CONTACT US</p>
             <h2>One Message. <span> One step closer to helping </span></h2>
-            <div class="result"></div>
-            <form id="contact-form">
+
+            <div class="result">
+              <?php echo $result; ?>
+            </div>
+            <form id="contact-form" method="POST" action="">
               <div class="form-group">
                 <label>Your Name *</label>
                 <input
