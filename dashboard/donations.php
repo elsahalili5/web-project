@@ -107,6 +107,7 @@ $allDonations = $donationObj->getAll();
                 <input type="hidden" name="update_last_name" value="<?= $editDonation['edit_last_name'] ?>">
                 <input type="hidden" name="update_anonymous" value="<?= $editDonation['edit_anonymous'] ?>">
                 <input type="hidden" name="update_payment_method" value="<?= $editDonation['edit_payment_method'] ?>">
+                <input type="hidden" name="update_amount" value="<?= $editDonation['edit_amount'] ?>">
 
                 <div class="form-group">
                     <label>Cause ID</label>
@@ -130,8 +131,12 @@ $allDonations = $donationObj->getAll();
 
                 <div class="form-group">
                     <label>Amount (€)</label>
-                    <input type="number" step="0.01" name="update_amount" value="<?= $editDonation['edit_amount'] ?>" required>
+                    <input type="number" step="0.01" value="<?= $editDonation['edit_amount'] ?>" disabled>
                 </div>
+                <!-- <div class="form-group">
+                    <label>Amount (€)</label>
+                    <input type="number" step="0.01" name="update_amount" value="<?= $editDonation['edit_amount'] ?>" required>
+                </div> -->
 
                 <div class="form-group">
                     <label>Payment Method</label>

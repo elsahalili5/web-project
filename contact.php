@@ -7,12 +7,9 @@ include_once './classes/User.php';
 $db = new Database();
 $conn = $db->getConnection();
 $messageObj = new Message($conn);
-var_dump($_SESSION['user']);
 
 
-// Ruan mesazhin në DB vetëm për user login
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && User::isLoggedIn()) {
-  // merr user_id nga session
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $user_id = $_SESSION['user']['id'] ?? null;
   $name = $_POST['name'] ?? '';
   $email = $_POST['email'] ?? '';
@@ -60,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && User::isLoggedIn()) {
               </div>
               <div class="form-group">
                 <label>Email *</label>
-                <input type="email" class="form-input" id="email" name="email" placeholder="example@gmail.com">
+                <input class="form-input" id="email" name="email" placeholder="example@gmail.com">
               </div>
               <div class="form-group">
                 <label>Subject *</label>
@@ -105,69 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && User::isLoggedIn()) {
 
   <?php include('components/footer.php'); ?>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const contactForm = document.getElementById("contact-form");
-      const resultMsg = document.querySelector(".result");
 
-      contactForm.addEventListener("submit", function(e) {
-        // kontroll login nga PHP
-        const isLoggedIn = <?php echo User::isLoggedIn() ? 'true' : 'false'; ?>;
+  <script src="./js/contact.js"></script>
 
-        if (!isLoggedIn) {
-          e.preventDefault();
-          resultMsg.style.color = "red";
-          resultMsg.innerText = "Duhet të jeni të kyçur për të dërguar mesazh!";
-          return;
-        }
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const subject = document.getElementById("subject").value.trim();
-        const message = document.getElementById("message").value.trim();
-
-        const nameRegex = /^[A-Za-z\s]+$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        resultMsg.style.color = "red";
-        resultMsg.innerText = "";
-
-        if (!name) {
-          e.preventDefault();
-          resultMsg.innerText = "Enter your name*";
-          return;
-        }
-        if (!nameRegex.test(name)) {
-          e.preventDefault();
-          resultMsg.innerText = "Name must contain only letters*";
-          return;
-        }
-        if (!email) {
-          e.preventDefault();
-          resultMsg.innerText = "Enter your email*";
-          return;
-        }
-        if (!emailRegex.test(email)) {
-          e.preventDefault();
-          resultMsg.innerText = "Enter a valid email*";
-          return;
-        }
-        if (!subject) {
-          e.preventDefault();
-          resultMsg.innerText = "Enter subject*";
-          return;
-        }
-        if (!message) {
-          e.preventDefault();
-          resultMsg.innerText = "Enter your message*";
-          return;
-        }
-
-        resultMsg.style.color = "green";
-        resultMsg.innerText = "Mesazhi po dërgohet...";
-      });
-    });
-  </script>
 </body>
 
 </html>

@@ -22,11 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = $user->register($name, $surname, $email, $password);
 
-    if ($result === true) {
-      header("Location: login.php");
+    if ($result) { //
+      if ($user->isAdmin()) {
+        header("Location: dashboard.php");
+      } else {
+        header("Location: login.php");
+      }
       exit;
     } else {
-      $signupError = $result;
+      $signupError = "Registration failed. Please try again!";
     }
   }
 
@@ -42,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 }
+
 ?>
 
 

@@ -9,10 +9,8 @@ require_once "./classes/User.php";
 $database = new Database();
 $pdo = $database->getConnection();
 
-// 5 kauzat e fundit të aprovuar
 $causes = Cause::getAllApprovedCauses($pdo, 5);
 
-// Statistikat e donacioneve
 $donation = new Donation($pdo);
 $totalDonations = count($donation->getAll());
 
@@ -37,7 +35,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
 <body>
   <?php include('components/navigation.php'); ?>
 
-  <!-- Home Intro Section -->
   <section class="home-intro">
     <div class="container">
 
@@ -74,8 +71,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
       </div>
     </div>
   </section>
-
-  <!-- Statistics Section -->
   <section class="statistics-section">
     <div class="container">
       <div class="stats-grid">
@@ -106,7 +101,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
     </div>
   </section>
 
-  <!-- Our Mission Section -->
   <section class="our-mission">
     <div class="our-mission-container">
       <div class="our-mission-intro">
@@ -141,7 +135,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
     </div>
   </section>
 
-  <!-- Steps Section -->
   <section class="steps-section">
     <div class="steps-header">
       <h2 class="main-title">Simple Steps to Make a Difference</h2>
@@ -182,8 +175,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
       </div>
     </div>
   </section>
-
-  <!-- Causes Section -->
   <section class="causes-section">
     <div class="container">
       <div class="causes-header">
@@ -230,7 +221,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
     </div>
   </section>
 
-  <!-- Trust Section -->
   <section class="trust-section">
     <div class="container">
       <h2 class="home-title">What Makes People Trust Us</h2>
@@ -262,7 +252,6 @@ $activeCauses = Cause::getApprovedCount($pdo);
     </div>
   </section>
 
-  <!-- FAQ Section -->
   <section class="faq-section">
     <div class="container">
       <h2 class="home-title">Frequently Answered Questions</h2>
@@ -309,16 +298,19 @@ $activeCauses = Cause::getApprovedCount($pdo);
           </div>
         </div>
 
-        <div class="faq-card">
-          <div class="logo"><img class="default_logo" src="./images/logo2.png" alt="" /></div>
-          <h3>Wanna talk before joining us ?</h3>
-          <a class="btn-green" href="contact.php">Get in Touch</a>
-        </div>
+        <?php if (!User::isAdmin()): ?>
+
+          <div class="faq-card">
+            <div class="logo"><img class="default_logo" src="./images/logo2.png" alt="" /></div>
+            <h3>Wanna talk before joining us ?</h3>
+            <a class="btn-green" href="contact.php">Get in Touch</a>
+          </div>
+        <?php endif; ?>
+
       </div>
     </div>
   </section>
 
-  <!-- Last Section -->
   <div class="container">
     <div class="last-section">
       <h1>Make someone's life by giving of yours.</h1>

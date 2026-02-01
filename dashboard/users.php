@@ -68,7 +68,7 @@ $allUsers = $user->getAllUsers();
     </div>
 
     <?php if ($message): ?>
-        <p style="margin-bottom:12px;color:red">
+        <p style="margin-bottom:12px;color:green">
             <?= htmlspecialchars($message) ?>
         </p>
     <?php endif; ?>

@@ -34,7 +34,6 @@ class Donation
                 ':anonymous' => $data['anonymous']
             ]);
 
-            // Update raised_amount tek causes
             $update = $this->conn->prepare("UPDATE causes SET raised_amount = raised_amount + :amount WHERE id = :cause_id");
             $update->execute([':amount' => $data['amount'], ':cause_id' => $data['cause_id']]);
 

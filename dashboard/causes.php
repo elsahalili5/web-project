@@ -8,15 +8,12 @@ $connection = $database->getConnection();
 
 $message = '';
 
-// --- Delete Cause ---
 if (isset($_POST['confirm_delete'])) {
     $causeId = (int)$_POST['delete_id'];
     $stmt = $connection->prepare("DELETE FROM causes WHERE id = ?");
     $stmt->execute([$causeId]);
     $message = "Cause deleted successfully!";
 }
-
-// --- Change Status ---
 if (isset($_POST['change_status'])) {
     $causeId = (int)$_POST['cause_id'];
     $newStatus = $_POST['new_status'];
@@ -37,7 +34,6 @@ $userObj = new User($connection);
 <div class="table-box">
     <div class="table-header">
         <h2>Causes</h2>
-        <!-- Add button removed -->
     </div>
 
     <?php if ($message): ?>

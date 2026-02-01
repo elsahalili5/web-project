@@ -40,7 +40,6 @@ $causes = Cause::getByCategory($pdo, $categoryId);
 <body>
   <?php include('components/navigation.php') ?>
 
-  <!-- Intro -->
   <section class="causes-wrapper">
     <div class="causes-intro">
       <div class="causes-intro-text">
@@ -57,7 +56,6 @@ $causes = Cause::getByCategory($pdo, $categoryId);
     </div>
   </section>
 
-  <!-- Browse Causes -->
   <section class="causes-browse-section">
     <div class="causes-header">
       <h2 class="section-title">Browse Fundraisers</h2>
