@@ -28,7 +28,7 @@
         <p class="thankyou-text">We truly appreciate heartfelt support.</p>
       </div>
 
-      <a href="my-profile.php" class="btn-green">See Your Donations</a>
+      <a href="my-donations.php" class="btn-green">See Your Donations</a>
     </div>
   </div>
 
