@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "./classes/User.php";
 ?>
 
@@ -31,7 +30,7 @@ require_once "./classes/User.php";
                                     <li>
                                         <span class="user-name"><?= htmlspecialchars($userName) ?></span>
                                     </li>
-                                    <li><a href="fundraisers.php">Your fundraisers</a>
+                                    <li><a href="my-fundraisers.php">Your fundraisers</a>
                                     </li>
                                     <li><a href="fundraisers.php">Your impact</a></li>
 
@@ -86,9 +85,13 @@ require_once "./classes/User.php";
                             </div>
 
                             <ul class="dropdown-menu">
+
+
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="fundraisers.php">Your fundraisers</a></li>
-                                <li><a href="impact.php">Your impact</a></li>
+                                <?php if (User::isLoggedIn() && !User::isAdmin()): ?>
+                                    <li><a href="my-fundraisers.php">Your fundraisers</a></li>
+                                    <li><a href="impact.php">Your impact</a></li>
+                                <?php endif; ?>
                                 <li><a href="./logout.php" class="btn-red">Sign out</a></li>
                             </ul>
                         </div>
@@ -116,7 +119,6 @@ require_once "./classes/User.php";
         arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', () => {
         menu.style.display = 'none';
         arrow.style.transform = 'rotate(0deg)';

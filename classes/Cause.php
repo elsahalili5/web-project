@@ -1,4 +1,5 @@
 <?php
+
 class Cause
 {
     private $id;
@@ -132,6 +133,11 @@ class Cause
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public static function getApprovedCount($pdo)
+    {
+        $stmt = $pdo->query("SELECT COUNT(*) FROM causes WHERE status = 'approved'");
+        return $stmt->fetchColumn();
+    }
     public static function getAllApprovedCauses($pdo, $limit = null)
     {
         $sql = "SELECT * FROM causes WHERE status='approved' ORDER BY created_at DESC";
@@ -187,32 +193,38 @@ class Cause
     }
 
     public static function add(
-        $pdo,
-        $user_id,
-        $category_id,
-        $title,
-        $description,
-        $goal_amount,
-        $image,
-        $status = 'pending'
+        PDO $pdo,
+        int $user_id,
+        int $category_id,
+        string $title,
+        string $description,
+        float $goal_amount,
+        string $image,
+        string $status = 'pending'
     ) {
-        $sql = "INSERT INTO causes 
+        try {
+            $sql = "INSERT INTO causes 
         (user_id, category_id, title, description, goal_amount, raised_amount, image, status, created_at)
         VALUES 
         (:user_id, :category_id, :title, :description, :goal_amount, 0, :image, :status, NOW())";
 
-        $stmt = $pdo->prepare($sql);
+            $stmt = $pdo->prepare($sql);
 
-        return $stmt->execute([
-            ':user_id' => $user_id,
-            ':category_id' => $category_id,
-            ':title' => $title,
-            ':description' => $description,
-            ':goal_amount' => $goal_amount,
-            ':image' => $image,
-            ':status' => $status
-        ]);
+            $stmt->bindValue(':user_id', (int)$user_id, PDO::PARAM_INT);
+            $stmt->bindValue(':category_id', (int)$category_id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $title);
+            $stmt->bindValue(':description', $description);
+            $stmt->bindValue(':goal_amount', $goal_amount);
+            $stmt->bindValue(':image', $image);
+            $stmt->bindValue(':status', $status);
+
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            die(" INSERT FAILED: " . $e->getMessage());
+        }
     }
+
     public static function edit(
         $pdo,
         $id,
@@ -243,5 +255,34 @@ class Cause
             ':image' => $image,
             ':status' => $status
         ]);
+    }
+
+    public static function getByUser(PDO $pdo, int $userId)
+    {
+        $sql = "SELECT * FROM causes 
+            WHERE user_id = :user_id
+            ORDER BY created_at DESC";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $causes = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $causes[] = new Cause(
+                $row['id'],
+                $row['user_id'],
+                $row['category_id'],
+                $row['title'],
+                $row['description'],
+                $row['goal_amount'],
+                $row['raised_amount'],
+                $row['image'],
+                $row['status'],
+                $row['created_at']
+            );
+        }
+
+        return $causes;
     }
 }

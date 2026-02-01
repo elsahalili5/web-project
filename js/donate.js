@@ -139,9 +139,8 @@ donationForm.addEventListener("submit", function (e) {
     return;
   }
 
-  // Nëse gjithçka është valide
   resultDiv.style.color = "green";
   resultDiv.innerText = "Donation successful! Sending...";
 
-  donationForm.submit(); // dërgon formën
+  donationForm.submit();
 });

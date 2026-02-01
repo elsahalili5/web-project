@@ -1,9 +1,10 @@
 <?php
+
 $currentPage = 'causes';
 session_start();
 include_once __DIR__ . '/database/Database.php';
 include_once __DIR__ . '/classes/Donation.php';
-include_once __DIR__ . '/classes/Cause.php'; // nëse do të marrësh info të cause
+include_once __DIR__ . '/classes/Cause.php';
 
 
 $database = new Database();

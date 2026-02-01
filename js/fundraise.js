@@ -4,15 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("nextBtn");
   const backBtn = document.querySelector(".back");
   const submitBtn = document.getElementById("submitBtn");
-  let current = 0;
+
   const leftTitle = document.getElementById("leftTitle");
   const leftDesc = document.getElementById("leftDescription");
 
-  const fundraiseSection = document.querySelector(".fundraise-section");
-  const successScreen = document.getElementById("successScreen");
-
   const titleInput = document.getElementById("fundraiser-title");
   const titleCount = document.getElementById("titleCount");
+
+  let current = 0;
 
   const leftContent = [
     ["Choose a category", "What best describes why you're fundraising?"],
@@ -21,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ["Add a title", "Your title must include letters"],
     ["Tell your story", "Explain why this fundraiser matters"],
     ["Add a photo", "Cover media helps tell your story"],
-    ["Review", "Make sure everything looks good"],
   ];
 
   function updateStep() {
@@ -72,53 +70,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nextBtn.disabled = current === steps.length - 1 ? true : !valid;
     submitBtn.disabled = current === steps.length - 1 ? !valid : true;
-
-    updateReview();
-  }
-
-  function updateReview() {
-    const title = titleInput.value.trim() || "—";
-    const goalInput = document.querySelector('.step input[type="number"]');
-    const goal = goalInput ? goalInput.value.trim() : "—";
-    const activeCategory = document.querySelector(
-      ".categories .category.active-step"
-    );
-    const category = activeCategory ? activeCategory.textContent : "—";
-    const cardStep = document.querySelector(
-      ".step:nth-of-type(2) .card.active-step"
-    );
-    const beneficiary = cardStep
-      ? cardStep.querySelector("strong").textContent
-      : "—";
-    const storyTextarea = document.querySelector(".step textarea");
-    const story = storyTextarea ? storyTextarea.value.trim() : "—";
-    const mediaPreview = document.querySelector(".media-preview");
-
-    document.getElementById("reviewTitle").textContent = title;
-    document.getElementById("reviewGoal").textContent = goal ? `€${goal}` : "—";
-    document.getElementById("reviewCategory").textContent = category;
-    document.getElementById("reviewStory").textContent = story;
-    if (mediaPreview) {
-      const uploadStep = document.querySelector(".step .upload");
-      mediaPreview.style.backgroundImage = uploadStep
-        ? uploadStep.style.backgroundImage
-        : "";
-      mediaPreview.style.backgroundSize = "cover";
-      mediaPreview.style.backgroundPosition = "center";
-    }
   }
 
   document.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("category") ||
-      e.target.classList.contains("card")
-    ) {
-      const step = e.target.closest(".step");
-      const items = e.target.classList.contains("category")
-        ? step.querySelectorAll(".category")
-        : step.querySelectorAll(".card");
-      items.forEach((el) => el.classList.remove("active-step"));
+    if (e.target.classList.contains("category")) {
+      document.getElementById("selectedCategory").value = e.target.dataset.id;
+      e.target.parentElement
+        .querySelectorAll(".category")
+        .forEach((cat) => cat.classList.remove("active-step"));
       e.target.classList.add("active-step");
+      validateCurrentStep();
+    }
+
+    if (e.target.classList.contains("card") || e.target.closest(".card")) {
+      const card = e.target.closest(".card");
+      const step = card.closest(".step");
+      step
+        .querySelectorAll(".card")
+        .forEach((c) => c.classList.remove("active-step"));
+      card.classList.add("active-step");
       validateCurrentStep();
     }
 
@@ -144,6 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
         )})`;
         e.target.textContent = "";
         e.target.style.border = "none";
+
+        document.getElementById("selectedImage").value = input.files[0].name;
+
         validateCurrentStep();
       };
 
@@ -156,12 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
       titleCount.textContent = titleInput.value.length;
     }
     validateCurrentStep();
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    fundraiseSection.style.display = "none";
-    successScreen.style.display = "flex";
   });
 
   updateStep();

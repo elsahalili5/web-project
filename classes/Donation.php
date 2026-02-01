@@ -10,7 +10,6 @@ class Donation
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // Create donation dhe rrit raised_amount tek causes
     public function create($data)
     {
         try {
@@ -46,24 +45,20 @@ class Donation
         }
     }
 
-    // Update donation dhe adjust raised_amount tek causes
     public function update($data)
     {
         try {
-            // Merr donacionin aktual për të zbritur nga raised_amount
             $stmt = $this->conn->prepare("SELECT cause_id, amount FROM {$this->table_name} WHERE id = :id");
             $stmt->execute([':id' => $data['id']]);
             $oldDonation = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$oldDonation) return false;
 
-            // Përditëso raised_amount: zbrit vlerën e vjetër dhe shto vlerën e re
             if ($oldDonation['cause_id'] == $data['cause_id']) {
                 $diff = $data['amount'] - $oldDonation['amount'];
                 $updateCause = $this->conn->prepare("UPDATE causes SET raised_amount = raised_amount + :diff WHERE id = :cause_id");
                 $updateCause->execute([':diff' => $diff, ':cause_id' => $data['cause_id']]);
             } else {
-                // Nëse ka ndryshuar Cause, zbrit nga ai i vjetri dhe shto tek ai i ri
                 $updateOld = $this->conn->prepare("UPDATE causes SET raised_amount = raised_amount - :amount WHERE id = :cause_id");
                 $updateOld->execute([':amount' => $oldDonation['amount'], ':cause_id' => $oldDonation['cause_id']]);
 
@@ -71,7 +66,6 @@ class Donation
                 $updateNew->execute([':amount' => $data['amount'], ':cause_id' => $data['cause_id']]);
             }
 
-            // Update donacionin
             $sql = "UPDATE {$this->table_name} SET 
                 cause_id = :cause_id,
                 user_email = :user_email,
@@ -101,15 +95,21 @@ class Donation
         }
     }
 
-    // Get all donations
+
     public function getAll()
     {
         $stmt = $this->conn->prepare("SELECT * FROM {$this->table_name} ORDER BY donated_at DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getByCause($causeId)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM donations WHERE cause_id = ? ORDER BY donated_at DESC");
+        $stmt->execute([$causeId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    // Get donations by user email
+
     public function getByUser($email)
     {
         $stmt = $this->conn->prepare("SELECT * FROM {$this->table_name} WHERE user_email = :email ORDER BY donated_at DESC");
@@ -117,11 +117,9 @@ class Donation
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Delete donation dhe zvogëlo raised_amount tek causes
     public function delete($id)
     {
         try {
-            // Merr donacionin për të zvogëluar raised_amount
             $stmt = $this->conn->prepare("SELECT cause_id, amount FROM {$this->table_name} WHERE id = :id");
             $stmt->execute([':id' => $id]);
             $donation = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -131,12 +129,20 @@ class Donation
                 $updateCause->execute([':amount' => $donation['amount'], ':cause_id' => $donation['cause_id']]);
             }
 
-            // Delete donacionin
             $stmt = $this->conn->prepare("DELETE FROM {$this->table_name} WHERE id = :id");
             return $stmt->execute([':id' => $id]);
         } catch (Exception $e) {
             echo "Donation delete error: " . $e->getMessage();
             return false;
         }
+    }
+    public function getTotalAmount()
+    {
+        $stmt = $this->conn->query("
+        SELECT SUM(amount) 
+        FROM donations 
+        WHERE payment_status = 'successful'
+    ");
+        return $stmt->fetchColumn() ?? 0;
     }
 }

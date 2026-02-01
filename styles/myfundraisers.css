@@ -1,0 +1,150 @@
+.myfundraiser-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #111827;
+}
+
+.fundraiser-card {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.fundraiser-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.fundraiser-left img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.fundraiser-info {
+  padding: 15px;
+}
+
+.fundraiser-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.fundraiser-info p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.fundraiser-right {
+  flex: 1;
+  background: #f9fafb;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fundraiser-stats {
+  margin-bottom: 20px;
+}
+
+.fundraiser-stats .progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.fundraiser-stats .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a9c7b4, #01715d);
+  width: 0;
+  border-radius: 5px;
+  transition: width 1s ease-in-out;
+}
+
+.fundraiser-stats .raised {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.fundraiser-stats .goal {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+.status .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #01715d;
+}
+
+.donors-clean h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.donor-card-clean {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.donor-icon-clean i {
+  font-size: 1.2rem;
+  color: #3b82f6;
+}
+
+.donor-info-clean {
+  display: flex;
+  flex-direction: column;
+}
+
+.donor-name-clean {
+  font-weight: 500;
+}
+
+.donor-amount-clean {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+@media (max-width: 900px) {
+  .fundraiser-card {
+    flex-direction: column;
+  }
+
+  .fundraiser-right {
+    padding: 15px;
+  }
+}

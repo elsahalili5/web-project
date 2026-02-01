@@ -13,12 +13,10 @@ if (isset($_POST['confirm_delete'])) {
     $message = "Donation deleted successfully!";
 }
 
-/* ================= EDIT ================= */
 if (isset($_POST['edit_donation'])) {
     $editDonation = $_POST;
 }
 
-/* ================= UPDATE ================= */
 if (isset($_POST['update_donation'])) {
     $data = [
         'id' => $_POST['update_id'],
@@ -37,11 +35,9 @@ if (isset($_POST['update_donation'])) {
     }
 }
 
-/* ================= FETCH ================= */
 $allDonations = $donationObj->getAll();
 ?>
 
-<!-- ================= TABLE ================= -->
 <div class="table-box">
     <div class="table-header">
         <h2>Donations</h2>
@@ -79,7 +75,6 @@ $allDonations = $donationObj->getAll();
                     <td><?= date('d/m/Y', strtotime($d['donated_at'])) ?></td>
 
                     <td>
-                        <!-- EDIT -->
                         <form method="POST" style="display:inline">
                             <?php foreach ($d as $k => $v): ?>
                                 <input type="hidden" name="edit_<?= $k ?>" value="<?= htmlspecialchars($v) ?>">
@@ -89,7 +84,6 @@ $allDonations = $donationObj->getAll();
                             </button>
                         </form>
 
-                        <!-- DELETE -->
                         <button class="action-btn delete"
                             onclick="openDeleteModal(<?= $d['id'] ?>)">
                             <i class="fa fa-trash"></i>
@@ -100,7 +94,6 @@ $allDonations = $donationObj->getAll();
         </tbody>
     </table>
 </div>
-
 <?php if (isset($editDonation)): ?>
     <div id="editDonationModal" class="modal edit-user-modal" style="display:flex">
         <div class="modal-content">
@@ -108,64 +101,55 @@ $allDonations = $donationObj->getAll();
 
             <form method="POST">
                 <input type="hidden" name="update_id" value="<?= $editDonation['edit_id'] ?>">
+                <input type="hidden" name="update_cause_id" value="<?= $editDonation['edit_cause_id'] ?>">
+                <input type="hidden" name="update_user_email" value="<?= $editDonation['edit_user_email'] ?>">
+                <input type="hidden" name="update_first_name" value="<?= $editDonation['edit_first_name'] ?>">
+                <input type="hidden" name="update_last_name" value="<?= $editDonation['edit_last_name'] ?>">
+                <input type="hidden" name="update_anonymous" value="<?= $editDonation['edit_anonymous'] ?>">
+                <input type="hidden" name="update_payment_method" value="<?= $editDonation['edit_payment_method'] ?>">
 
                 <div class="form-group">
                     <label>Cause ID</label>
-                    <input name="update_cause_id" value="<?= $editDonation['edit_cause_id'] ?>" required>
+                    <input value="<?= $editDonation['edit_cause_id'] ?>" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="update_user_email"
-                        value="<?= $editDonation['edit_user_email'] ?>" required>
+                    <label>Donor Email</label>
+                    <input value="<?= $editDonation['edit_user_email'] ?>" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label>First Name</label>
-                    <input name="update_first_name"
-                        value="<?= $editDonation['edit_first_name'] ?>" required>
+                    <label>Donor Name</label>
+                    <input value="<?= $editDonation['edit_first_name'] . ' ' . $editDonation['edit_last_name'] ?>" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label>Last Name</label>
-                    <input name="update_last_name"
-                        value="<?= $editDonation['edit_last_name'] ?>" required>
+                    <label>Anonymous</label>
+                    <input value="<?= $editDonation['edit_anonymous'] ? 'Yes' : 'No' ?>" disabled>
                 </div>
 
                 <div class="form-group">
                     <label>Amount (€)</label>
-                    <input type="number" step="0.01" name="update_amount"
-                        value="<?= $editDonation['edit_amount'] ?>" required>
+                    <input type="number" step="0.01" name="update_amount" value="<?= $editDonation['edit_amount'] ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label>Payment Method</label>
-                    <input name="update_payment_method"
-                        value="<?= $editDonation['edit_payment_method'] ?>">
+                    <input name="update_payment_method" value="<?= $editDonation['edit_payment_method'] ?>" disabled>
                 </div>
 
                 <div class="form-group">
                     <label>Payment Status</label>
-                    <input name="update_payment_status"
-                        value="<?= $editDonation['edit_payment_status'] ?>">
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="update_anonymous"
-                            <?= $editDonation['edit_anonymous'] ? 'checked' : '' ?>>
-                        Anonymous
-                    </label>
+                    <select name="update_payment_status" required>
+                        <option value="pending" <?= $editDonation['edit_payment_status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                        <option value="successful" <?= $editDonation['edit_payment_status'] == 'successful' ? 'selected' : '' ?>>Successful</option>
+                        <option value="failed" <?= $editDonation['edit_payment_status'] == 'failed' ? 'selected' : '' ?>>Failed</option>
+                    </select>
                 </div>
 
                 <div class="modal-buttons">
-                    <button type="button" class="cancel-btn"
-                        onclick="closeModal('editDonationModal')">
-                        Cancel
-                    </button>
-                    <button class="btn-primary" name="update_donation">
-                        Update
-                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeModal('editDonationModal')">Cancel</button>
+                    <button class="btn-primary" name="update_donation">Update</button>
                 </div>
             </form>
         </div>

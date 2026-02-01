@@ -186,7 +186,6 @@ $allUsers = $user->getAllUsers();
     </div>
 <?php endif; ?>
 
-<!-- Delete User Modal -->
 <div id="deleteModal" class="modal delete-user-modal">
     <div class="modal-content">
         <div class="modal-icon">

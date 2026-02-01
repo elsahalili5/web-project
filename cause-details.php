@@ -4,22 +4,30 @@ $currentPage = 'causes';
 
 include_once './database/Database.php';
 include_once './classes/Cause.php';
+include_once './classes/Donation.php';
 
 $database = new Database();
 $pdo = $database->getConnection();
 
-// Merr id nga URL
+
+
+
+
 $causeId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$donationObj = new Donation($pdo);
+$allDonations = $donationObj->getByCause($causeId);
+$totalDonors = count($allDonations);
+$donorText = $totalDonors === 1 ? 'person has made a donation' : 'people have made a donation';
 
-// Merr kauzën
+
+
+
 $cause = Cause::getById($pdo, $causeId);
-
 if (!$cause) {
   echo "Cause not found!";
   exit;
 }
 
-// Llogarit progresin
 $progress = ($cause->goal_amount > 0)
   ? ($cause->raised_amount / $cause->goal_amount) * 100
   : 0;
@@ -79,23 +87,37 @@ $progress = min($progress, 100);
             </a>
 
             <div class="recent-donations">
-              <div class="donations-progress">
-                <div class="donation-progress-icon">
-                  <span class="material-symbols-outlined">finance_mode</span>
+              <div class="recent-donations">
+                <div class="donations-progress">
+                  <div class="donation-progress-icon">
+                    <span class="material-symbols-outlined">finance_mode</span>
+                  </div>
+                  <?php
+
+                  ?>
+                  <h4><?= $totalDonors ?> <?= $donorText ?></h4>
+
                 </div>
-                <h4>566 people have just made a donation</h4>
+
+                <?php foreach ($allDonations as $donationItem): ?>
+                  <div class="donor">
+                    <div class="donor-icon">
+                      <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="donor-info">
+
+                      <div class="donor-name">
+                        <?= $donationItem['anonymous'] ? 'Anonymous' : htmlspecialchars($donationItem['first_name'] . ' ' . $donationItem['last_name']) ?>
+                      </div>
+                      <div class="donor-amount">
+                        €<?= number_format($donationItem['amount'], 2) ?> · Recent donation
+                      </div>
+
+                    </div>
+                  </div>
+                <?php endforeach; ?>
               </div>
 
-              <!-- donor -->
-              <div class="donor">
-                <div class="donor-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="donor-info">
-                  <div class="donor-name">Elsa Halili</div>
-                  <div class="donor-amount">€50 · Recent donation</div>
-                </div>
-              </div>
 
             </div>
           </div>

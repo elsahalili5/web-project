@@ -11,36 +11,40 @@ include_once './classes/User.php';
 $db = new Database();
 $connection = $db->getConnection();
 $user = new User($connection);
-
 $signupError = "";
-if (isset($_POST['signup'])) {
-  $name = $_POST['name'];
-  $surname = $_POST['surname'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
 
-  $result = $user->register($name, $surname, $email, $password);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['signup'])) {
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-  if ($result === true) {
-    header("Location: login.php");
-    exit;
-  } else {
-    $signupError = $result;
+    $result = $user->register($name, $surname, $email, $password);
+
+    if ($result === true) {
+      header("Location: login.php");
+      exit;
+    } else {
+      $signupError = $result;
+    }
   }
-}
 
-if (isset($_POST['signin'])) {
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+  if (isset($_POST['signin'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-  if ($user->login($email, $password)) {
-    header("Location: home.php");
-    exit;
-  } else {
-    $signinError = "Invalid login credentials!";
+    if ($user->login($email, $password)) {
+      header("Location: home.php");
+      exit;
+    } else {
+      $signinError = "Invalid login credentials!";
+    }
   }
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -53,14 +57,14 @@ if (isset($_POST['signin'])) {
 
 <body>
   <div class="container" id="container">
+
+    <!-- Signup formmm -->
     <div class="form-container sign-up-container">
       <form action="login.php" method="POST">
         <div id="result" class="result"
           style="color:red; visibility:<?php echo $signupError ? 'visible' : 'hidden'; ?>">
           <p id="result-p"><?php echo htmlspecialchars($signupError); ?></p>
         </div>
-
-
         <input
           id="inputFirstName"
           name="name"
@@ -82,7 +86,6 @@ if (isset($_POST['signin'])) {
           type="password"
           placeholder="Create a password" />
 
-
         <input
           class="button btn-green"
           type="submit"
@@ -90,11 +93,13 @@ if (isset($_POST['signin'])) {
           value="Sign Up" />
       </form>
     </div>
+
+
+    <!-- Login form -->
     <div class="form-container sign-in-container">
       <form class="signin-form" action="login.php" method="POST">
-        <h1 class="sign-in">Sign in</h1>
+        <h1 class="sign-in">Sign in here</h1>
 
-        <!-- Këtu shtohet div për error -->
         <div id="signin-result" class="signin-result"
           style="color:red; visibility:<?php echo !empty($signinError) ? 'visible' : 'hidden'; ?>">
           <p id="signin-result-p">
