@@ -23,7 +23,43 @@ header {
   font-size: 18px;
   align-items: center;
 }
+.icon-btn.message-btn {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #eceeef;
+  color: #333;
+  font-size: 18px;
+  position: relative;
+}
 
+.icon-btn.message-btn:hover {
+  background: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.icon-btn.message-btn .badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e53935;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  border-radius: 50%;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.right-nav {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
 .left-nav ul {
   display: flex;
   list-style: none;
@@ -185,14 +221,12 @@ header {
 }
 body.menu-open {
   overflow: hidden;
-} /* Container */
+}
 .user-dropdown {
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
-
-/* Toggle (circle + name + arrow) */
 .dropdown-toggle {
   display: flex;
   align-items: center;
@@ -207,7 +241,6 @@ body.menu-open {
   background-color: #eceeef;
 }
 
-/* Circle for user icon */
 .user-icon-circle {
   display: flex;
   justify-content: center;
@@ -220,23 +253,20 @@ body.menu-open {
   font-size: 18px;
 }
 
-/* User name */
 .user-name {
   font-size: 14px;
   color: #333;
 }
 
-/* Arrow */
 .arrow {
   font-size: 12px;
   color: #666;
-  transition: transform 0.3s ease; /* smooth rotation */
+  transition: transform 0.3s ease;
 }
 
-/* Dropdown menu */
 .dropdown-menu {
-  display: none; /* hidden by default */
-  position: absolute; /* position relative to .user-dropdown */
+  display: none;
+  position: absolute;
   top: calc(100% + 8px);
   right: 0;
   border-radius: 16px;
@@ -248,7 +278,6 @@ body.menu-open {
   background-color: #fff;
 }
 
-/* Menu items */
 .dropdown-menu li a {
   display: block;
   padding: 12px 20px;

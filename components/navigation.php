@@ -74,6 +74,16 @@ require_once "./classes/User.php";
                     <?php if (User::isLoggedIn()):
                         $userName = User::getFullName();
                     ?>
+                        <?php if (!User::isAdmin() && User::isLoggedIn()): ?>
+                            <button class="icon-btn message-btn" title="Messages">
+                                <i class="fa-regular fa-envelope">
+                                    <a href="my-messages.php"></a>
+                                </i>
+                                <span class="badge">3</span>
+                            </button>
+                        <?php endif; ?>
+
+
                         <div class="user-dropdown">
                             <div class="dropdown-toggle">
                                 <span class="user-icon-circle">

@@ -41,41 +41,45 @@ $myDonations = $donationObj->getByUser($user_email);
 
     <?php include('components/navigation.php'); ?>
     <div class="container">
-        <div class="my-donations-container">
-            <h1 class="page-title">My Donations</h1>
+        <div class="main-banner">
 
-            <?php if (empty($myDonations)): ?>
-                <div class="no-donations">
-                    <i class="fas fa-heart-broken" style="font-size:2rem;color:#ccc;"></i>
-                    <p>You haven't made any donations yet.</p>
-                </div>
-            <?php else: ?>
-                <?php foreach ($myDonations as $donation):
-                    $cause = Cause::getById($pdo, $donation['cause_id']);
-                    if (!$cause) continue; // në rast se kauza u fshi
-                ?>
-                    <div class="donation-card">
-                        <div class="donation-left">
-                            <img src="<?= htmlspecialchars($cause->image) ?>" alt="<?= htmlspecialchars($cause->title) ?>">
-                            <div class="donation-info">
-                                <h4><?= htmlspecialchars($cause->title) ?></h4>
-                                <p>
-                                    <?= $donation['anonymous'] ? '<span class="anonymous">Anonymous</span>' : htmlspecialchars($donation['first_name'] . ' ' . $donation['last_name']) ?>
-                                </p>
-                                <p style="font-size:0.8rem;color:#888;">
-                                    <?= date('M d, Y', strtotime($donation['donated_at'])) ?>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="donation-right">
-                            <div class="amount">€<?= number_format($donation['amount'], 2) ?></div>
-                            <div class="status">
-                                <i class="fas fa-heart"></i> <?= ucfirst($donation['payment_status']) ?>
-                            </div>
-                        </div>
+            <div class="my-donations-container">
+                <h1 class="page-title">My Donations</h1>
+
+                <?php if (empty($myDonations)): ?>
+                    <div class="no-donations">
+                        <i class="fas fa-heart-broken" style="font-size:2rem;color:#ccc;"></i>
+                        <p>You haven't made any donations yet.</p>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                <?php else: ?>
+                    <?php foreach ($myDonations as $donation):
+                        $cause = Cause::getById($pdo, $donation['cause_id']);
+                        if (!$cause) continue; // në rast se kauza u fshi
+                    ?>
+                        <div class="donation-card">
+                            <div class="donation-left">
+                                <img src="<?= htmlspecialchars($cause->image) ?>" alt="<?= htmlspecialchars($cause->title) ?>">
+                                <div class="donation-info">
+                                    <h4><?= htmlspecialchars($cause->title) ?></h4>
+                                    <p>
+                                        <?= $donation['anonymous'] ? '<span class="anonymous">Anonymous</span>' : htmlspecialchars($donation['first_name'] . ' ' . $donation['last_name']) ?>
+                                    </p>
+                                    <p style="font-size:0.8rem;color:#888;">
+                                        <?= date('M d, Y', strtotime($donation['donated_at'])) ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="donation-right">
+                                <div class="amount">€<?= number_format($donation['amount'], 2) ?></div>
+                                <div class="status">
+                                    <i class="fas fa-heart"></i> <?= ucfirst($donation['payment_status']) ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
         </div>
     </div>
 
