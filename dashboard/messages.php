@@ -1,36 +1,26 @@
 <?php
 session_start();
-include('config/Database.php');
-include('classes/Message.php');
 
-// veq admin
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    die('Access denied');
-}
+include_once __DIR__ . '/../database/Database.php';
+include_once __DIR__ . '/../classes/Donation.php';
+include_once __DIR__ . '/../classes/Cause.php';
+
+$db = new Database();
+$conn = $db->getConnection();
+$donationObj = new Donation($conn);
 
 $messageObj = new Message($db);
 $messages = $messageObj->getAll();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
 <div class="admin-messages-container">
     <div class="admin-messages">
 
-        
+
         <div class="inbox">
             <h3>Inbox</h3>
             <?php foreach ($messages as $msg): ?>
-            <div class="inbox-item"
-                 onclick="openMessage(
+                <div class="inbox-item"
+                    onclick="openMessage(
                     '<?= htmlspecialchars($msg['name']) ?>',
                     '<?= htmlspecialchars($msg['email']) ?>',
                     '<?= htmlspecialchars($msg['subject']) ?>',
@@ -38,16 +28,16 @@ $messages = $messageObj->getAll();
                     <?= $msg['id'] ?>,
                     '<?= htmlspecialchars($msg['reply']) ?>'
                  )">
-                <div class="avatar"><?= strtoupper(substr($msg['name'],0,1)) ?></div>
-                <div>
-                    <strong><?= htmlspecialchars($msg['name']) ?></strong>
-                    <p><?= htmlspecialchars($msg['subject']) ?></p>
+                    <div class="avatar"><?= strtoupper(substr($msg['name'], 0, 1)) ?></div>
+                    <div>
+                        <strong><?= htmlspecialchars($msg['name']) ?></strong>
+                        <p><?= htmlspecialchars($msg['subject']) ?></p>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
 
-        
+
         <div class="message-view" id="messageView">
             <p class="empty">Zgjedh një mesazh për ta parë</p>
         </div>

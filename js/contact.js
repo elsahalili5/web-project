@@ -1,54 +1,65 @@
-const contactForm = document.getElementById("contact-form");
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.getElementById("contact-form");
 
-const nameRegex = /^[A-Za-z\s]+$/;
-const emailRegex =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (!contactForm) return; // siguro që form ekziston
 
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
+  contactForm.addEventListener("submit", function (e) {
+    const resultMsg = document.querySelector(".result");
 
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const subjectInput = document.getElementById("subject");
-  const messageInput = document.getElementById("message");
+    // kontroll login (nga PHP metoda User::isLoggedIn())
+    const isLoggedIn = <?php echo User::isLoggedIn() ? 'true' : 'false'; ?>;
 
-  const resultMsg = document.querySelector(".result");
+    if (!isLoggedIn) {
+      e.preventDefault();
+      resultMsg.style.color = "red";
+      resultMsg.innerText = "Duhet të jeni të kyçur për të dërguar mesazh!";
+      return;
+    }
 
-  resultMsg.style.color = "red";
-  resultMsg.style.visibility = "visible";
-  resultMsg.innerText = "";
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const subjectInput = document.getElementById("subject");
+    const messageInput = document.getElementById("message");
 
-  if (!nameInput.value.trim()) {
-    resultMsg.innerText = "Enter your name*";
-    return;
-  } else if (!nameRegex.test(nameInput.value.trim())) {
-    resultMsg.innerText = "Name must contain only letters*";
-    return;
-  }
-
-  if (!emailInput.value.trim()) {
-    resultMsg.innerText = "Enter your email*";
-    return;
-  } else if (!emailRegex.test(emailInput.value.trim())) {
-    resultMsg.innerText = "Enter a valid email*";
-    return;
-  }
-
-  if (!subjectInput.value.trim()) {
-    resultMsg.innerText = "Enter subject*";
-    return;
-  }
-
-  if (!messageInput.value.trim()) {
-    resultMsg.innerText = "Enter your message*";
-    return;
-  }
-
-  resultMsg.style.color = "green";
-  resultMsg.innerText = "Message sent successfully! We will contact you soon.";
-
-  setTimeout(() => {
-    contactForm.reset();
+    resultMsg.style.color = "red";
     resultMsg.innerText = "";
-  }, 2000);
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const emailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (!nameInput.value.trim()) {
+      e.preventDefault();
+      resultMsg.innerText = "Enter your name*";
+      return;
+    }
+    if (!nameRegex.test(nameInput.value.trim())) {
+      e.preventDefault();
+      resultMsg.innerText = "Name must contain only letters*";
+      return;
+    }
+    if (!emailInput.value.trim()) {
+      e.preventDefault();
+      resultMsg.innerText = "Enter your email*";
+      return;
+    }
+    if (!emailRegex.test(emailInput.value.trim())) {
+      e.preventDefault();
+      resultMsg.innerText = "Enter a valid email*";
+      return;
+    }
+    if (!subjectInput.value.trim()) {
+      e.preventDefault();
+      resultMsg.innerText = "Enter subject*";
+      return;
+    }
+    if (!messageInput.value.trim()) {
+      e.preventDefault();
+      resultMsg.innerText = "Enter your message*";
+      return;
+    }
+
+    resultMsg.style.color = "green";
+    resultMsg.innerText = "Mesazhi po dërgohet...";
+  });
 });

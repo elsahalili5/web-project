@@ -8,15 +8,15 @@ $connection = $database->getConnection();
 
 $message = '';
 
+// --- Delete Cause ---
 if (isset($_POST['confirm_delete'])) {
     $causeId = (int)$_POST['delete_id'];
-
     $stmt = $connection->prepare("DELETE FROM causes WHERE id = ?");
     $stmt->execute([$causeId]);
-
     $message = "Cause deleted successfully!";
 }
 
+// --- Change Status ---
 if (isset($_POST['change_status'])) {
     $causeId = (int)$_POST['cause_id'];
     $newStatus = $_POST['new_status'];
@@ -37,9 +37,7 @@ $userObj = new User($connection);
 <div class="table-box">
     <div class="table-header">
         <h2>Causes</h2>
-        <button class="btn-primary" onclick="openModal('addCauseModal')">
-            <i class="fa fa-plus"></i> Add Cause
-        </button>
+        <!-- Add button removed -->
     </div>
 
     <?php if ($message): ?>
@@ -97,16 +95,12 @@ $userObj = new User($connection);
                         </span>
                     </td>
 
-                    <td><?= ($c->getCreatedAt()) ?></td>
+                    <td><?= $c->getCreatedAt() ?></td>
 
                     <td class="actions">
-                        <form method="POST" style="display:inline">
-                            <input type="hidden" name="edit_id" value="<?= $c->getId() ?>">
-                            <button class="action-btn edit" title="Edit">
-                                <i class="fa fa-pen"></i>
-                            </button>
-                        </form>
+                        <!-- Edit button removed -->
 
+                        <!-- Status change dropdown -->
                         <form method="POST" style="display:inline">
                             <input type="hidden" name="cause_id" value="<?= $c->getId() ?>">
                             <select class="status-select" name="new_status" onchange="this.form.submit()">

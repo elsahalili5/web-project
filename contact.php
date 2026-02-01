@@ -1,101 +1,74 @@
 <?php
-$currentPage = 'contact';
 session_start();
-include_once __DIR__ . '/database/Database.php';
-include_once __DIR__ . '/classes/Message.php';
+include_once './database/Database.php';
+include_once './classes/Message.php';
+include_once './classes/User.php';
 
-$messageObj = new Message($db);
-$result = ""; 
+$db = new Database();
+$conn = $db->getConnection();
+$messageObj = new Message($conn);
+var_dump($_SESSION['user']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $subject = $_POST['subject'] ?? '';
-    $message = $_POST['message'] ?? '';
 
-    $user_id = $_SESSION['user']['id'] ?? null;
+// Ruan mesazhin në DB vetëm për user login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && User::isLoggedIn()) {
+  // merr user_id nga session
+  $user_id = $_SESSION['user']['id'] ?? null;
+  $name = $_POST['name'] ?? '';
+  $email = $_POST['email'] ?? '';
+  $subject = $_POST['subject'] ?? '';
+  $message = $_POST['message'] ?? '';
 
-    $success = $messageObj->add($user_id, $name, $email, $subject, $message);
-
-    if ($success) {
-        $result = "<p style='color:green;'>Mesazhi u dërgua me sukses!</p>";
-    } else {
-        $result = "<p style='color:red;'>Ndodhi një gabim, provoni përsëri.</p>";
-    }
+  if ($user_id) {
+    $messageObj->add($user_id, $name, $email, $subject, $message);
+  }
 }
 ?>
-
 
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Page</title>
-
-  <link rel="stylesheet" href="./styles/header_footer.css" />
-  <link rel="stylesheet" href="./styles/style.css" />
-  <link rel="stylesheet" href="./styles/contact.css" />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="./styles/header_footer.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
-  <?php include('components/navigation.php') ?>
-
-
-
-  <!--fillonnnn formaaa   -->
+  <?php include('components/navigation.php'); ?>
 
   <div class="container">
     <div class="contact-us">
       <section class="contact-container">
         <div class="contact-inner">
+
           <div class="form-box">
             <p class="label-title">— CONTACT US</p>
             <h2>One Message. <span> One step closer to helping </span></h2>
 
-            <div class="result">
-              <?php echo $result; ?>
-            </div>
+            <div class="result"></div>
+
             <form id="contact-form" method="POST" action="">
               <div class="form-group">
                 <label>Your Name *</label>
-                <input
-                  class="form-input"
-                  type="text"
-                  id="name"
-                  placeholder="John Doe" />
+                <input type="text" class="form-input" id="name" name="name" placeholder="John Doe">
               </div>
-
               <div class="form-group">
                 <label>Email *</label>
-                <input
-                  class="form-input"
-                  id="email"
-                  placeholder="example@gmail.com" />
+                <input type="email" class="form-input" id="email" name="email" placeholder="example@gmail.com">
               </div>
-
               <div class="form-group">
                 <label>Subject *</label>
-                <input
-                  class="form-input"
-                  type="text"
-                  id="subject"
-                  placeholder="Enter Subject" />
+                <input type="text" class="form-input" id="subject" name="subject" placeholder="Enter Subject">
               </div>
-
               <div class="form-group">
                 <label>Your Message *</label>
-                <textarea
-                  class="form-input"
-                  rows="6"
-                  id="message"
-                  placeholder="Type here..."></textarea>
+                <textarea class="form-input" id="message" name="message" rows="6" placeholder="Type here..."></textarea>
               </div>
 
               <button class="send-btn" type="submit">
@@ -107,21 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="info-box">
             <h3>Address</h3>
             <p>UBT Dukagjini</p>
-
-            <hr />
-
+            <hr>
             <h3>Contact</h3>
             <p>Phone: 044 110 220</p>
             <p>Email: heart@gmail.com</p>
-
-            <hr />
-
+            <hr>
             <h3>Working Hours</h3>
             <p>Mon - Fri: 10:00 - 20:00</p>
             <p>Sat - Sun: 11:00 - 18:00</p>
-
-            <hr />
-
+            <hr>
             <h3>Social Media</h3>
             <div class="social-links">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -130,22 +97,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
           </div>
+
         </div>
       </section>
     </div>
   </div>
-  <section class="map-box">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.10561899349!2d21.144065!3d42.653480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549efc915d9e6b%3A0xd0a1aabf4fa0c7a5!2sUBT%20-%20Dukagjini!5e0!3m2!1sen!2s!4v1700000000000"
-      frameborder="0"></iframe>
-  </section>
-  <!-- foteriiii -->
-  <?php include('components/footer.php') ?>
 
+  <?php include('components/footer.php'); ?>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const contactForm = document.getElementById("contact-form");
+      const resultMsg = document.querySelector(".result");
 
-  <script src="./js/contact.js"></script>
-  <script src="./js/main.js"></script>
+      contactForm.addEventListener("submit", function(e) {
+        // kontroll login nga PHP
+        const isLoggedIn = <?php echo User::isLoggedIn() ? 'true' : 'false'; ?>;
+
+        if (!isLoggedIn) {
+          e.preventDefault();
+          resultMsg.style.color = "red";
+          resultMsg.innerText = "Duhet të jeni të kyçur për të dërguar mesazh!";
+          return;
+        }
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const nameRegex = /^[A-Za-z\s]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        resultMsg.style.color = "red";
+        resultMsg.innerText = "";
+
+        if (!name) {
+          e.preventDefault();
+          resultMsg.innerText = "Enter your name*";
+          return;
+        }
+        if (!nameRegex.test(name)) {
+          e.preventDefault();
+          resultMsg.innerText = "Name must contain only letters*";
+          return;
+        }
+        if (!email) {
+          e.preventDefault();
+          resultMsg.innerText = "Enter your email*";
+          return;
+        }
+        if (!emailRegex.test(email)) {
+          e.preventDefault();
+          resultMsg.innerText = "Enter a valid email*";
+          return;
+        }
+        if (!subject) {
+          e.preventDefault();
+          resultMsg.innerText = "Enter subject*";
+          return;
+        }
+        if (!message) {
+          e.preventDefault();
+          resultMsg.innerText = "Enter your message*";
+          return;
+        }
+
+        resultMsg.style.color = "green";
+        resultMsg.innerText = "Mesazhi po dërgohet...";
+      });
+    });
+  </script>
 </body>
 
 </html>
