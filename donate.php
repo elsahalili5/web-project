@@ -1,11 +1,11 @@
 <?php
-
-$currentPage = 'causes';
 session_start();
+$currentPage = 'causes';
+
 include_once __DIR__ . '/database/Database.php';
 include_once __DIR__ . '/classes/Donation.php';
 include_once __DIR__ . '/classes/Cause.php';
-
+include_once __DIR__ . '/classes/User.php';
 
 $database = new Database();
 $conn = $database->getConnection();
@@ -13,11 +13,24 @@ $conn = $database->getConnection();
 $donation = new Donation($conn);
 
 $causeId = isset($_GET['cause_id']) ? (int)$_GET['cause_id'] : 1;
-
 $cause = Cause::getById($conn, $causeId);
+
 if (!$cause) {
   die("Cause not found!");
 }
+
+$prefillFirstName = '';
+$prefillLastName = '';
+$prefillEmail = '';
+
+if (User::isLoggedIn()) {
+  $prefillFirstName = $_SESSION['user']['name'];
+  $prefillLastName  = $_SESSION['user']['surname'];
+  $prefillEmail     = $_SESSION['user']['email'];
+}
+
+
+
 
 $message = '';
 
@@ -40,8 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = "Error! Donation could not be recorded.";
   }
 }
-?>
-
 ?>
 
 <!DOCTYPE html>
@@ -67,11 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="message" style="color:green; margin-bottom:12px;"><?= htmlspecialchars($message) ?></p>
       <?php endif; ?>
 
-      <p class="cause-title">
-        <?= htmlspecialchars($cause->title) ?>
-      </p>
+      <p class="cause-title"><?= htmlspecialchars($cause->title) ?></p>
       <p class="subtitle">
-        Still $<?= number_format($cause->goal_amount - $cause->raised_amount, 2) ?> to go. Help us build momentum.
+        Still €<?= number_format($cause->goal_amount - $cause->raised_amount, 2) ?> to go. Help us build momentum.
       </p>
 
       <form method="post" id="donationForm">
@@ -80,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3 class="amount-title">Amount</h3>
         <div class="amount">
           <span>€</span>
-          <input type="number" id="amountInput" name="amount" min="0" />
+          <input type="number" id="amountInput" name="amount" min="0" required />
         </div>
 
         <h3 class="payment-title">Payment method</h3>
@@ -93,11 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="result"></div>
 
           <div class="card-form">
-            <input placeholder="Email address" name="email" class="full" />
+            <input type="email" placeholder="Email address" name="email" class="full"
+              value="<?= htmlspecialchars($prefillEmail) ?>" required />
 
             <div class="row">
-              <input type="text" placeholder="First name" name="firstName" />
-              <input type="text" placeholder="Last name" name="lastName" />
+              <input type="text" placeholder="First name" name="firstName"
+                value="<?= htmlspecialchars($prefillFirstName) ?>" required />
+              <input type="text" placeholder="Last name" name="lastName"
+                value="<?= htmlspecialchars($prefillLastName) ?>" required />
             </div>
 
             <div class="anonymous-checkbox">
@@ -105,30 +117,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <label for="anonymous">Don’t display my name publicly on the fundraiser.</label>
             </div>
 
-            <input type="text" placeholder="Card number" name="cardNumber" class="full" pattern="\d{13,19}" />
+            <input type="text" placeholder="Card number" name="cardNumber" class="full" pattern="\d{13,19}" required />
 
             <div class="row">
-              <input type="month" placeholder="MM / YY" name="expireDate" />
-              <input type="number" placeholder="CVV" name="cvv" min="100" max="999" />
+              <input type="month" placeholder="MM / YY" name="expireDate" required />
+              <input type="number" placeholder="CVV" name="cvv" min="100" max="999" required />
             </div>
 
-            <input type="text" placeholder="Name on card" name="cardName" class="full" />
+            <input type="text" placeholder="Name on card" name="cardName" class="full" required />
 
             <div class="row">
               <select name="country">
                 <option>Kosovo</option>
               </select>
-              <input type="number" placeholder="Postal code" name="postalCode" />
+              <input type="number" placeholder="Postal code" name="postalCode" required />
             </div>
           </div>
         </div>
 
         <div class="total">
           <p>Your donation
-            <span id="donationTotal">
-            </span>
+            <span id="donationTotal"></span>
           </p>
-
         </div>
         <button class="donate-btn" type="submit">Donate now</button>
       </form>

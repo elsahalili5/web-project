@@ -1,0 +1,100 @@
+.my-donations-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #01715d;
+  margin-bottom: 40px;
+}
+
+.donation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.donation-card:hover {
+  transform: translateY(-2px);
+}
+
+.donation-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.donation-left img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #16a34a;
+}
+
+.donation-info h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.donation-info p {
+  margin: 3px 0 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.donation-info .anonymous {
+  font-style: italic;
+  color: #999;
+}
+
+.donation-right {
+  text-align: right;
+}
+
+.donation-right .amount {
+  font-weight: bold;
+  color: #16a34a;
+  font-size: 1.1rem;
+}
+
+.donation-right .status {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.donation-right .status i {
+  margin-right: 5px;
+  color: #e02424;
+}
+
+.no-donations {
+  text-align: center;
+  color: #555;
+  font-size: 1.1rem;
+  margin-top: 50px;
+}
+
+@media (max-width: 600px) {
+  .donation-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .donation-right {
+    text-align: left;
+    margin-top: 10px;
+  }
+}

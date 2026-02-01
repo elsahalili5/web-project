@@ -30,9 +30,8 @@ require_once "./classes/User.php";
                                     <li>
                                         <span class="user-name"><?= htmlspecialchars($userName) ?></span>
                                     </li>
-                                    <li><a href="my-fundraisers.php">Your fundraisers</a>
-                                    </li>
-                                    <li><a href="fundraisers.php">Your impact</a></li>
+                                    <li><a href="my-fundraisers.php">My fundraisers</a></li>
+                                    <li><a href="my-donations.php">My donations</a></li>
 
 
                                 </ul>
@@ -89,8 +88,8 @@ require_once "./classes/User.php";
 
                                 <li><a href="profile.php">Profile</a></li>
                                 <?php if (User::isLoggedIn() && !User::isAdmin()): ?>
-                                    <li><a href="my-fundraisers.php">Your fundraisers</a></li>
-                                    <li><a href="impact.php">Your impact</a></li>
+                                    <li><a href="my-fundraisers.php">My fundraisers</a></li>
+                                    <li><a href="my-donations.php">My donations</a></li>
                                 <?php endif; ?>
                                 <li><a href="./logout.php" class="btn-red">Sign out</a></li>
                             </ul>
