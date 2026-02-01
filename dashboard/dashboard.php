@@ -1,5 +1,6 @@
 <?php
 
+// include_once __DIR__ . '/../auth/is-privatepage.php';
 
 ?>
 <!DOCTYPE html>
@@ -10,6 +11,7 @@
     <title>Dashboard UI</title>
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/dashboard.css" />
+    <link rel="stylesheet" href="../styles/profile.css" />
     <link rel="stylesheet" href="../styles/dbhome.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
@@ -28,7 +30,18 @@
                 <div class="content">
                     <?php
                     $page = $_GET['page'] ?? 'dashboard_home';
-                    $allowed_pages = ['dashboard_home', 'users', 'causes', 'donations', 'messages', 'categories'];
+                    $allowed_pages = [
+                        'dashboard_home',
+                        'users',
+                        'causes',
+                        'donations',
+                        'messages',
+                        'categories',
+                        'admin-profile',
+
+
+
+                    ];
 
                     if (in_array($page, $allowed_pages)) {
                         include "$page.php";

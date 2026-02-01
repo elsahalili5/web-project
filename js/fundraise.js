@@ -124,6 +124,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const imageUrlInput = document.getElementById("imageUrl");
+
+  if (imageUrlInput) {
+    imageUrlInput.addEventListener("input", () => {
+      const url = imageUrlInput.value.trim();
+
+      if (url.startsWith("http")) {
+        const uploadBox = document.querySelector(".upload");
+
+        uploadBox.style.backgroundImage = `url(${url})`;
+        uploadBox.textContent = "";
+        uploadBox.style.border = "none";
+        uploadBox.dataset.hasImage = "true";
+
+        document.getElementById("selectedImage").value = url;
+
+        validateCurrentStep();
+      }
+    });
+  }
+
   document.addEventListener("input", (e) => {
     if (e.target === titleInput) {
       titleCount.textContent = titleInput.value.length;

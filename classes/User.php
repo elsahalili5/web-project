@@ -128,4 +128,19 @@ class User
         header("Location: home.php");
         exit;
     }
+    public function searchUsers($keyword)
+    {
+        $keyword = "%$keyword%";
+        $stmt = $this->conn->prepare("
+        SELECT id, name, surname, email, role, created_at
+        FROM users
+        WHERE CONCAT(name, ' ', surname) LIKE :keyword
+           OR email LIKE :keyword
+           OR role LIKE :keyword
+        ORDER BY created_at DESC
+    ");
+        $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

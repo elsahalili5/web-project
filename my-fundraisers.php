@@ -40,61 +40,59 @@ $donationObj = new Donation($pdo);
     <?php include('components/navigation.php'); ?>
 
     <div class="myfundraiser-container">
-        <div class="main-banner">
 
-            <h1 class="page-title">My Fundraisers</h1>
+        <h1 class="page-title">My Fundraisers</h1>
 
-            <?php if (empty($causes)): ?>
-                <p style="text-align:center; color:#6b7280;">You have not created any fundraisers yet.</p>
-            <?php else: ?>
-                <?php foreach ($causes as $cause):
-                    $progress = ($cause->getGoalAmount() > 0) ? min(($cause->getRaisedAmount() / $cause->getGoalAmount()) * 100, 100) : 0;
-                    $allDonations = $donationObj->getByCause($cause->getId());
-                    $totalDonors = count($allDonations);
-                ?>
-                    <div class="fundraiser-card">
-                        <div class="fundraiser-left">
-                            <img src="<?= htmlspecialchars($cause->getImage()) ?>" alt="<?= htmlspecialchars($cause->getTitle()) ?>">
-                            <div class="fundraiser-info">
-                                <h3><?= htmlspecialchars($cause->getTitle()) ?></h3>
-                                <p><?= nl2br(htmlspecialchars($cause->getDescription())) ?></p>
-                            </div>
-                        </div>
-
-                        <div class="fundraiser-right">
-                            <div class="fundraiser-stats">
-                                <div class="raised">€<?= number_format($cause->getRaisedAmount(), 2) ?> raised</div>
-                                <div class="goal">Goal: €<?= number_format($cause->getGoalAmount(), 2) ?></div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: <?= $progress ?>%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="status">
-                                <span class="material-symbols-outlined"><?= $cause->getStatus() === 'approved' ? 'check_circle' : 'hourglass_top' ?></span>
-                                <span><?= ucfirst($cause->getStatus()) ?></span>
-                            </div>
-
-
-
-                            <div class="donors-clean">
-                                <h4>Recent donors (<?= $totalDonors ?>)</h4>
-                                <?php foreach ($allDonations as $donor): ?>
-                                    <div class="donor-card-clean">
-                                        <div class="donor-icon-clean"><i class="fas fa-user-circle"></i></div>
-                                        <div class="donor-info-clean">
-                                            <div class="donor-name-clean"><?= htmlspecialchars($donor['first_name'] . ' ' . $donor['last_name']) ?></div>
-                                            <div class="donor-amount-clean">€<?= number_format($donor['amount'], 2) ?></div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+        <?php if (empty($causes)): ?>
+            <p style="text-align:center; color:#6b7280;">You have not created any fundraisers yet.</p>
+        <?php else: ?>
+            <?php foreach ($causes as $cause):
+                $progress = ($cause->getGoalAmount() > 0) ? min(($cause->getRaisedAmount() / $cause->getGoalAmount()) * 100, 100) : 0;
+                $allDonations = $donationObj->getByCause($cause->getId());
+                $totalDonors = count($allDonations);
+            ?>
+                <div class="fundraiser-card">
+                    <div class="fundraiser-left">
+                        <img src="<?= htmlspecialchars($cause->getImage()) ?>" alt="<?= htmlspecialchars($cause->getTitle()) ?>">
+                        <div class="fundraiser-info">
+                            <h3><?= htmlspecialchars($cause->getTitle()) ?></h3>
+                            <p><?= nl2br(htmlspecialchars($cause->getDescription())) ?></p>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
 
-        </div>
+                    <div class="fundraiser-right">
+                        <div class="fundraiser-stats">
+                            <div class="raised">€<?= number_format($cause->getRaisedAmount(), 2) ?> raised</div>
+                            <div class="goal">Goal: €<?= number_format($cause->getGoalAmount(), 2) ?></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <?= $progress ?>%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="status">
+                            <span class="material-symbols-outlined"><?= $cause->getStatus() === 'approved' ? 'check_circle' : 'hourglass_top' ?></span>
+                            <span><?= ucfirst($cause->getStatus()) ?></span>
+                        </div>
+
+
+
+                        <div class="donors-clean">
+                            <h4>Recent donors (<?= $totalDonors ?>)</h4>
+                            <?php foreach ($allDonations as $donor): ?>
+                                <div class="donor-card-clean">
+                                    <div class="donor-icon-clean"><i class="fas fa-user-circle"></i></div>
+                                    <div class="donor-info-clean">
+                                        <div class="donor-name-clean"><?= htmlspecialchars($donor['first_name'] . ' ' . $donor['last_name']) ?></div>
+                                        <div class="donor-amount-clean">€<?= number_format($donor['amount'], 2) ?></div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
 
     </div>
     <?php include('components/footer.php'); ?>

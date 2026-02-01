@@ -94,10 +94,10 @@ require_once "./classes/User.php";
                             </div>
 
                             <ul class="dropdown-menu">
-
-
-                                <li><a href="profile.php">Profile</a></li>
                                 <?php if (User::isLoggedIn() && !User::isAdmin()): ?>
+
+
+                                    <li><a href="profile.php">Profile</a></li>
                                     <li><a href="my-fundraisers.php">My fundraisers</a></li>
                                     <li><a href="my-donations.php">My donations</a></li>
                                 <?php endif; ?>

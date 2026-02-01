@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3 class="amount-title">Amount</h3>
         <div class="amount">
           <span>€</span>
-          <input type="number" id="amountInput" name="amount" min="0" required />
+          <input type="number" id="amountInput" name="amount" min="0" />
         </div>
 
         <h3 class="payment-title">Payment method</h3>
@@ -102,14 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="result"></div>
 
           <div class="card-form">
-            <input type="email" placeholder="Email address" name="email" class="full"
-              value="<?= htmlspecialchars($prefillEmail) ?>" required />
+            <input placeholder="Email address" name="email" class="full"
+              value="<?= htmlspecialchars($prefillEmail) ?>" />
 
             <div class="row">
               <input type="text" placeholder="First name" name="firstName"
-                value="<?= htmlspecialchars($prefillFirstName) ?>" required />
+                value="<?= htmlspecialchars($prefillFirstName) ?>" />
               <input type="text" placeholder="Last name" name="lastName"
-                value="<?= htmlspecialchars($prefillLastName) ?>" required />
+                value="<?= htmlspecialchars($prefillLastName) ?>" />
             </div>
 
             <div class="anonymous-checkbox">
@@ -117,20 +117,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <label for="anonymous">Don’t display my name publicly on the fundraiser.</label>
             </div>
 
-            <input type="text" placeholder="Card number" name="cardNumber" class="full" pattern="\d{13,19}" required />
+            <input placeholder="Card number" name="cardNumber" class="full" />
 
             <div class="row">
-              <input type="month" placeholder="MM / YY" name="expireDate" required />
-              <input type="number" placeholder="CVV" name="cvv" min="100" max="999" required />
+              <input type="month" placeholder="MM / YY" name="expireDate" />
+              <input type="number" placeholder="CVV" name="cvv" />
             </div>
 
-            <input type="text" placeholder="Name on card" name="cardName" class="full" required />
+            <input type="text" placeholder="Name on card" name="cardName" class="full" />
 
             <div class="row">
               <select name="country">
                 <option>Kosovo</option>
               </select>
-              <input type="number" placeholder="Postal code" name="postalCode" required />
+              <input type="number" placeholder="Postal code" name="postalCode" />
             </div>
           </div>
         </div>

@@ -159,7 +159,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="step">
           <h2>Add a cover photo</h2>
+
           <div class="upload">Click to upload an image</div>
+
+          <div class="or-separator">or</div>
+
+          <input
+            type="url"
+            id="imageUrl"
+            placeholder="Paste image URL here"
+            style="margin-top:10px;" />
+
           <input type="hidden" name="image" id="selectedImage" value="default.jpg" />
         </div>
 
